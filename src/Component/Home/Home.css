@@ -1,0 +1,265 @@
+#home {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.filterss {
+  display: flex;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.368627451);
+  border-radius: 12px;
+}
+
+button.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonBase-root.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  background: linear-gradient(88.21deg, #375958 -25.83%, #172120 96.08%);
+  border-radius: 12px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8em;
+  line-height: 20px;
+  padding: 1vw 2vw;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.sele {
+  width: 38%;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1215686275);
+  margin-right: 11px;
+  gap: 6px;
+}
+
+.sele:last-child {
+  border: none;
+}
+
+.FormControl {
+  width: 100%;
+}
+
+.MuiFormControl-root {
+  width: 100% !important;
+}
+
+.home-fun {
+  margin: auto;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(69px);
+  backdrop-filter: blur(69px);
+  border-radius: 12px;
+  width: 80%;
+  height: 140px;
+  position: relative;
+  bottom: 160px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.sup-tit {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 20px;
+  color: #979797;
+}
+
+.main-tit {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 41px;
+  line-height: 40px;
+  color: #000000;
+}
+
+.sup {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.gr {
+  border-top: 8px;
+  width: 100px;
+  border-color: #979797;
+  margin-left: 9px;
+}
+
+.comun {
+  width: 90%;
+  margin: auto;
+}
+
+.box-sli {
+  height: 70vh;
+  width: 27vw;
+  background-image: url(/Component/Image/sli2.png);
+  background-size: cover;
+  border-radius: 40px;
+  background-position: center;
+  box-shadow: 7px 4px 8px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.name-res {
+  background: rgba(255, 255, 255, 0.69);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border-radius: 33px 33px 0px 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  flex-direction: column;
+  padding: 14px 7px;
+}
+
+.mn {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.slick-prev:before, .slick-next:before {
+  content: "" !important;
+}
+
+.slick-arrow.slick-next {
+  position: absolute;
+  top: -90px !important;
+  right: 50px !important;
+}
+
+.slick-arrow.slick-prev {
+  position: absolute;
+  top: -90px !important;
+  left: 80vw !important;
+}
+
+.mt {
+  margin-top: 4vw;
+}
+
+.social-bar {
+  background: linear-gradient(88.21deg, #375958 -25.83%, #172120 96.08%);
+  height: 15vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.soc {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 52px;
+  /* identical to box height, or 133% */
+  text-align: center;
+  letter-spacing: -0.4px;
+  color: #FFFFFF;
+}
+
+.soc-t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25vw;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.css-1s2u09g-control {
+  background-color: hsla(0deg, 37%, 44%, 0);
+}
+
+.css-1s2u09g-control {
+  align-items: center;
+  background-color: hsla(0deg, 0%, 100%, 0) !important;
+  border-color: hsla(0deg, 0%, 60%, 0) !important;
+  border: none;
+  max-height: 20px;
+  overflow: hidden !important;
+  display: flex;
+  align-items: flex-start;
+  max-height: 40px !important;
+}
+
+.css-g1d714-ValueContainer {
+  max-height: 40px !important;
+}
+
+.css-1rhbuit-multiValue {
+  background-color: hsla(0deg, 0%, 90%, 0.39) !important;
+  border-radius: 2px;
+  display: flex;
+  margin: 2px;
+  min-width: 0;
+  box-sizing: border-box;
+  align-items: center !important;
+  height: 33px !important;
+  border-radius: 3px;
+  color: #9d9d9d;
+}
+
+.css-1pahdxg-control {
+  align-items: center;
+  background-color: hsla(0deg, 0%, 100%, 0.062) !important;
+  border-color: rgba(255, 241, 38, 0) !important;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 0 0 1px rgba(82, 122, 173, 0) !important;
+  cursor: default;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 38px;
+  outline: 0 !important;
+  position: relative;
+  transition: all 100ms;
+  box-sizing: border-box;
+}
+
+.l-b {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  /* or 100% */
+  color: #252649;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.selecty {
+  width: 100%;
+}/*# sourceMappingURL=Home.css.map */

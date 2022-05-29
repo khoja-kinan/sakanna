@@ -1,0 +1,144 @@
+.tio{
+    color:red;
+}
+.foot{
+    position: relative;
+    bottom: 0;
+    background: rgb(255 251 244 / 60%);
+    // margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    height: 14vw;
+    // margin-top: 5vw;
+}
+img.down-foot {
+    width: 22%;
+}
+.mai {
+    font-family: 'Kabrio';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.1vw;
+    line-height: 1vw;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ADADAD;
+
+    margin-bottom: 17px;
+
+}
+.inf {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+.jio {
+    width: 20vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.zei{
+    border: 0.1px solid #3C4A53;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 9px;
+}
+.rights{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    font-feature-settings: 'salt' on, 'liga' off;
+    
+    /* chor */
+    
+    color: #3C4A53;
+    width: 90%;
+    margin:auto
+}
+.selee{
+
+font-style: normal;
+font-weight: 400;
+font-size: 1.2vw;
+    line-height: 2vw;
+
+
+display: flex;
+align-items: center;
+letter-spacing: 0.25px;
+
+/* Black */
+text-decoration: none;
+color: #2D3436;
+}
+.svgf{
+    width: 60%;
+}
+.gu{
+    height: 8vw;
+}
+.mu{
+    display: none;
+}
+@media screen and (max-width:500px){
+.footer{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+height: 32vw;
+}
+img.down-foot {
+    width: 42%;
+}
+.gu{
+    // display:none;
+}
+.mai{
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 1px;
+}
+.selee{
+    font-size: 10px;
+    line-height: 18px;
+}
+
+.inf {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vw;
+    align-items: center;
+}
+.jio {
+    width: 58vw;
+}
+.oi{
+    display: none;
+}
+.rights{
+    font-size: 8px;
+    text-align: center;
+
+    line-height: 17px;
+}
+.zei{
+    margin-top: 19px;
+    margin-bottom: 6px;
+}
+
+}

@@ -1,0 +1,97 @@
+.ser-con{
+    height: fit-content;
+    width: 100%;
+    background-color: white;
+    z-index: 300;
+    position: sticky;
+    bottom: 0;
+    clear: both;
+    box-shadow: 0px -4px 8px rgb(0 0 0 / 4%);
+}
+.ser-con .home-fun {
+    margin: auto;
+    background: rgba(255, 251, 244, 0.6);
+    backdrop-filter: blur(30px);
+    border-radius: 0;
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    position: revert;
+    padding: 0.5vw;
+    bottom: 13vw;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.ser-con .filterss {
+    display: flex;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+}
+ .posi{
+    position: sticky;
+    bottom: 0;
+}
+.ki[role=main] {
+    height: 70px;
+    position: fixed;
+    top: 86vw;
+    width: 16vw;
+    z-index: 44;
+    background: beige;
+    background: rgba(255, 255, 255, 0.41);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 0 10vw 10vw 0;
+    /* display: flex; */
+    display: block;
+}
+@media screen and (max-width:500px) {
+    .ser-con{
+        border-radius: 2vw;
+        background-color: #ffffff36;
+    }
+    .ser-con .home-fun {
+        margin: auto;
+        background: rgb(255 251 244 / 53%);
+        -webkit-backdrop-filter: blur(30px);
+        backdrop-filter: blur(30px);
+        border-radius: 10vw;
+        width: 100%;
+        height: -moz-fit-content;
+        height: fit-content;
+        position: revert;
+        padding: 4vw 2vw;
+        bottom: 13vw;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+.klos {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 31px;
+    top: 26px;
+}
+ .ser-con .MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonBase-root.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background: linear-gradient(88.21deg, #375958 -25.83%, #172120 96.08%);
+    border-radius: 0.71vw;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1vw;
+    line-height: 2vw;
+    padding: 0.8vw 1.4vw;
+    margin-right: 15px;
+    white-space: nowrap;
+}

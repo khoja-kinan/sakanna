@@ -1,0 +1,61 @@
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  // height:89vh !important;
+}
+.first {
+  // background-image: url(/Component/Image/sli1.png);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.second {
+  // background-image: url(/Component/Image/sli2.png);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+}
+.t1 {
+  background-image: url(/Component/Image/sli1.png);
+}
+.t2 {
+  background-image: url(/Component/Image/S1.jpg);
+}
+/*
+.s1{
+    background-image: url(/Component/Image/melia/S1.jpg);
+}
+.s2{
+    background-image: url(/Component/Image/melia/S2.jpg);
+}
+.s3{
+    background-image: url(/Component/Image/melia/S3.jpg);
+}
+.s4{
+    background-image: url(/Component/Image/melia/S4.jpg);
+}
+.s5{
+    background-image: url(/Component/Image/melia/S5.jpg);
+}
+.s6{
+    background-image: url(/Component/Image/melia/S6.jpg);
+}
+.s7{
+    background-image: url(/Component/Image/melia/S7.jpg);
+}
+.s8{
+    background-image: url(/Component/Image/melia/S8.jpg);
+} */
+@media screen and (max-width: 768px) {
+  .second {
+    background-position: center;
+  }
+}

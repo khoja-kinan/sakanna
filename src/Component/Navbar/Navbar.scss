@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+.nav {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.41);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  width: 100%;
+}
+.logo {
+  width: 40%;
+}
+.flex-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width:100%;
+  padding: 0 2em;
+
+  max-height: 72px;
+
+}
+.uli {
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+
+}
+
+.MuiInputLabel-formControl {
+  top: 0;
+  left: 0;
+  position: relative;
+  transform: none !important;
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
+//   background-color: #1976d200 !important;
+//   border: 1px solid !important;
+font-style: normal !important;
+font-weight: 700 !important;
+font-size: 1vw!important;
+color: #000000 !important;
+border-color: #000000 !important;
+white-space: nowrap !important;
+line-height: 2vw!important;
+font-family: poppins!important;
+}
+.iopl{
+//   background-color: #1976d200 !important;
+//   border: 1px solid !important;
+font-style: normal !important;
+font-weight: 700 !important;
+font-size: 1vw!important;
+color: #000000 !important;
+border-color: #000000 !important;
+white-space: nowrap !important;
+line-height: 2vw!important;
+font-family: poppins!important;
+}
+// NavLink {
+//   text-decoration: none;
+// }
+
+.re {
+  font-style: normal;
+  font-weight: 500;
+
+  font-size: 1vw;
+  line-height: 2vw;
+
+  display: flex;
+    align-items: center;
+    gap: 0.3vw;
+
+  color: #000000;
+  white-space: nowrap;
+  text-decoration: none;
+}
+#toggler , .nav label{
+  display: none;
+}
+
+@media screen and (max-width:900px) {
+  .re{
+    font-size: 1.3vw;
+  }
+  .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    font-size: 1.3vw !important;
+    line-height: 3vw !important;
+}
+}
+@media screen and (max-width:600px){
+  .menu {
+    width: 50vw;
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    top: 122px;
+    right: -31px;
+    padding: 0;
+  }
+  .nav {
+    height: 72px;
+  }
+  .list {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 4vw 2vw;
+    background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0px 4px 8px rgb(0 0 0 / 4%);
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+  gap: 3vw;
+  }
+  .nav label{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 22px;
+    right: 39px;
+  }
+  #toggler:checked ~ .menu{
+    max-height: 100%;
+  }
+  .logo {
+    width: 116%;
+  }
+  .re {
+    font-size: 2.3vw;
+    line-height: 8vw;
+    font-weight: 600;
+  }
+  .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    font-size: 2.3vw !important;
+    line-height: 4vw !important;
+}
+  }
+
+.langi{
+  background: none;
+  border: none;
+  text-transform: capitalize;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4vw;
+  line-height: 2vw;
+}

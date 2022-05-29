@@ -1,0 +1,61 @@
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  // height:89vh !important;
+}
+.first {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+}
+.second {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+}
+/* .s1{
+    background-image: url(/Component/Image/melia/S1.jpg);
+}
+.s2{
+    background-image: url(/Component/Image/melia/S2.jpg);
+}
+.s1{
+    background-image: url(/Component/Image/melia/S3.jpg);
+}
+.s2{
+    background-image: url(/Component/Image/melia/S4.jpg);
+}
+.s1{
+    background-image: url(/Component/Image/melia/S5.jpg);
+}
+.s2{
+    background-image: url(/Component/Image/melia/S6.jpg);
+}
+
+
+.si1{
+    background-image: url(/Component/Image/melia/01.jpg);
+}
+.si2{
+    background-image: url(/Component/Image/melia/02.jpg);
+}
+.si3{
+    background-image: url(/Component/Image/melia/05.jpg);
+}
+.si4{
+    background-image: url(/Component/Image/melia/08.jpg);
+} */
+
+.firsti {
+  height: 84vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}

@@ -1,0 +1,76 @@
+.tio {
+  color: red;
+}
+
+.foot {
+  position: relative;
+  bottom: 0;
+  background: rgba(255, 251, 244, 0.6);
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  height: 14vw;
+}
+
+img.down-foot {
+  width: 22%;
+}
+
+.mai {
+  font-family: "Kabrio";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #ADADAD;
+  margin-bottom: 17px;
+}
+
+.inf {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+}
+
+.jio {
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.zei {
+  border: 0.1px solid #3C4A53;
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 9px;
+}
+
+.rights {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+  font-feature-settings: "salt" on, "liga" off;
+  /* chor */
+  color: #3C4A53;
+  width: 90%;
+  margin: auto;
+}/*# sourceMappingURL=Footer.css.map */
