@@ -2,6 +2,8 @@ import Zoom from "react-reveal/Zoom";
 import { baseImageUrl } from "../../constants/urls";
 
 const FeaturesIcon = ({ amenities }) => {
+  console.log(amenities);
+
   return (
     <>
       <div className="featuers">
