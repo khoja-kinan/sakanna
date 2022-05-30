@@ -6,6 +6,7 @@ import SliderIn from "../SliderIn";
 import { useLocation, useParams } from "react-router-dom";
 import { baseImageUrl } from "../../../constants/urls";
 import Footer from "../../Footer/Footer";
+import Floors from "../Floors/Floors";
 import Navbar from "../../Navbar/Navbar";
 import axios from "axios";
 import { getTypeById } from "../../../constants/urls";
@@ -62,7 +63,6 @@ const Type = () => {
     }
     fecthData();
   }, []);
-
   return loading ? (
     <LinearProgress color="primary" />
   ) : (
@@ -158,7 +158,7 @@ const Type = () => {
 
         {/* <iframe src={perf }></iframe>  */}
       </div>
-
+      {type.community.type === "villa" && <Floors floors={type.type.floors} />}
       <div className="gra">
         <div
           className="gra-floor"

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Switch } from "react-router-dom";
+import { Routes, Route, Switch, Navigate } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import About from "./Component/About/About";
 import Policy from "./Component/Policy/Policy";
@@ -20,10 +20,22 @@ import "./Component/Contact/Contact.scss";
 import "./Component/ContactForm/ContactForm.scss";
 import "./Component/SearchContact/SearchContact.scss";
 import "./Component/SearchBar/SearchBar.scss";
+import "./Component/Community/Floors/Floors.scss";
 import "./index.scss";
 import "./Component/Navbar/Navbar.scss";
 import { useTranslation } from "react-i18next";
 import "./Component/CustomPopup/CustomPopup";
+import "./Component/dashboard/IndexDashboard";
+import DashboardLayout from "./Component/dashboard/layouts/dashboard";
+import DashboardApp from "./Component/dashboard/pages/DashboardApp";
+import User from "./Component/dashboard/pages/User";
+import Specializations from "./Component/dashboard/pages/Specializations";
+import Privileges from "./Component/dashboard/pages/Privileges";
+import Medals from "./Component/dashboard/pages/Medals";
+import Countries from "./Component/dashboard/pages/Countries";
+import NotFound from "./Component/dashboard/pages/Page404";
+import Unauthorized from "./Component/dashboard/pages/Unauthorized";
+import IndexDashboard from "./Component/dashboard/IndexDashboard";
 
 const App = () => {
   const { t, i18n } = useTranslation("common");
@@ -44,6 +56,33 @@ const App = () => {
       />
       <Route path="/results" element={<Results />} />
       <Route element={<Error />} />
+      <Route path="/login" element={<IndexDashboard />} />
+
+      <Route path="/Dashboard" element={<DashboardLayout />}>
+        <Route path="app" element={<DashboardApp />} />
+
+        {/* <Route element={<RequireAuth allowedRoles={[1]} />}> */}
+        <Route path="user" element={<User />} />
+        {/*  </Route>
+        <Route element={<RequireAuth allowedRoles={[13]} />}> */}
+        <Route path="specializations" element={<Specializations />} />
+        {/*  </Route>
+        <Route element={<RequireAuth allowedRoles={[5]} />}> */}
+        <Route path="privileges" element={<Privileges />} />
+        {/*  </Route>
+        <Route element={<RequireAuth allowedRoles={[17]} />}> */}
+        <Route path="medals" element={<Medals />} />
+        {/*  </Route>
+        <Route element={<RequireAuth allowedRoles={[9]} />}> */}
+        <Route path="countries" element={<Countries />} />
+        {/*  </Route> */}
+      </Route>
+      {/*  </Route> */}
+
+      {/* Catch All */}
+      <Route path="/404" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="404" />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
     </Routes>
   );
 };

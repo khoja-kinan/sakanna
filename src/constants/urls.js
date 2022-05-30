@@ -12,3 +12,4 @@ export const getComunityById = `${baseUrl}/community/`;
 export const getTypeById = `${baseUrl}/community/`;
 
 export const contactUs = `${baseUrl}/contacts/`;
+

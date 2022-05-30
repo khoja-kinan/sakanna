@@ -86,6 +86,8 @@ const Community = () => {
             locationName={comunityDetails.location}
             locationDescription={comunityDetails.location_description}
             locationImage={comunityDetails.location_image}
+            locLat={comunityDetails.latitude}
+            locLong={comunityDetails.longitude}
           />
         </div>
         <div className="types">

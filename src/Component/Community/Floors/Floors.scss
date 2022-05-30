@@ -1,0 +1,69 @@
+.floors-cols{
+    width: 90%;
+    margin: 4vw auto;
+    // background: red;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.col-f{
+    width: 32%;
+    position: relative;
+    // background: blue;
+    height: fit-content;
+    min-width: 260px;
+}
+.info-tec-floor {
+    width: 100%;
+    margin: 3vw 2vw;
+    display: flex;
+    flex-direction: column;
+}
+.floor-tit{
+    margin: 0;
+    font-weight: 700;
+    color: #2c4746;
+    font-size: 2vw;
+}
+.tre-f {
+    font-size: 1.4vw;
+    margin-bottom: 1.6vw;
+}
+@media screen and (max-width:900px) {
+    .floors-cols {
+        width: 90%;
+        margin: 4vw auto;
+        height: -moz-fit-content;
+        height: fit-content;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .col-f{
+        width: 47%;
+    }
+    .floor-tit {
+        font-size: 2.6vw;
+    }
+    .tre-f {
+        font-size: 2vw;
+    }
+
+}
+@media screen and (max-width:580px) {
+    .col-f{
+        width: 100%;
+    }
+    .floor-tit {
+        font-size: 4.6vw;
+    }
+    .tre-f {
+        font-size: 3vw;
+    }
+}

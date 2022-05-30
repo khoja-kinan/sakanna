@@ -4,8 +4,15 @@ import { NavLink } from "react-router-dom";
 import Roll from "react-reveal/Roll";
 import Slide from "react-reveal/Slide";
 import { baseImageUrl } from "../../constants/urls";
+import { Link } from "@mui/material";
 
-const Location = ({ locationName, locationDescription, locationImage }) => {
+const Location = ({
+  locationName,
+  locationDescription,
+  locationImage,
+  locLat,
+  locLong,
+}) => {
   return (
     <>
       <Slide left>
@@ -24,9 +31,16 @@ const Location = ({ locationName, locationDescription, locationImage }) => {
             <p className="loc-tit">{locationName}</p>
             <p className="loc-con">{locationDescription}</p>
             <center>
-              <Button variant="outlined" LinkComponent={NavLink} to="/contact">
-                <p className="bo-big">VIEW ON GOOGLE MAP </p>
-              </Button>
+              <Link
+                underline="none"
+                href={`https://www.google.com/maps/search/?api=1&query=${locLat},${locLong}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <Button variant="outlined">
+                  <p className="bo-big">VIEW ON GOOGLE MAP </p>
+                </Button>
+              </Link>
             </center>
           </div>
         </div>
