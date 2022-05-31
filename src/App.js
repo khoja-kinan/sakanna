@@ -36,12 +36,15 @@ import Countries from "./Component/dashboard/pages/Countries";
 import NotFound from "./Component/dashboard/pages/Page404";
 import Unauthorized from "./Component/dashboard/pages/Unauthorized";
 import IndexDashboard from "./Component/dashboard/IndexDashboard";
+import i18n from './i18n';
 
 const App = () => {
-  const { t, i18n } = useTranslation();
-  // const {i18n} = useTranslation();
-  document.body.dir = i18n.dir();  // const { t } = this.props;
-  // document.documentElement.lang = i18next.language;
+  // const { t, i18n } = useTranslation();
+  const {i18n} = useTranslation();
+  document.body.dir = i18n.dir(); 
+  // document.documentElement.lang = i18n.language;
+   // const { t } = this.props;
+  document.documentElement.lang = i18n.language;
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />

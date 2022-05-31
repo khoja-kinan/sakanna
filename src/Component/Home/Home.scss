@@ -623,3 +623,12 @@ span.css-1okebmr-indicatorSeparator {
     display: block;
   }
 }
+
+.slick-arrow.slick-prev:lang(ar) {
+  right: 87vw !important;
+  left: 0!important;
+}
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: 56px;
+}

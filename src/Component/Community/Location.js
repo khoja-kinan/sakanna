@@ -5,6 +5,7 @@ import Roll from "react-reveal/Roll";
 import Slide from "react-reveal/Slide";
 import { baseImageUrl } from "../../constants/urls";
 import { Link } from "@mui/material";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 const Location = ({
   locationName,
@@ -13,6 +14,8 @@ const Location = ({
   locLat,
   locLong,
 }) => {
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <Slide left>
@@ -25,7 +28,7 @@ const Location = ({
         <div className="di-loc">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">Location</p>
+              <p className="sup-tit">{t('Comunity.Location')}</p>
               <hr className="gr"></hr>
             </div>
             <p className="loc-tit">{locationName}</p>
@@ -38,7 +41,7 @@ const Location = ({
                 rel="noopener"
               >
                 <Button variant="outlined">
-                  <p className="bo-big">VIEW ON GOOGLE MAP </p>
+                  <p className="bo-big"> {t('Comunity.map')}</p>
                 </Button>
               </Link>
             </center>

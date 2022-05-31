@@ -224,7 +224,7 @@ const Footer = () => {
         </div>
 
         <hr className="zei" />
-        <p className="rights">© 2022 Sakanna. All rights reserved</p>
+        <p className="rights"> {t('footer.rights')}</p>
       </footer>
     </>
   );

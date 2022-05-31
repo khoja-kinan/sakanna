@@ -97,3 +97,15 @@ gap: 3vw;
     white-space: nowrap!important;
   }
 }
+
+.sele:lang(ar) {
+
+  border-left: 1px solid rgba(0, 0, 0, 0.1215686275);
+  margin-left: 11px;
+  border-right: none;
+  margin-right: 0;
+
+}
+.sele:last-child{
+  border: none;
+}

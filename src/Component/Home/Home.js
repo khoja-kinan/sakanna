@@ -95,7 +95,7 @@ const Home = () => {
           <Mslider allCommunities={allCommunities} />
         </div>
         <div className="social-bar">
-          <Slide left cascade>
+          <Slide left >
             <p className="soc">{t('home.Follow us on Social Media')}</p>
           </Slide>
           <Slide right cascade>

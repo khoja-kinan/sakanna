@@ -43,7 +43,7 @@ const priceOptions = [
 ];
 
 const SearchContact = () => {
-  const { t, i18n } = useTranslation("common");
+  const { t, i18n } = useTranslation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -88,7 +88,7 @@ const SearchContact = () => {
                 </defs>
               </svg>
               <div className="selecty">
-                <label className="l-b">Communities</label>
+                <label className="l-b">{t('SearchBar.com')}</label>
                 <Select options={Communities} defaultValue={Communities[1]} />
               </div>
             </div>
@@ -107,7 +107,7 @@ const SearchContact = () => {
               </svg>
 
               <div className="selecty">
-                <label className="l-b">Bedrooms</label>
+                <label className="l-b">{t('SearchBar.bed')}</label>
                 <Select
                   defaultValue={[typesOptions[0]]}
                   options={typesOptions}
@@ -136,7 +136,7 @@ const SearchContact = () => {
 
               <div className="selecty">
                 <label className="l-b">
-                  Price
+                {t('SearchBar.price')}
                   <Select
                     defaultValue={[priceOptions[0]]}
                     options={priceOptions}
@@ -153,7 +153,8 @@ const SearchContact = () => {
               variant="contained"
               className="kop"
             >
-              Redister Your Interest
+              {t('SearchBar.reg')}
+              
             </Button>
             {/* <Button variant="outlined" onClick={handleClickOpen}> */}
             {/* Open alert dialog

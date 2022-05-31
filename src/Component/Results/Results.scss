@@ -33,6 +33,10 @@
     box-shadow: 0px 3px 11px rgba(0, 0, 0, 0.11);
     margin: 2vw auto;
     margin-bottom: 3vw;
+    display: flex;
+    align-items: center;
+    // padding: 1.4vw;
+    gap: 4vw;
 }
 @media screen and (max-width:950px) {
     .result{
@@ -67,5 +71,74 @@
     .result .home-fun{
         bottom: -12vh;
     }
+
+}
+.res-img{
+    background-image: url(../Image/sli2.png);
+    background-image: url(http://localhost:3000/static/media/sli2.d10e1444966098a3aa74.png);
+    width: 32%;
+    height: 100%;
+    border-radius: 27px;
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+.comu-res {
+    background: linear-gradient(88.21deg, #375958 -25.83%, #172120 96.08%);
+    // background: #243938;
+    font-size: 2.6vw;
+    position: absolute;
+    top: 0;
+    color: #fefefe;
+    right: 0;
+    padding: 1vw 2vw;
+    border-bottom-left-radius: 27px;
+    border-top-right-radius: 27px;
+    // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.com-tit-res {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5vw;
+    line-height: 4.3vw;
+    background: linear-gradient(88.21deg, #375958 -25.83%, #172120 96.08%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.tre-res {
+    font-size: 1.5vw;
+    margin-bottom: 2vw;
+}
+.loc-res {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+    font-size: 1.4vw;
+    color: #375958;
+    font-weight: 600;
+}
+.comu-res:lang(ar) {
+    background: #243938;
+    font-size: 2.6vw;
+    position: absolute;
+    top: 0;
+    color: #fefefe;
+    right: auto;
+    left: 0;
+    border-radius: 0;
+    padding: 1vw 2vw;
+    border-bottom-right-radius: 27px;
+    border-top-left-radius: 27px;
+}
+.res-img:lang(ar){
+border-radius: 27px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
 }

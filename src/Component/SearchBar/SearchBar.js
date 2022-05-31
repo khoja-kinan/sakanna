@@ -35,7 +35,7 @@ const priceOptions = [
 
 
 const SearchBar=()=>{
-    const {t, i18n} = useTranslation('common');
+    const {t, i18n} = useTranslation();
 
     return(
         <>
@@ -58,7 +58,7 @@ const SearchBar=()=>{
                             </defs>
                         </svg>
                         <div className="selecty">
-                            <label className="l-b">{t('SearchBar.Com')}</label>
+                            <label className="l-b">{t('SearchBar.com')}</label>
                             <Select options={Communities} defaultValue={[typesOptions[0]]} />
 
                         </div>
@@ -70,7 +70,7 @@ const SearchBar=()=>{
                         </svg>
 
                         <div className="selecty">
-                            <label className="l-b">Bedrooms</label>
+                            <label className="l-b">   {t('SearchBar.bed')}</label>
                             <Select defaultValue={[typesOptions[0]]} options={typesOptions} className="basic-multi-select" classNamePrefix="select" />
 
                         </div>
@@ -83,7 +83,8 @@ const SearchBar=()=>{
                         </svg>
 
                         <div className="selecty">
-                            <label className="l-b">Price
+                            <label className="l-b">         {t('SearchBar.price')}
+
                                 <Select defaultValue={[priceOptions[0]]} options={priceOptions} className="basic-multi-select" classNamePrefix="select" />
                             </label>
                         </div>
@@ -92,7 +93,7 @@ const SearchBar=()=>{
                 </div>
                 <div className="" >
                     <Button LinkComponent={NavLink} to="/results" variant="contained" className="kop" >
-                        Search Properties
+                        {t('SearchBar.search')}
                     </Button>
                 </div>
         </div>

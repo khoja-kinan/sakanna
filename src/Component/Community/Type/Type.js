@@ -11,6 +11,8 @@ import Navbar from "../../Navbar/Navbar";
 import axios from "axios";
 import { getTypeById } from "../../../constants/urls";
 import { LinearProgress } from "@mui/material";
+import {useTranslation} from "react-i18next";
+
 
 const rawHTML = `
 <map name="image-map">
@@ -39,6 +41,8 @@ const rawHTML = `
 </map>`;
 
 const Type = () => {
+  const {t, i18n} = useTranslation();
+
   const { comunityId } = useParams();
   const { typeId } = useParams();
   const URL = `${getTypeById}${comunityId}/type/${typeId}`;
@@ -84,61 +88,62 @@ const Type = () => {
           <Fade left>
             <div className="info-tec">
               <div className="tre">
-                Area : {type.type.area} m&#178; <br />
-                Total Count In Project : {type.type.count}
+                {t('Comunity.area')}  {type.type.area} m&#178; <br />
+                {t('Comunity.bedno')}  {type.type.numberOfBadroom}  <br />
+                {t('Comunity.count')} {type.type.count}
               </div>
               <table>
                 <tbody>
                   <tr>
-                    <th>Reception </th>
+                    <th>{t('Comunity.recption')}  </th>
                     <td>{type.type.reception}</td>
                   </tr>
                   <tr>
-                    <th>Guest Toilet : </th>
+                    <th>{t('Comunity.gus_to')} </th>
                     <td>{type.type.guestToilet}</td>
                   </tr>
                   <tr>
-                    <th>Bedroom 1 </th>
+                    <th>{t('Comunity.bed1')} </th>
                     <td>{type.type.bedroom1}</td>
                   </tr>
                   <tr>
-                    <th>Bedroom 2 </th>
+                    <th>{t('Comunity.bed2')} </th>
                     <td>{type.type.bedroom2}</td>
                   </tr>
                   <tr>
-                    <th>Master Bedroom </th>
+                    <th>{t('Comunity.master')} </th>
                     <td>{type.type.MasterBedroom}</td>
                   </tr>
                   <tr>
-                    <th>Dressing room </th>
+                    <th>{t('Comunity.dress')}  </th>
                     <td>{type.type.DressingRoom}</td>
                   </tr>
                   <tr>
-                    <th>Master Room Toilet </th>
+                    <th>{t('Comunity.master_t')} </th>
                     <td>{type.type.MasterRoomToilet}</td>
                   </tr>
                   <tr>
-                    <th>Kitchen </th>
+                    <th>{t('Comunity.kitchen')} </th>
                     <td>{type.type.kitchen}</td>
                   </tr>
                   <tr>
-                    <th>Bathroom </th>
+                    <th>{t('Comunity.bath')} </th>
                     <td>{type.type.bathroom}</td>
                   </tr>
                   <tr>
-                    <th>Maid Room </th>
+                    <th>{t('Comunity.maid')}  </th>
                     <td>{type.type.maidRoom}</td>
                   </tr>
                   <tr>
-                    <th>Maid Room Toilet </th>
+                    <th>{t('Comunity.maid_t')} </th>
                     <td>{type.type.maidRoomToilet}</td>
                   </tr>
                   <tr>
-                    <th>Storage</th>
+                    <th>{t('Comunity.storage')}</th>
                     <td>{type.type.storage}</td>
                   </tr>
                   <tr>
-                    <th>Laundry </th>
+                    <th>{t('Comunity.land')}  </th>
                     <td>{type.type.laundry}</td>
                   </tr>
                 </tbody>
