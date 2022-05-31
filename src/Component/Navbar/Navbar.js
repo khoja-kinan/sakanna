@@ -13,9 +13,13 @@ import i18n from "i18next";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 
 const Navbar = () => {
+  
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+  const { t, i18n } = useTranslation();
+
+
   return (
     <>
       <navbar className="nav">
@@ -54,13 +58,12 @@ const Navbar = () => {
                 <li className="nav-item">
                   <a className="re" href="/">
                     <LocalPhoneRoundedIcon fontSize="small" color="action" />
-                    CALL US +966138813760
+                    {t('nav.CALL US')} +966138813760
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="re" href="whatsapp://send?phone=053-000-9234">
-                    <WhatsAppIcon fontSize="small" color="action" /> SALES &
-                    SUPPORT
+                    <WhatsAppIcon fontSize="small" color="action" /> {t('nav.SALES & SUPPORT')}
                   </a>
                 </li>
                 <li className="nav-item">
@@ -70,7 +73,7 @@ const Navbar = () => {
                     LinkComponent={NavLink}
                     to="/contact"
                   >
-                    Contact Us
+                    {t('nav.Contact Us')}
                   </Button>
                 </li>
               </ul>

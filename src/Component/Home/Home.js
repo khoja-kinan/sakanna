@@ -87,16 +87,16 @@ const Home = () => {
         <div className="comun">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">COMMUNITIES</p>
+              <p className="sup-tit">{t('home.COMMUNITIES')}</p>
               <hr className="gr"></hr>
             </div>
-            <p className="main-tit">LATEST LAUNCHES</p>
+            <p className="main-tit">{t('home.LATEST LAUNCHES')}</p>
           </div>
           <Mslider allCommunities={allCommunities} />
         </div>
         <div className="social-bar">
           <Slide left cascade>
-            <p className="soc">Follow us on Social Media</p>
+            <p className="soc">{t('home.Follow us on Social Media')}</p>
           </Slide>
           <Slide right cascade>
             <div className="soc-t">

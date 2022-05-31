@@ -38,9 +38,9 @@ import Unauthorized from "./Component/dashboard/pages/Unauthorized";
 import IndexDashboard from "./Component/dashboard/IndexDashboard";
 
 const App = () => {
-  const { t, i18n } = useTranslation("common");
-
-  // const { t } = this.props;
+  const { t, i18n } = useTranslation();
+  // const {i18n} = useTranslation();
+  document.body.dir = i18n.dir();  // const { t } = this.props;
   // document.documentElement.lang = i18next.language;
   return (
     <Routes>

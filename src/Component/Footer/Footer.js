@@ -1,33 +1,36 @@
 import React from "react";
 import Logo from "../Image/logo.png";
 import { NavLink } from "react-router-dom";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <footer className="foot">
         <div className="footer">
           <img src={Logo} className="down-foot" alt="logo" />
           <div className="inf oi">
-            <p className="mai">INFORMAITION</p>
+            <p className="mai">{t('footer.INFORMAITION')}</p>
             <NavLink to="/contact" className="selee">
-              Contact Us
+              {t('footer.Contact Us')}
             </NavLink>
             <NavLink to="/about" className="selee">
-              About Us
+              {t('footer.About Us')}
             </NavLink>
           </div>
           <div className="inf oi">
             <p className="mai">&nbsp;&nbsp;&nbsp;</p>
             <NavLink to="/policy" className="selee">
-              Privacy Policy
+              {t('footer.Privacy Policy')}
             </NavLink>
             <NavLink to="/policy" className="selee">
-              Terms of Service
+              {t('footer.Terms of Service')}
             </NavLink>
           </div>
           <div className="inf gu">
-            <p className="mai">follow us</p>
+            <p className="mai">{t('footer.follow us')}</p>
 
             <div className="jio">
               <a href="https://twitter.com/sakanna_sa">
