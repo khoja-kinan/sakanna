@@ -5,9 +5,7 @@ import axios from "axios";
 import { contactUs } from "../../constants/urls";
 import { useTranslation, initReactI18next } from "react-i18next";
 
-
 class ContactForm extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -137,8 +135,6 @@ class ContactForm extends React.Component {
       formValid,
     } = this.state;
     if (!formValid) {
-
-
       return (
         <>
           <Zoom top>
@@ -153,7 +149,8 @@ class ContactForm extends React.Component {
                 >
                   <div className="form-group">
                     <label className="mb-0 labcon">
-                      {t('contactus.Your name')}<span className="text-danger gray">*</span>
+                      {/* {t("contactus.Your name")} */}
+                      <span className="text-danger gray">*</span>
                     </label>
                     <input
                       name="name"
@@ -166,7 +163,7 @@ class ContactForm extends React.Component {
                     />
                     {nameError ? (
                       <div className="alert alert-danger mt-2">
-                        {t('contactus.Name is a required field.')}
+                        {/*   {t("contactus.Name is a required field.")} */}
                       </div>
                     ) : (
                       ""
@@ -174,7 +171,8 @@ class ContactForm extends React.Component {
                   </div>
                   <div className="form-group">
                     <label className="mb-0 labcon">
-                      {t('contactus.Your email')}<span className="text-danger">*</span>
+                      {/*  {t("contactus.Your email")} */}
+                      <span className="text-danger">*</span>
                     </label>
                     <input
                       name="email"
@@ -187,14 +185,14 @@ class ContactForm extends React.Component {
                     />
                     {emailError ? (
                       <div className="alert alert-danger mt-2">
-                        {t('contactus.Email is a required field.')}
+                        {/* {t("contactus.Email is a required field.")} */}
                       </div>
                     ) : (
                       ""
                     )}
                     {emailError2 ? (
                       <div className="alert alert-danger mt-2">
-                        {t('contactus.Email invalid.')}
+                        {/*    {t("contactus.Email invalid.")} */}
                       </div>
                     ) : (
                       ""
@@ -202,7 +200,8 @@ class ContactForm extends React.Component {
                   </div>
                   <div className="form-group">
                     <label className="mb-0 labcon">
-                      {t('contactus.Your number')} <span className="smaller"> (Optional) </span>
+                      {/* {t("contactus.Your number")}{" "} */}
+                      <span className="smaller"> (Optional) </span>
                     </label>
                     <input
                       name="contact"
@@ -215,7 +214,8 @@ class ContactForm extends React.Component {
                   </div>
                   <div className="form-group">
                     <label className="mb-0 labcon">
-                      {t('contactus.Message')}<span className="text-danger">*</span>
+                      {/* {t("contactus.Message")} */}
+                      <span className="text-danger">*</span>
                     </label>
                     <textarea
                       name="message"
@@ -228,7 +228,7 @@ class ContactForm extends React.Component {
                     />
                     {messageError ? (
                       <div className="alert alert-danger mt-2">
-                        {t('contactus.Message is a required field.')}
+                        {/*  {t("contactus.Message is a required field.")} */}
                       </div>
                     ) : (
                       ""
@@ -251,14 +251,13 @@ class ContactForm extends React.Component {
       return (
         <div className="thankyou_details">
           <div className="alert alert-success mt-3">
-            {t('contactus.Mail sent successfully.')}
+            {/* {t("contactus.Mail sent successfully.")} */}
           </div>
         </div>
       );
     }
   }
 }
-
 
 //   ReactDOM.render(
 //     <ContactForm title="Contact Form" />,

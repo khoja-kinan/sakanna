@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 // components
 import MenuPopover from "../../components/MenuPopover";
-import i18n from "../../i18n";
+import i18n from "../../../../i18n";
+/* import i18n from "../../i18n"; */
 
 // ----------------------------------------------------------------------
 
