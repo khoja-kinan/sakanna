@@ -14,4 +14,9 @@ body {
   background-image: url(./Component/Image/back.png);
   background-size: cover;
   background-repeat: no-repeat;
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */
+
+[dir="rtl"] .slick-slide {
+  direction: ltr !important;
+  float: left !important;
+}
