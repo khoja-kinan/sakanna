@@ -99,7 +99,7 @@ const ContactForm = () => {
                     name="name"
                     type="text"
                     className="form-control incon"
-                    placeholder="Name"
+                    
                     value={name}
                     onChange={handleChangeName}
                   />
@@ -120,7 +120,7 @@ const ContactForm = () => {
                     name="email"
                     type="email"
                     className="form-control incon"
-                    placeholder="Email"
+                    
                     value={email}
                     onChange={handleChangeEmail}
                   />
@@ -142,13 +142,13 @@ const ContactForm = () => {
                 <div className="form-group">
                   <label className="mb-0 labcon">
                     {t("contactus.Your number")}{" "}
-                    <span className="smaller"> (Optional) </span>
+                    <span className="smaller"> ({t('contactus.opt')}) </span>
                   </label>
                   <input
                     name="contact"
                     type="text"
                     className="form-control incon"
-                    placeholder="number"
+                    
                     onChange={handleChangeContact}
                     value={contact}
                   />
@@ -162,7 +162,7 @@ const ContactForm = () => {
                     name="message"
                     type="text"
                     className="form-control incon"
-                    placeholder="Message"
+                    
                     value={message}
                     onChange={handleChangeMessage}
                   />
@@ -198,5 +198,132 @@ const ContactForm = () => {
     );
   }
 };
+
+
+//       return (
+//         <>
+//           <Zoom top>
+//             <div className="card shadow-sm border-0 px-3 rounded-2 mb-3 py-4 bg-light w-57">
+//               {/* <div className="card-header bg-transparent border-0 text-center text-uppercase"><h3>{this.props.title}</h3></div> */}
+//               <div className="card-body">
+//                 <form
+//                   action="/"
+//                   onSubmit={(e) => this.handleSubmit(e)}
+//                   encType="multipart/form-data"
+//                   autoComplete="off"
+//                 >
+//                   <div className="form-group">
+//                     <label className="mb-0 labcon">
+//                       {t('Your name')}<span className="text-danger gray">*</span>
+//                     </label>
+//                     <input
+//                       name="name"
+//                       type="text"
+//                       className="form-control incon"
+//                       placeholder="Name"
+//                       value={this.state.name}
+//                       onChange={this.handleChange}
+//                       onBlur={this.handleBlur}
+//                     />
+//                     {nameError ? (
+//                       <div className="alert alert-danger mt-2">
+//                         {t('contactus.Name is a required field.')}
+//                       </div>
+//                     ) : (
+//                       ""
+//                     )}
+//                   </div>
+//                   <div className="form-group">
+//                     <label className="mb-0 labcon">
+//                       {t('contactus.Your email')}<span className="text-danger">*</span>
+//                     </label>
+//                     <input
+//                       name="email"
+//                       type="email"
+//                       className="form-control incon"
+//                       placeholder="Email"
+//                       value={this.state.email}
+//                       onChange={this.handleChange}
+//                       onBlur={this.handleBlur}
+//                     />
+//                     {emailError ? (
+//                       <div className="alert alert-danger mt-2">
+//                         {t('contactus.Email is a required field.')}
+//                       </div>
+//                     ) : (
+//                       ""
+//                     )}
+//                     {emailError2 ? (
+//                       <div className="alert alert-danger mt-2">
+//                         {t('contactus.Email invalid.')}
+//                       </div>
+//                     ) : (
+//                       ""
+//                     )}
+//                   </div>
+//                   <div className="form-group">
+//                     <label className="mb-0 labcon">
+//                       {t('contactus.Your number')} <span className="smaller"> (Optional) </span>
+//                     </label>
+//                     <input
+//                       name="contact"
+//                       type="text"
+//                       className="form-control incon"
+//                       placeholder="number"
+//                       onChange={this.handleChange}
+//                       value={this.state.contact}
+//                     />
+//                   </div>
+//                   <div className="form-group">
+//                     <label className="mb-0 labcon">
+//                       {t('contactus.Message')}<span className="text-danger">*</span>
+//                     </label>
+//                     <textarea
+//                       name="message"
+//                       type="text"
+//                       className="form-control incon"
+//                       placeholder="Message"
+//                       value={this.state.message}
+//                       onChange={this.handleChange}
+//                       onBlur={this.handleBlur}
+//                     />
+//                     {messageError ? (
+//                       <div className="alert alert-danger mt-2">
+//                         {t('contactus.Message is a required field.')}
+//                       </div>
+//                     ) : (
+//                       ""
+//                     )}
+//                   </div>
+//                   <p className="text-center mb-0 labcon">
+//                     <input
+//                       type="submit"
+//                       className="btn  btn-lg  text-uppercase ioi"
+//                       value="Submit Now"
+//                     />
+//                   </p>
+//                 </form>
+//               </div>
+//             </div>
+//           </Zoom>
+//         </>
+//       );
+//     } else {
+//       return (
+//         <div className="thankyou_details">
+//           <div className="alert alert-success mt-3">
+//             {t('contactus.Mail sent successfully.')}
+//           </div>
+//         </div>
+//       );
+//     }
+//   }
+// }
+
+
+// //   ReactDOM.render(
+// //     <ContactForm title="Contact Form" />,
+// //     document.getElementById('root')
+// //   );
 
 export default ContactForm;

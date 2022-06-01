@@ -77,7 +77,7 @@ const Type = () => {
           <div className="conm">
             <div className="title">
               <div className="sup">
-                <p className="sup-tit">{type.community.name} Residence</p>
+                <p className="sup-tit">{type.community.name} {t('Comunity.resedd')}</p>
                 <hr className="gr"></hr>
               </div>
               <p className="com-tit">{type.type.name}</p>
@@ -178,12 +178,12 @@ const Type = () => {
       <div className="types">
         <div className="title">
           <div className="sup">
-            <p className="sup-tit">{type.community.name} Residence</p>
+            <p className="sup-tit">{type.community.name} {t('Comunity.resedd')}</p>
             <hr className="gr"></hr>
           </div>
           <p className="com-tit">
-            Interior
-            <span className="nui">&nbsp;Design</span>
+          {t('Comunity.design')}
+            <span className="nui">&nbsp;{t('Comunity.interior')}</span>
           </p>
         </div>
       </div>

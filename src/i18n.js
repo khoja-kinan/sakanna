@@ -37,6 +37,12 @@ i18n
             Message: "Message",
             "Message is a required field.": "Message is a required field.",
             "Mail sent successfully.": "Mail sent successfully.",
+            "opt": "Optional",
+            "get":"Get In Touch",
+            "con":"Contact Us",
+            "locae":"Saudi Arabia - AL Khobar",
+            "submit": "Submit Now",
+
           },
           footer: {
             INFORMAITION: "INFORMAITION",
@@ -76,14 +82,18 @@ i18n
             "maid_t": "Maid Room Toilet : ",
             "storage": "Storage :",
             "land": "Laundry :",
-            "types": "Types",
+            // "types": "Types",
             "Location": "Location ",
             "map": "VIEW ON GOOGLE MAP ",
+            "resedd": "Residence",
+            "design": "Design",
+            "interior": "Interior",
           },
           Results :{
             "chk":"CHECK",
             "result":"Results"
-          }
+          },
+          
         },
       },
       ar: {
@@ -105,9 +115,14 @@ i18n
             "Email is a required field.": "البريد الإلكتروني مطلوب",
             "Email invalid.": "بريد اللكتروني غير صالح",
             "Your number": "رقم هاتفك",
-            Message: "رسالتك",
+            "Message": "رسالتك",
             "Message is a required field.": "الرسالة مطلوبة",
             "Mail sent successfully.": "تم ارسال الرسالة بنجاح .",
+            "get":"لمتابعة جديدنا",
+            "con":"تواصل معنا",
+            "opt": "اختياري",
+            "submit": "ارسل الرسالة",
+            "locae":"المملكة العربية السعودية - الخبر",
           },
           footer: {
             "INFORMAITION": "معلومات",
@@ -150,7 +165,9 @@ i18n
             "land": "غرفة الغسيل  :",
             "Location": "الموقع ",
             "map": "عرض على خريطة جوجل",
-            // "types": "Types",
+            "resedd": "مجمع",
+            "design": "التصميم",
+            "interior": "الداخلي",
           },
           Results :{
             "chk":"اختر",

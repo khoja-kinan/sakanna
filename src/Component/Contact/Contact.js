@@ -3,8 +3,12 @@ import ContactForm from "../ContactForm/ContactForm";
 import Roll from "react-reveal/Roll";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import {useTranslation} from "react-i18next";
+
 
 const Contact = () => {
+  const {t, i18n} = useTranslation();
+
   return (
     <>
       <Navbar />
@@ -12,10 +16,10 @@ const Contact = () => {
         <div className="contact">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">Get In Touch</p>
+              <p className="sup-tit">{t('contactus.get')}</p>
               <hr className="gr"></hr>
             </div>
-            <p className="main-tit">Contact Us</p>
+            <p className="main-tit">{t('contactus.con')}</p>
           </div>
           <div className="flco">
             <ContactForm />
@@ -94,7 +98,7 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat">Saudi Arabia - AL Khobar</p>
+                  <p className="conat">{t('contactus.locae')}</p>
                 </div>
                 <div className="rocon">
                   <svg
@@ -170,7 +174,7 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat">+966138813760</p>
+                  <p className="conat dirc">+966138813760</p>
                 </div>
                 <div className="rocon">
                   <svg
@@ -243,7 +247,7 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat">+966138813760</p>
+                  <p className="conat dirc">+966138813760</p>
                 </div>
               </div>
             </Roll>

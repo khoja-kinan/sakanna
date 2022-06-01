@@ -1,5 +1,5 @@
-export const apiUrl = "http://90.153.255.50/socialmediafamous/public/api";
-export const storageUrl = "http://90.153.255.50/socialmediafamous/storage";
+export const apiUrl = "https://90.153.255.50/socialmediafamous/public/api";
+export const storageUrl = "https://90.153.255.50/socialmediafamous/storage";
 
 export const loginUrl = `${apiUrl}/admin/login`;
 export const userListUrl = `${apiUrl}/admin/users`;

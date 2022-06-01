@@ -1,5 +1,5 @@
-export const baseUrl = "http://apidev.mayaameenbasha.com/api";
-export const baseImageUrl = "http://apidev.mayaameenbasha.com/public/upload/";
+export const baseUrl = "https://apidev.mayaameenbasha.com/api";
+export const baseImageUrl = "https://apidev.mayaameenbasha.com/public/upload/";
 
 export const GetAllCommunities = `${baseUrl}/communities`;
 export const GetAllTypes = `${baseUrl}/alltypes`;
