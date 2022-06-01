@@ -111,3 +111,10 @@ a:hover {
 .sup:lang(ar){
   height: 4vw;
 }
+@media screen and (max-width:600px) {
+  
+  .sup:lang(ar) {
+    height: 8vw;
+}
+  
+}

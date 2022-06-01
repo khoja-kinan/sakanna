@@ -10,6 +10,18 @@
     margin-right: 15px;
     white-space: nowrap;
   }
+
+.sele:lang(ar) {
+
+  border-left: 1px solid rgba(0, 0, 0, 0.1215686275);
+  margin-left: 11px;
+  border-right: none;
+  margin-right: 0;
+
+}
+.sele:last-child{
+  border: none;
+}
   @media screen and (max-width: 500px) {
 
     .MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonBase-root.css-sghohy-MuiButtonBase-root-MuiButton-root.active {
@@ -34,7 +46,12 @@
 }
 @media screen and (max-width:600px) {
   
-
+  .sele:lang(ar) {
+    border-left: none;
+    margin-left: 11px;
+    border-right: none;
+    margin-right: 0;
+}
 .mob-search {
   width: 50vw;
   max-height: 0;
@@ -96,16 +113,4 @@ gap: 3vw;
     margin-right: 15px!important;
     white-space: nowrap!important;
   }
-}
-
-.sele:lang(ar) {
-
-  border-left: 1px solid rgba(0, 0, 0, 0.1215686275);
-  margin-left: 11px;
-  border-right: none;
-  margin-right: 0;
-
-}
-.sele:last-child{
-  border: none;
 }

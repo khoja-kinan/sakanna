@@ -92,6 +92,19 @@ font-family: poppins!important;
   display: none;
 }
 
+.langi{
+  background: none;
+  border: none;
+  text-transform: capitalize;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4vw;
+  line-height: 2vw;
+}
+.iopl:lang(ar){
+  font-family: 'Almarai', sans-serif!important;
+
+}
 @media screen and (max-width:900px) {
   .re{
     font-size: 1.3vw;
@@ -110,7 +123,14 @@ font-family: poppins!important;
     top: 122px;
     right: -31px;
     padding: 0;
+    top: 33vw;
   }
+  .menu:lang(ar) {
+
+    // top: 126px;
+    right: 32px;
+
+}
   .nav {
     height: 72px;
   }
@@ -122,6 +142,7 @@ font-family: poppins!important;
       box-shadow: 0px 4px 8px rgb(0 0 0 / 4%);
       -webkit-backdrop-filter: blur(15px);
       backdrop-filter: blur(15px);
+      border-radius: 18px;
   gap: 3vw;
   }
   .nav label{
@@ -132,6 +153,16 @@ font-family: poppins!important;
     top: 22px;
     right: 39px;
   }
+
+.nav label:lang(ar) {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+  right: auto;
+  left: 40px;
+}
   #toggler:checked ~ .menu{
     max-height: 100%;
   }
@@ -139,7 +170,7 @@ font-family: poppins!important;
     width: 116%;
   }
   .re {
-    font-size: 2.3vw;
+    font-size: 2.8vw;
     line-height: 8vw;
     font-weight: 600;
   }
@@ -147,18 +178,10 @@ font-family: poppins!important;
     font-size: 2.3vw !important;
     line-height: 4vw !important;
 }
-  }
-
-.langi{
-  background: none;
-  border: none;
-  text-transform: capitalize;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 1.4vw;
+.langi {
+  font-size: 3.4vw;
   line-height: 2vw;
 }
-.iopl:lang(ar){
-  font-family: 'Almarai', sans-serif!important;
+  }
 
-}
+
