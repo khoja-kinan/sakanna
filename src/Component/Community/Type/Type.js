@@ -11,8 +11,7 @@ import Navbar from "../../Navbar/Navbar";
 import axios from "axios";
 import { getTypeById } from "../../../constants/urls";
 import { LinearProgress } from "@mui/material";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
 
 const rawHTML = `
 <map name="image-map">
@@ -41,7 +40,7 @@ const rawHTML = `
 </map>`;
 
 const Type = () => {
-  const {t, i18n} = useTranslation();
+  const { t } = useTranslation();
 
   const { comunityId } = useParams();
   const { typeId } = useParams();
@@ -77,7 +76,9 @@ const Type = () => {
           <div className="conm">
             <div className="title">
               <div className="sup">
-                <p className="sup-tit">{type.community.name} {t('Comunity.resedd')}</p>
+                <p className="sup-tit">
+                  {type.community.name} {t("Comunity.resedd")}
+                </p>
                 <hr className="gr"></hr>
               </div>
               <p className="com-tit">{type.type.name}</p>
@@ -88,62 +89,62 @@ const Type = () => {
           <Fade left>
             <div className="info-tec">
               <div className="tre">
-                {t('Comunity.area')}  {type.type.area} m&#178; <br />
-                {t('Comunity.bedno')}  {type.type.numberOfBadroom}  <br />
-                {t('Comunity.count')} {type.type.count}
+                {t("Comunity.area")} {type.type.area} m&#178; <br />
+                {t("Comunity.bedno")} {type.type.numberOfBedrooms} <br />
+                {t("Comunity.count")} {type.type.count}
               </div>
               <table>
                 <tbody>
                   <tr>
-                    <th>{t('Comunity.recption')}  </th>
+                    <th>{t("Comunity.recption")} </th>
                     <td>{type.type.reception}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.gus_to')} </th>
+                    <th>{t("Comunity.gus_to")} </th>
                     <td>{type.type.guestToilet}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.bed1')} </th>
+                    <th>{t("Comunity.bed1")} </th>
                     <td>{type.type.bedroom1}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.bed2')} </th>
+                    <th>{t("Comunity.bed2")} </th>
                     <td>{type.type.bedroom2}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.master')} </th>
+                    <th>{t("Comunity.master")} </th>
                     <td>{type.type.MasterBedroom}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.dress')}  </th>
+                    <th>{t("Comunity.dress")} </th>
                     <td>{type.type.DressingRoom}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.master_t')} </th>
+                    <th>{t("Comunity.master_t")} </th>
                     <td>{type.type.MasterRoomToilet}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.kitchen')} </th>
+                    <th>{t("Comunity.kitchen")} </th>
                     <td>{type.type.kitchen}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.bath')} </th>
+                    <th>{t("Comunity.bath")} </th>
                     <td>{type.type.bathroom}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.maid')}  </th>
+                    <th>{t("Comunity.maid")} </th>
                     <td>{type.type.maidRoom}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.maid_t')} </th>
+                    <th>{t("Comunity.maid_t")} </th>
                     <td>{type.type.maidRoomToilet}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.storage')}</th>
+                    <th>{t("Comunity.storage")}</th>
                     <td>{type.type.storage}</td>
                   </tr>
                   <tr>
-                    <th>{t('Comunity.land')}  </th>
+                    <th>{t("Comunity.land")} </th>
                     <td>{type.type.laundry}</td>
                   </tr>
                 </tbody>
@@ -178,12 +179,14 @@ const Type = () => {
       <div className="types">
         <div className="title">
           <div className="sup">
-            <p className="sup-tit">{type.community.name} {t('Comunity.resedd')}</p>
+            <p className="sup-tit">
+              {type.community.name} {t("Comunity.resedd")}
+            </p>
             <hr className="gr"></hr>
           </div>
           <p className="com-tit">
-          {t('Comunity.design')}
-            <span className="nui">&nbsp;{t('Comunity.interior')}</span>
+            {t("Comunity.design")}
+            <span className="nui">&nbsp;{t("Comunity.interior")}</span>
           </p>
         </div>
       </div>

@@ -2,14 +2,11 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Mslider from "./Mslider";
-import { makeStyles } from "@material-ui/core";
 import Slider from "../Slider/Slider";
 import SearchBar from "../SearchBar/SearchBar";
 import Slide from "react-reveal/Slide";
 import { useTranslation, initReactI18next } from "react-i18next";
 import axios from "axios";
-import state from "react";
-import map from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { useState, useEffect } from "react";
@@ -76,27 +73,27 @@ const Home = () => {
             </svg>
             <div id="menu">
               <div className="res">
-                <SearchBar className="res" />
+                <SearchBar className="res" allCommunities={allCommunities} />
               </div>
             </div>
           </div>
         </div>
         <div className="ni">
-          <SearchBar />
+          <SearchBar allCommunities={allCommunities} />
         </div>
         <div className="comun">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">{t('home.COMMUNITIES')}</p>
+              <p className="sup-tit">{t("home.COMMUNITIES")}</p>
               <hr className="gr"></hr>
             </div>
-            <p className="main-tit">{t('home.LATEST LAUNCHES')}</p>
+            <p className="main-tit">{t("home.LATEST LAUNCHES")}</p>
           </div>
           <Mslider allCommunities={allCommunities} />
         </div>
         <div className="social-bar">
-          <Slide left >
-            <p className="soc">{t('home.Follow us on Social Media')}</p>
+          <Slide left>
+            <p className="soc">{t("home.Follow us on Social Media")}</p>
           </Slide>
           <Slide right cascade>
             <div className="soc-t">
