@@ -74,12 +74,12 @@ const ContactForm = () => {
     axios
       .post(contactUs, data, { headers })
       .then((response) => {
-        /* this.setState({ Postmessage: response.data.message }); */
-        console.log(response.data.message);
+        setState({ Postmessage: response.data });
+        /* console.log(response.data); */
       })
       .catch((error) => {
-        /* this.setState({ PostErrorMessage: error.message }); */
-        console.error("There was an error!", error);
+        setState({ PostErrorMessage: error.message });
+        /*  console.error("There was an error!", error); */
       });
   };
   if (!formValid) {
@@ -99,7 +99,6 @@ const ContactForm = () => {
                     name="name"
                     type="text"
                     className="form-control incon"
-                    
                     value={name}
                     onChange={handleChangeName}
                   />
@@ -120,7 +119,6 @@ const ContactForm = () => {
                     name="email"
                     type="email"
                     className="form-control incon"
-                    
                     value={email}
                     onChange={handleChangeEmail}
                   />
@@ -142,13 +140,12 @@ const ContactForm = () => {
                 <div className="form-group">
                   <label className="mb-0 labcon">
                     {t("contactus.Your number")}{" "}
-                    <span className="smaller"> ({t('contactus.opt')}) </span>
+                    <span className="smaller"> ({t("contactus.opt")}) </span>
                   </label>
                   <input
                     name="contact"
                     type="text"
                     className="form-control incon"
-                    
                     onChange={handleChangeContact}
                     value={contact}
                   />
@@ -162,7 +159,6 @@ const ContactForm = () => {
                     name="message"
                     type="text"
                     className="form-control incon"
-                    
                     value={message}
                     onChange={handleChangeMessage}
                   />
@@ -198,7 +194,6 @@ const ContactForm = () => {
     );
   }
 };
-
 
 //       return (
 //         <>
@@ -319,7 +314,6 @@ const ContactForm = () => {
 //     }
 //   }
 // }
-
 
 // //   ReactDOM.render(
 // //     <ContactForm title="Contact Form" />,

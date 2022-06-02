@@ -11,6 +11,6 @@ export const getAllInteriorSamples = `${baseUrl}/allinteriorsamples`;
 export const getComunityById = `${baseUrl}/community/`;
 export const getTypeById = `${baseUrl}/community/`;
 
-export const contactUs = `${baseUrl}/contacts/`;
+export const contactUs = `${baseUrl}/contacts`;
 
 export const search = `${baseUrl}/types/?`;

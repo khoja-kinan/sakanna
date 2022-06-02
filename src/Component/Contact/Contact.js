@@ -27,7 +27,7 @@ const Contact = () => {
                 {/* <p className="conat">SAKANA REAL ESTATE DEVELOPMENT</p> */}
                 <div className="rocon">
                   <svg
-                    class="svgcon"
+                    className="svgcon"
                     viewBox="0 0 107 107"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,8 +92,8 @@ const Contact = () => {
                         y2="96.315"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#356968" />
-                        <stop offset="1" stop-color="#172120" />
+                        <stop stopColor="#356968" />
+                        <stop offset="1" stopColor="#172120" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -101,7 +101,7 @@ const Contact = () => {
                 </div>
                 <div className="rocon">
                   <svg
-                    class="svgcon"
+                    className="svgcon"
                     viewBox="0 0 107 107"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -131,10 +131,7 @@ const Contact = () => {
                         filterUnits="userSpaceOnUse"
                         colorInterpolationFilters="sRGB"
                       >
-                        <feFlood
-                          flood-opacity="0"
-                          result="BackgroundImageFix"
-                        />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
                           in="SourceAlpha"
                           type="matrix"
@@ -168,8 +165,8 @@ const Contact = () => {
                         y2="96.315"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#356968" />
-                        <stop offset="1" stop-color="#172120" />
+                        <stop stopColor="#356968" />
+                        <stop offset="1" stopColor="#172120" />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -177,7 +174,7 @@ const Contact = () => {
                 </div>
                 <div className="rocon">
                   <svg
-                    class="svgcon"
+                    className="svgcon"
                     viewBox="0 0 107 107"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -241,8 +238,8 @@ const Contact = () => {
                         y2="96.315"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#356968" />
-                        <stop offset="1" stop-color="#172120" />
+                        <stop stopColor="#356968" />
+                        <stop offset="1" stopColor="#172120" />
                       </linearGradient>
                     </defs>
                   </svg>
