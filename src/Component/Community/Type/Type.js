@@ -54,7 +54,7 @@ const Type = () => {
       await axios
         .get(URL)
         .then((response) => {
-          if (response.statusText === "OK") {
+          if (response.status === 200) {
             const data = response.data;
             setType(data);
             setLoading(false);

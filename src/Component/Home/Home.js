@@ -33,7 +33,7 @@ const Home = () => {
       await axios
         .get(GetAllCommunities)
         .then((response) => {
-          if (response.statusText === "OK") {
+          if (response.status === 200) {
             const data = response.data;
             setAllCommunities(data);
             setLoading(false);

@@ -3,11 +3,10 @@ import ContactForm from "../ContactForm/ContactForm";
 import Roll from "react-reveal/Roll";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -16,10 +15,10 @@ const Contact = () => {
         <div className="contact">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">{t('contactus.get')}</p>
+              <p className="sup-tit">{t("contactus.get")}</p>
               <hr className="gr"></hr>
             </div>
-            <p className="main-tit">{t('contactus.con')}</p>
+            <p className="main-tit">{t("contactus.con")}</p>
           </div>
           <div className="flco">
             <ContactForm />
@@ -98,7 +97,7 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat">{t('contactus.locae')}</p>
+                  <p className="conat">{t("contactus.locae")}</p>
                 </div>
                 <div className="rocon">
                   <svg

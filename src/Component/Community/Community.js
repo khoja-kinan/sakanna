@@ -27,11 +27,10 @@ import { baseImageUrl } from "../../constants/urls";
 import { LinearProgress } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
 
 const Community = () => {
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { urlId } = useParams();
 
@@ -45,7 +44,7 @@ const Community = () => {
       await axios
         .get(URL)
         .then((response) => {
-          if (response.statusText === "OK") {
+          if (response.status === 200) {
             const data = response.data;
             setComunityDetails(data);
             setLoading(false);
@@ -67,12 +66,12 @@ const Community = () => {
           <div className="conm">
             <div className="title">
               <div className="sup">
-                <p className="sup-tit">{t('Comunity.feel')}</p>
+                <p className="sup-tit">{t("Comunity.feel")}</p>
                 <hr className="gr"></hr>
               </div>
               <p className="com-tit">
                 {comunityDetails.name}&nbsp;
-                <span className="nui">{t('Comunity.res')}</span>
+                <span className="nui">{t("Comunity.res")}</span>
               </p>
             </div>
             <div className="contain">{comunityDetails.description}</div>
@@ -81,7 +80,7 @@ const Community = () => {
         <Fade>
           <SliderM images={comunityDetails.images} />
         </Fade>
-        <button className="graph">{t('Comunity.plan')}</button>
+        <button className="graph">{t("Comunity.plan")}</button>
         <div className="featuers">
           <FeaturesIcon amenities={comunityDetails.amenities} />
         </div>
@@ -97,12 +96,14 @@ const Community = () => {
         <div className="types">
           <div className="title">
             <div className="sup">
-              <p className="sup-tit">{comunityDetails.name} {t('Comunity.res')}</p>
+              <p className="sup-tit">
+                {comunityDetails.name} {t("Comunity.res")}
+              </p>
               <hr className="gr"></hr>
             </div>
             <p className="com-tit">
-              {t('Comunity.prop')} &nbsp;
-              <span className="nui">{t('Comunity.types')}</span>
+              {t("Comunity.prop")} &nbsp;
+              <span className="nui">{t("Comunity.types")}</span>
             </p>
           </div>
 
@@ -122,35 +123,70 @@ const Community = () => {
                     <div className="type">{type.name}</div>
                   </Link>
                   <div className="info">
-                  {t('Comunity.area')}  <span className="dirc">{type.area} m&#178;</span> <br />
-                  {t('Comunity.count')} <span className="dirc">{type.count}<br/></span>
-                  {t('Comunity.bedno')} <span className="dirc">{type.numberOfBadroom} </span>
+                    {t("Comunity.area")}{" "}
+                    <span className="dirc">{type.area} m&#178;</span> <br />
+                    {t("Comunity.count")}{" "}
+                    <span className="dirc">
+                      {type.count}
+                      <br />
+                    </span>
+                    {t("Comunity.bedno")}{" "}
+                    <span className="dirc">{type.numberOfBadroom} </span>
                     <div className="typeinfo" id="menucc">
                       <hr className="typeh" />
                       <ul className="ultype">
-                        <li className="litype">{t('Comunity.recption')}<span className="dirc"> {type.reception}</span></li>
                         <li className="litype">
-                        {t('Comunity.gus_to')}<span className="dirc">{type.guestToilet}</span>
-                        </li>
-                        <li className="litype">{t('Comunity.bed1')} <span className="dirc"> {type.bedroom1}</span></li>
-                        <li className="litype">{t('Comunity.bed2')} <span className="dirc"> {type.bedroom2}</span></li>
-                        <li className="litype">
-                          {t('Comunity.master')} <span className="dirc">{type.MasterBedroom}</span>
+                          {t("Comunity.recption")}
+                          <span className="dirc"> {type.reception}</span>
                         </li>
                         <li className="litype">
-                          {t('Comunity.dress')}<span className="dirc"> {type.DressingRoom}</span>
+                          {t("Comunity.gus_to")}
+                          <span className="dirc">{type.guestToilet}</span>
                         </li>
                         <li className="litype">
-                          {t('Comunity.master_t')} <span className="dirc">{type.MasterRoomToilet}</span>
+                          {t("Comunity.bed1")}{" "}
+                          <span className="dirc"> {type.bedroom1}</span>
                         </li>
-                        <li className="litype">{t('Comunity.kitchen')} <span className="dirc">{type.kitchen}</span></li>
-                        <li className="litype">{t('Comunity.bath')} <span className="dirc">{type.bathroom}</span></li>
-                        <li className="litype">{t('Comunity.maid')} <span className="dirc">{type.maidRoom}</span></li>
                         <li className="litype">
-                          {t('Comunity.maid_t')}<span className="dirc">{type.maidRoomToilet}</span>
+                          {t("Comunity.bed2")}{" "}
+                          <span className="dirc"> {type.bedroom2}</span>
                         </li>
-                        <li className="litype">{t('Comunity.storage')} <span className="dirc">{type.storage}</span></li>
-                        <li className="litype">{t('Comunity.land')}<span className="dirc"> {type.laundry}</span></li>
+                        <li className="litype">
+                          {t("Comunity.master")}{" "}
+                          <span className="dirc">{type.MasterBedroom}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.dress")}
+                          <span className="dirc"> {type.DressingRoom}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.master_t")}{" "}
+                          <span className="dirc">{type.MasterRoomToilet}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.kitchen")}{" "}
+                          <span className="dirc">{type.kitchen}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.bath")}{" "}
+                          <span className="dirc">{type.bathroom}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.maid")}{" "}
+                          <span className="dirc">{type.maidRoom}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.maid_t")}
+                          <span className="dirc">{type.maidRoomToilet}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.storage")}{" "}
+                          <span className="dirc">{type.storage}</span>
+                        </li>
+                        <li className="litype">
+                          {t("Comunity.land")}
+                          <span className="dirc"> {type.laundry}</span>
+                        </li>
                       </ul>
                     </div>
                   </div>
