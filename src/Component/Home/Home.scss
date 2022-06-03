@@ -354,7 +354,7 @@
     line-height: 3vw !important;
   }
   .comun {
-    height: 82vh;
+    height: 54vh;
 
     // margin-top: -38vw;
   }
@@ -378,8 +378,8 @@
     width: 90%;
     margin: auto;
     position: relative;
-    margin-top: -35vw;
-    padding-bottom: 7vw;
+    margin-top: 5vw;
+    padding-bottom: 5vw;
   }
 }
 @media screen and (max-width: 500px) {
@@ -429,7 +429,8 @@
     background: rgba(255, 255, 255, 0.6);
     -webkit-backdrop-filter: blur(69px);
     backdrop-filter: blur(69px);
-    border-radius: 2vw;
+    border-top-right-radius: 2vw;
+    border-bottom-right-radius: 2vw;
     width: 60%;
     height: -moz-fit-content;
     height: fit-content;
@@ -595,7 +596,7 @@ span.css-1okebmr-indicatorSeparator {
     height: 70px;
     position: absolute;
     top: 22vw;
-    width: 16vw;
+    width: 12vw;
     z-index: 44;
     background: beige;
     background: rgba(255, 255, 255, 0.41);
@@ -616,11 +617,15 @@ span.css-1okebmr-indicatorSeparator {
     width: 100%;
     
   }
-  .res .home-fun {
-    position: revert;
+
+    .res .home-fun {
+      position: revert;
       width: 100%;
-      border-radius: 8vw;
+      border-radius: 0;
+      border-top-right-radius: 8vw;
+      border-bottom-right-radius: 8vw;
   }
+  
 
   .ni {
     display: none;
@@ -655,4 +660,9 @@ span.css-1okebmr-indicatorSeparator {
 [dir='rtl'] .slick-next {
   right: auto;
   left: 56px;
+}
+@media screen and (max-width: 768px){
+.ki {
+    width: 16vw;
+}
 }
