@@ -54,7 +54,7 @@ const SearchBar = ({ allCommunities }) => {
         `${search}communityId=${comunityValue}&numberOfBedrooms=${numberOfBedrooms}`
       )
       .then((response) => {
-        if (response.statusText === "OK") {
+        if (response.status === 200) {
           setData(response.data);
           navigate("/results", { state: response.data });
         }
