@@ -131,7 +131,7 @@ const Community = () => {
                       <br />
                     </span>
                     {t("Comunity.bedno")}{" "}
-                    <span className="dirc">{type.numberOfBadroom} </span>
+                    <span className="dirc">{type.numberOfBedrooms} </span>
                     <div className="typeinfo" id="menucc">
                       <hr className="typeh" />
                       <ul className="ultype">

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Select from "react-select";
 import Button from "@mui/material/Button";
 import Fade from "react-reveal/Fade";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { search } from "../../constants/urls";
