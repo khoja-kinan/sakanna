@@ -29,7 +29,7 @@ const Navbar = () => {
           </NavLink>
           <div>
             <input type="checkbox" id="toggler" />
-            <label for="toggler">
+            <label htmlFor="toggler">
               {" "}
               <MenuRoundedIcon />
             </label>

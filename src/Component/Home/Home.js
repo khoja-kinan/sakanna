@@ -97,7 +97,9 @@ const Home = () => {
           </Slide>
           <Slide right cascade>
             <div className="soc-t">
+           
               <svg
+               onClick={()=> window.open("https://www.instagram.com/sakanna_sa/", "_blank")}
                 className="svg0"
                 viewBox="0 0 48 48"
                 fill="none"
@@ -116,8 +118,9 @@ const Home = () => {
                   fill="white"
                 />
               </svg>
-
+              
               <svg
+               onClick={()=> window.open("https://www.tiktok.com/@sakanna_sa", "_blank")}
                 className="svg0"
                 viewBox="0 0 41 48"
                 fill="none"
@@ -130,6 +133,7 @@ const Home = () => {
               </svg>
 
               <svg
+               onClick={()=> window.open("https://twitter.com/sakanna_sa?lang=en", "_blank")}
                 className="svg0"
                 viewBox="0 0 48 40"
                 fill="none"
@@ -142,6 +146,7 @@ const Home = () => {
               </svg>
 
               <svg
+               onClick={()=> window.open("https://www.youtube.com/channel/UCylb8w9mSwl4TQFvxUMejmw", "_blank")}
                 className="svg0"
                 viewBox="0 0 48 34"
                 fill="none"
@@ -154,6 +159,7 @@ const Home = () => {
               </svg>
 
               <svg
+               onClick={()=> window.open("https://www.snapchat.com/add/sakanna_sa", "_blank")}
                 className="svg0"
                 viewBox="0 0 48 48"
                 fill="none"
@@ -166,6 +172,7 @@ const Home = () => {
               </svg>
 
               <svg
+              onClick={()=> window.open("https://www.facebook.com/public/Sakanna-Sa", "_blank")}
                 className="svg0"
                 viewBox="0 0 48 48"
                 fill="none"

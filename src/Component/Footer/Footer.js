@@ -115,7 +115,8 @@ const Footer = () => {
                   </defs>
                 </svg>
               </a>
-              <a LinkComponent={NavLink} to="/contact">
+              <a href="https://www.snapchat.com/add/sakanna_sa">
+
                 <svg
                   className="svgf"
                   viewBox="0 0 33 32"
@@ -141,7 +142,7 @@ const Footer = () => {
                   </defs>
                 </svg>
               </a>
-              <a LinkComponent={NavLink} to="/contact">
+              <a href="https://www.tiktok.com/@sakanna_sa">
                 <svg
                   className="svgf"
                   viewBox="0 0 29 33"

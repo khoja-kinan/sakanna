@@ -114,6 +114,11 @@ font-family: poppins!important;
     line-height: 3vw !important;
 }
 }
+@media screen and (max-width:768px){
+  .logo {
+    width: 72%;
+}
+}
 @media screen and (max-width:600px){
   .menu {
     width: 50vw;

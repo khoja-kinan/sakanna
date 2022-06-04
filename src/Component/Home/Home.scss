@@ -73,7 +73,7 @@
 }
 
 .box-sli {
-  height: 43vw;
+  height: 35vw;
   width: 27vw;
   background-size: cover;
   border-radius: 2.5vw;
@@ -186,9 +186,11 @@
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 2.2vw;
+  
 }
 .svg0 {
   width: 12%;
+  cursor: pointer;
 }
 .css-1s2u09g-control {
   background-color: hsl(0deg 37% 44% / 0%);
@@ -268,7 +270,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2vw;
+  font-size: 1vw;
   line-height: 1.7vw;
   color: #252649;
   text-transform: uppercase;
@@ -354,7 +356,7 @@
     line-height: 3vw !important;
   }
   .comun {
-    height: 54vh;
+    // height: 54vh;
 
     // margin-top: -38vw;
   }
@@ -380,6 +382,11 @@
     position: relative;
     margin-top: 5vw;
     padding-bottom: 5vw;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .home-fun {
+    bottom: 17vw;
   }
 }
 @media screen and (max-width: 500px) {
@@ -596,7 +603,7 @@ span.css-1okebmr-indicatorSeparator {
     height: 70px;
     position: absolute;
     top: 22vw;
-    width: 12vw;
+    width: 66px;
     z-index: 44;
     background: beige;
     background: rgba(255, 255, 255, 0.41);
@@ -637,10 +644,10 @@ span.css-1okebmr-indicatorSeparator {
     height: 76vh;
   }
   .ki {
-    height: 70px;
+    height: 69px;
     position: absolute;
-    top: 26vw;
-    width: 17vw;
+    top: 34vw;
+    width: 61px;
     z-index: 44;
     background: beige;
     background: rgba(255, 255, 255, 0.41);
@@ -663,6 +670,6 @@ span.css-1okebmr-indicatorSeparator {
 }
 @media screen and (max-width: 768px){
 .ki {
-    width: 16vw;
+    // width: 16vw;
 }
 }
