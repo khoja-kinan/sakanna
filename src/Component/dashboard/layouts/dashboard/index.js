@@ -3,9 +3,10 @@ import { Outlet } from "react-router-dom";
 // material
 import { styled } from "@mui/material/styles";
 //
+import "simplebar/src/simplebar.css";
+
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardSidebar from "./DashboardSidebar";
-import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
 import ThemeConfig from "../../theme";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -40,7 +41,6 @@ const MainStyle = styled("div")(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
-  const { i18n } = useTranslation();
   return (
     <HelmetProvider>
       <ThemeConfig>

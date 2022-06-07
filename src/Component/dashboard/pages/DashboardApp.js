@@ -22,11 +22,11 @@ import { useTranslation } from "react-i18next";
 export default function DashboardApp() {
   const { t } = useTranslation();
   return (
-    <Page title="Dashboard | Averroes">
+    <Page title="Dashboard | Sakanna">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
           <Typography variant="h4">
-            {t("description.dashboardAppWelcome")}
+            {t("Dashboard.dashboardAppWelcome")}
           </Typography>
         </Box>
         <Grid container spacing={3}>

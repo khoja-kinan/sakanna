@@ -249,7 +249,7 @@ i18n
             footerInfotmation: " معلومات",
             footerPrivacyPolicy: "شهادة الخصوصية",
             footerTermsOfService: "شروط الخدمة",
-            loginFormValidEmail: "يجب ادخال صيغة بريد التكتروني صحيحة",
+            loginFormValidEmail: "يجب ادخال صيغة بريد الكتروني صحيحة",
             loginFormRequiredEmail: "يرجى ادخال بريد التكتروني",
             loginFormRequiredPass: "يرجى ادخال كلمة المرور",
             loginFormEmail: "البريد الالكتروني",

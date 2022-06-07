@@ -21,32 +21,31 @@ import { useTranslation } from "react-i18next";
 const RootStyle = styled(Page)(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     display: "flex",
-    height: "100vh",
   },
 }));
 
 const SectionStyle = styled(Card)(({ theme }) => ({
-  width: "70%",
+  width: "100%",
+  maxWidth: 464,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start",
-  backgroundColor: " #E87B5A",
-  borderRadius: "0",
+  justifyContent: "center",
+  margin: theme.spacing(2, 0, 2, 2),
 }));
 
 const ContentStyle = styled("div")(({ theme }) => ({
+  maxWidth: 480,
   margin: "auto",
   display: "flex",
   minHeight: "100vh",
   flexDirection: "column",
   justifyContent: "center",
-  padding: "0 2rem",
+  padding: theme.spacing(12, 0),
 }));
 const pages = [
   { nameEn: "Home", nameAr: "الرئيسية", href: "/" },
   { nameEn: "About Us", nameAr: "من نحن", href: "/" },
-  { nameEn: "Services", nameAr: "خدماتنا", href: "/" },
-  { nameEn: "Testimonials", nameAr: "التوصيات", href: "/" },
+
   { nameEn: "Contact", nameAr: "تواصل معنا", href: "/" },
 ];
 // ----------------------------------------------------------------------
@@ -57,110 +56,34 @@ export default function Login() {
   const navigate = useNavigate();
   const remember_Token = cookies.remember_token;
   const api_Token = localStorage.getItem("api-token");
-  const { i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <RootStyle /* title="Login | Sakanna" */>
-      <Container
-        maxWidth="sm"
-        sx={{
-          "&.MuiContainer-root": {
-            maxWidth: "620px",
-          },
-        }}
-      >
+    <RootStyle title="Login | Sakanna">
+      <SectionStyle sx={{ display: { xs: "none", md: "flex" } }}>
+        <Typography
+          variant="h3"
+          sx={{ px: 5, mt: 10, mb: 5, color: "#d4d4d4" }}
+        >
+          {t("Dashboard.signInWelcome")}
+        </Typography>
+        <img src="/static/illustrations/illustration_login.png" alt="login" />
+      </SectionStyle>
+
+      <Container maxWidth="sm">
         <ContentStyle>
           <Stack sx={{ mb: 5 }}>
-            <img
-              src={sakannaLogo}
-              alt="login"
-              width={300}
-              style={{ margin: "0 auto" }}
-            />
+            <Typography variant="h4" gutterBottom>
+              {t("Dashboard.signInTitle")}
+            </Typography>
+            <Typography sx={{ color: "text.secondary" }}>
+              {t("Dashboard.signInInstructions")}
+            </Typography>
           </Stack>
 
           <LoginForm />
         </ContentStyle>
       </Container>
-      <SectionStyle sx={{ display: { xs: "none", md: "flex" } }}>
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            justifyContent: "center",
-          }}
-        >
-          {pages.map((page) => (
-            <HashLink
-              smooth
-              to={page.href}
-              style={{ textDecoration: "none" }}
-              key={page.nameEn}
-            >
-              <Button
-                sx={{
-                  my: 2,
-                  fontSize: "clamp(0.8rem, 3vw, 1.1rem);",
-                  color: "#3C4A53",
-                  display: "block",
-                  textTransform: "none",
-                  "&.MuiButtonBase-root:hover": {
-                    bgcolor: "transparent",
-                  },
-                  "&.MuiButtonBase-root:after": {
-                    content: '" "',
-                    position: "absolute",
-                    left: "0",
-                    bottom: "-2px",
-                    width: "0px",
-                    height: "2px",
-                    background: "#3C4A53",
-
-                    transition: "all 0.45s",
-                  },
-                  "&.MuiButtonBase-root:hover:after": {
-                    width: "60%",
-                    left: "8px",
-                  },
-                  "&.MuiButtonBase-root:focus": {
-                    color: "#E87B5A",
-                  },
-                  "&.MuiButtonBase-root:focus:after": {
-                    width: "60%",
-                    left: "8px",
-                    background: "#3C4A53",
-                  },
-                }}
-              >
-                {i18n.dir() === "ltr" ? page.nameEn : page.nameAr}
-              </Button>
-            </HashLink>
-          ))}
-        </Box>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12,1fr)",
-            gridAutoColumns: "1fr",
-          }}
-        >
-          <img
-            src={sakannaLogo}
-            alt="login"
-            width={300}
-            style={{ margin: "0 auto", gridColumn: "span 12" }}
-          />
-          <img
-            src={loginPic}
-            alt="login"
-            style={{
-              margin: "0 auto",
-              width: "90%",
-              height: "auto",
-              gridColumn: "span 12",
-            }}
-          />
-        </Box>
-      </SectionStyle>
     </RootStyle>
   );
 }

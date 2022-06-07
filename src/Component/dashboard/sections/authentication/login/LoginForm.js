@@ -35,7 +35,8 @@ export default function LoginForm() {
   const [showError, setShowError] = useState(false);
 
   const loginUser = async () => {
-    const result = await login(
+    navigate("/dashboard/app", { replace: true });
+    /*  const result = await login(
       formik.values.email,
       formik.values.password,
       formik.values.remember
@@ -55,13 +56,13 @@ export default function LoginForm() {
       setError(result.data.message);
       setShowError(true);
       formik.setSubmitting(false);
-    }
+    } */
   };
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
-      .email(t("description.loginFormValidEmail"))
-      .required(t("description.loginFormRequiredEmail")),
-    password: Yup.string().required(t("description.loginFormRequiredPass")),
+      .email(t("Dashboard.loginFormValidEmail"))
+      .required(t("Dashboard.loginFormRequiredEmail")),
+    password: Yup.string().required(t("Dashboard.loginFormRequiredPass")),
   });
 
   const formik = useFormik({
@@ -103,7 +104,7 @@ export default function LoginForm() {
             fullWidth
             autoComplete="username"
             type="email"
-            label={t("description.loginFormEmail")}
+            label={t("Dashboard.loginFormEmail")}
             {...getFieldProps("email")}
             error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
@@ -118,7 +119,7 @@ export default function LoginForm() {
             fullWidth
             autoComplete="current-password"
             type={showPassword ? "text" : "password"}
-            label={t("description.loginFormPass")}
+            label={t("Dashboard.loginFormPass")}
             {...getFieldProps("password")}
             InputProps={{
               endAdornment: (
@@ -156,11 +157,11 @@ export default function LoginForm() {
                 {...getFieldProps("remember")}
                 checked={values.remember}
                 style={{
-                  color: "#EBA26B",
+                  color: "#172120",
                 }}
               />
             }
-            label={t("description.loginFormForgetRememberMe")}
+            label={t("Dashboard.loginFormForgetRememberMe")}
           />
 
           <Link
@@ -169,10 +170,10 @@ export default function LoginForm() {
             to="#"
             underline="hover"
             style={{
-              color: "#495676",
+              color: "#172120",
             }}
           >
-            {t("description.loginFormForgetPass")}
+            {t("Dashboard.loginFormForgetPass")}
           </Link>
         </Stack>
 
@@ -183,10 +184,11 @@ export default function LoginForm() {
           variant="contained"
           loading={isSubmitting}
           style={{
-            backgroundColor: "#EBA26B",
+            background:
+              "linear-gradient(88.21deg,#375958 -25.83%,#172120 96.08%)",
           }}
         >
-          {t("description.loginFormLoginButton")}
+          {t("Dashboard.loginFormLoginButton")}
         </LoadingButton>
       </Form>
     </FormikProvider>

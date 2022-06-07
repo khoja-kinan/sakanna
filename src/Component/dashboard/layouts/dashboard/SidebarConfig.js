@@ -1,5 +1,4 @@
 // component
-import { useTranslation } from "react-i18next";
 import Iconify from "../../components/Iconify";
 // ----------------------------------------------------------------------
 

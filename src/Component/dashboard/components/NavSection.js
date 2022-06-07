@@ -180,35 +180,35 @@ export default function NavSection({ navConfig, ...other }) {
 
   const sidebarConfig = [
     {
-      title: t("description.sideBarDashboard"),
+      title: t("Dashboard.sideBarDashboard"),
       path: "/dashboard/app",
       icon: getIcon("eva:pie-chart-2-fill"),
     },
     {
-      title: t("description.sideBarUser"),
+      title: t("Dashboard.sideBarUser"),
       path: "/dashboard/user",
       icon: getIcon("eva:people-fill"),
     },
     {
-      title: t("description.sideBarSpecializations"),
-      path: "/dashboard/specializations",
+      title: t("Dashboard.sideBarComunities"),
+      path: "/dashboard/comunities",
       icon: getIcon("eva:shopping-bag-fill"),
     },
-    {
-      title: t("description.sideBarprivileges"),
+    /* {
+      title: t("Dashboard.sideBarprivileges"),
       path: "/dashboard/privileges",
       icon: getIcon("eva:file-text-fill"),
     },
     {
-      title: t("description.sideBarMedals"),
+      title: t("Dashboard.sideBarMedals"),
       path: "/dashboard/medals",
       icon: getIcon("bx:medal"),
     },
     {
-      title: t("description.sideBarCountries"),
+      title: t("Dashboard.sideBarCountries"),
       path: "/dashboard/countries",
       icon: getIcon("gis:search-country"),
-    },
+    }, */
   ];
 
   return (

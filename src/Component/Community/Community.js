@@ -30,7 +30,7 @@ import Footer from "../Footer/Footer";
 import { useTranslation } from "react-i18next";
 
 const Community = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { urlId } = useParams();
 

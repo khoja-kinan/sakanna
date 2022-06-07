@@ -5,7 +5,7 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 //
 import Login from "./pages/Login";
 import DashboardApp from "./pages/DashboardApp";
-import Specializations from "./pages/Specializations";
+import Comunities from "./pages/Comunities";
 import Privileges from "./pages/Privileges";
 import User from "./pages/User";
 import NotFound from "./pages/Page404";
@@ -39,7 +39,7 @@ export default function Router() {
         <Route path="user" element={<User />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[13]} />}> */}
-        <Route path="specializations" element={<Specializations />} />
+        <Route path="comunities" element={<Comunities />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[5]} />}> */}
         <Route path="privileges" element={<Privileges />} />

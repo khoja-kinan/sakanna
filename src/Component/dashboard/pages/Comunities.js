@@ -35,14 +35,10 @@ import {
   UserListToolbar,
 } from "../sections/@dashboard/user";
 //
-/* import USERLIST from "../_mocks_/user"; */
-// get Users Function
-/* import { getSpecializations } from "../controller/SpecializationsController";
- */ import { specializationsListUrl } from "../constants/urls";
-
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { GetAllCommunities } from "../../../constants/urls";
 
 // ----------------------------------------------------------------------
 
@@ -75,16 +71,16 @@ function applySortFilter(array, comparator, query) {
     return filter(
       array,
       (_user) =>
-        _user.name_ar.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        _user.name_en.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        /*  _user.name_ar.toLowerCase().indexOf(query.toLowerCase()) !== -1 || */
+        _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
     );
   }
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function Specializations() {
+export default function Comunities() {
   const roles = JSON.parse(localStorage.getItem("roles"));
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [cookies, setCookie] = useCookies(["user"]);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
@@ -92,57 +88,100 @@ export default function Specializations() {
   const [orderBy, setOrderBy] = useState("name");
   const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [openNewSpecialization, setOpenNewSpecialization] = useState(false);
+  const [openNewComunity, setOpenNewComunity] = useState(false);
   const [arName, setArname] = useState("");
   const [enName, setEnName] = useState("");
   const [state, setState] = useState("");
 
-  const [SpecializationsList, setSpecializationsList] = useState([]);
+  const [ComunitiesList, setComunitiesList] = useState([]);
   let navigate = useNavigate();
   let result;
   const token = localStorage.getItem("api-token");
 
   useEffect(() => {
     function fecthData() {
-      if (token === null) {
+      /* if (token === null) {
         navigate("/");
-      } else {
-        axios
-          .get(specializationsListUrl, {
-            headers: {
+      } else { */
+      axios
+        .get(GetAllCommunities, {
+          /* headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
-            },
-          })
-          .then((response) => {
-            if (response.status === 200) {
-              const data = response.data;
-              if (data.status === 1) {
-                result = data.data;
-                setSpecializationsList(result);
-              }
-            }
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-      }
+            }, */
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            const data = response.data;
+
+            setComunitiesList(data);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     }
+    /* } */
     fecthData();
-  }, [navigate]);
-  if (SpecializationsList.length === 0) {
+  }, []);
+  if (ComunitiesList.length === 0) {
     return null;
   }
   const TABLE_HEAD = [
     {
       id: "name_ar",
-      label: t("description.NewSpecializationsDialogArName"),
+      label: t("Dashboard.ComunityDialogArName"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "name",
+      label: t("Dashboard.ComunityDialogEnName"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    /*  {
+      id: "description_Ar",
+      label: t("Dashboard.ComunityDialogArDescription"),
       alignRight: false,
     },
     {
-      id: "name_en",
-      label: t("description.NewSpecializationsDialogEnName"),
+      id: "description_En",
+      label: t("Dashboard.ComunityDialogEnDescription"),
       alignRight: false,
+    }, */
+    {
+      id: "location",
+      label: t("Dashboard.ComunityDialogLocation"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    /* {
+      id: "latitude",
+      label: t("Dashboard.ComunityDialogLatitude"),
+      alignRight: false,
+    },
+    {
+      id: "longitude",
+      label: t("Dashboard.ComunityDialogLongitude"),
+      alignRight: false,
+    },
+    {
+      id: "location_description_Ar",
+      label: t("Dashboard.ComunityDialoglocation_description_Ar"),
+      alignRight: false,
+    },
+    {
+      id: "location_description_En",
+      label: t("Dashboard.ComunityDialoglocation_description_En"),
+      alignRight: false,
+    },
+    {
+      id: "location_image",
+      label: t("Dashboard.ComunityDialoglocation_image"),
+      alignRight: false,
+    }, */
+    {
+      id: "type",
+      label: t("Dashboard.ComunityDialoType"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
     },
     { id: "" },
   ];
@@ -154,7 +193,7 @@ export default function Specializations() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = SpecializationsList.map((n) => n.name);
+      const newSelecteds = ComunitiesList.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -194,11 +233,11 @@ export default function Specializations() {
 
   const emptyRows =
     page > 0
-      ? Math.max(0, (1 + page) * rowsPerPage - SpecializationsList.length)
+      ? Math.max(0, (1 + page) * rowsPerPage - ComunitiesList.length)
       : 0;
 
   const filteredUsers = applySortFilter(
-    SpecializationsList,
+    ComunitiesList,
     getComparator(order, orderBy),
     filterName
   );
@@ -207,12 +246,12 @@ export default function Specializations() {
   /* 
       New Specialization
   */
-  const handleClickOpenNewSpecialization = () => {
-    setOpenNewSpecialization(true);
+  const handleClickopenNewComunity = () => {
+    setOpenNewComunity(true);
   };
 
   const handleCloseNewSpecialization = () => {
-    setOpenNewSpecialization(false);
+    setOpenNewComunity(false);
   };
 
   const handleChangeArName = (event) => {
@@ -243,10 +282,11 @@ export default function Specializations() {
         setState({ errorMessage: error.message });
         console.error("There was an error!", error);
       });
-    setOpenNewSpecialization(false);
+    setOpenNewComunity(false);
   };
+  console.log(filteredUsers);
   return (
-    <Page title={t("description.SpecializationsPageTitle")}>
+    <Page title={t("Dashboard.ComunitiesPageTitle")}>
       <Container>
         <Stack
           direction="row"
@@ -255,20 +295,15 @@ export default function Specializations() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            {t("description.SpecializationsPageTitle")}
+            {t("Dashboard.ComunitiesPageTitle")}
           </Typography>
-          {roles.includes(14) && (
-            <Button
-              variant="contained"
-              onClick={handleClickOpenNewSpecialization}
-            >
-              {t("description.SpecializationsPageAddNew")}
-            </Button>
-          )}
+          <Button variant="contained" onClick={handleClickopenNewComunity}>
+            {t("Dashboard.ComunitiesAddNew")}
+          </Button>
         </Stack>
         <Dialog
           disableEscapeKeyDown
-          open={openNewSpecialization}
+          open={openNewComunity}
           onClose={handleCloseNewSpecialization}
         >
           <DialogTitle>
@@ -319,7 +354,7 @@ export default function Specializations() {
         </Dialog>
         <Card>
           <UserListToolbar
-            placeHolder={t("description.SpecializationsPageSearchPlaceHolder")}
+            placeHolder={t("Dashboard.ComunitiesPageSearchPlaceHolder")}
             numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
@@ -332,7 +367,7 @@ export default function Specializations() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={SpecializationsList.length}
+                  rowCount={ComunitiesList.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -341,8 +376,8 @@ export default function Specializations() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name_ar, name_en } = row;
-                      const isItemSelected = selected.indexOf(name_ar) !== -1;
+                      const { id, name_ar, name, location, type } = row;
+                      const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
                         <TableRow
@@ -356,21 +391,21 @@ export default function Specializations() {
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
-                              onChange={(event) => handleClick(event, name_ar)}
+                              onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell>
-                          <TableCell align="left">{name_ar}</TableCell>
-                          <TableCell align="left">{name_en}</TableCell>
-                          {roles.includes(15) && (
-                            <TableCell align="right">
-                              <SpecializationMoreMenu
-                                Specialization_id={id}
-                                Arabic_name={name_ar}
-                                English_name={name_en}
-                                token={token}
-                              />
-                            </TableCell>
-                          )}
+                          <TableCell align="left">{name}</TableCell>
+                          <TableCell align="left">{name}</TableCell>
+                          <TableCell align="left">{location}</TableCell>
+                          <TableCell align="left">{type}</TableCell>
+                          <TableCell align="right">
+                            <SpecializationMoreMenu
+                              Specialization_id={id}
+                              Arabic_name={name_ar}
+                              English_name={name}
+                              token={token}
+                            />
+                          </TableCell>
                         </TableRow>
                       );
                     })}
@@ -396,7 +431,7 @@ export default function Specializations() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={SpecializationsList.length}
+            count={ComunitiesList.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

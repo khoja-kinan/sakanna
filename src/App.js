@@ -29,21 +29,21 @@ import "./Component/dashboard/IndexDashboard";
 import DashboardLayout from "./Component/dashboard/layouts/dashboard";
 import DashboardApp from "./Component/dashboard/pages/DashboardApp";
 import User from "./Component/dashboard/pages/User";
-import Specializations from "./Component/dashboard/pages/Specializations";
+import Comunities from "./Component/dashboard/pages/Comunities";
 import Privileges from "./Component/dashboard/pages/Privileges";
 import Medals from "./Component/dashboard/pages/Medals";
 import Countries from "./Component/dashboard/pages/Countries";
 import NotFound from "./Component/dashboard/pages/Page404";
 import Unauthorized from "./Component/dashboard/pages/Unauthorized";
 import IndexDashboard from "./Component/dashboard/IndexDashboard";
-import i18n from './i18n';
+import i18n from "./i18n";
 
 const App = () => {
   // const { t, i18n } = useTranslation();
-  const {i18n} = useTranslation();
-  document.body.dir = i18n.dir(); 
+  const { i18n } = useTranslation();
+  document.body.dir = i18n.dir();
   // document.documentElement.lang = i18n.language;
-   // const { t } = this.props;
+  // const { t } = this.props;
   document.documentElement.lang = i18n.language;
   return (
     <Routes>
@@ -68,7 +68,7 @@ const App = () => {
         <Route path="user" element={<User />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[13]} />}> */}
-        <Route path="specializations" element={<Specializations />} />
+        <Route path="comunities" element={<Comunities />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[5]} />}> */}
         <Route path="privileges" element={<Privileges />} />
