@@ -284,6 +284,7 @@
 .plans {
   height: 100vh;
   width: 100%;
+  display: flex;
 }
 .svgs {
   width: 8vw;
@@ -672,4 +673,36 @@ span.css-1okebmr-indicatorSeparator {
 .ki {
     // width: 16vw;
 }
+}
+
+.saka {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  z-index: 1000;
+  flex-direction: column;
+  /* background: rgba(33, 37, 41, 0.2196078431); */
+  /* background: linear-gradient(180deg, rgba(27, 41, 41, 0.6509803922) 16.53%, rgba(0, 0, 0, 0) 96.98%); */
+}
+.hed{
+  font-size: 8vw;
+  font-weight: 600;
+  color: wheat;
+  line-height: 8vw;
+  background: linear-gradient(77.16deg, #8C7A6A -3.46%, #FFF6CA 101.47%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.mid {
+  font-size: 2.5vw;
+  color: #172120;
+  font-weight: 500;
+  line-height: 17px;
+  text-shadow: 0px 1px 1px rgb(0 0 0 / 25%);
+}
+.conte{
+  font-size: 2vw;
+  color: #172120;
 }

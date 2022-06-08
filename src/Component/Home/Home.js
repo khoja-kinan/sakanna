@@ -52,7 +52,10 @@ const Home = () => {
     <>
       <Navbar />
       <div id="home">
+     
+          
         <Slider />
+        
         <div role="navigation" className="ki">
           <div id="menuToggle">
             <input type="checkbox" />
@@ -187,6 +190,13 @@ const Home = () => {
           </Slide>
         </div>
         <div className="plans">
+
+        <div className="saka">
+          <p className="hed"> SAKANNA</p><br/>
+          <p className="mid"> For Real Estate Development</p><br/>
+          <p className="mid"> Building For Tomorrow</p>
+          <p className="conte"> Building For Tomorrow Building For Tomorrow Building For Tomorrow</p>
+        </div>
           {/* {this.state.Communities.map(Communities => <div>{Communities.name}</div>)} */}
           {/* {state.Communities.map(Communities =>  <div key={Communities.id}>{Communities.data}</div>)} */}
           <div>{/* <h1>{t('welcome.title', {framework:'React'})}</h1> */}</div>
