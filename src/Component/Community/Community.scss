@@ -51,7 +51,7 @@
   color: #ffffff;
   padding: 1vw;
   position: absolute;
-  top: 135vh;
+  top: 126vh;
   right: 5vw;
 }
 .featuers {
@@ -641,4 +641,25 @@ hr.typeh {
 // }
 .dirc:lang(ar){
   direction: ltr;
+}
+.pridi{
+  position: absolute;
+  top: -7.4vw !important;
+  left: 78vw !important;
+  margin: 0 2vw 0 0;
+}
+
+.pr {
+  position: absolute;
+  top: 22.6vw !important;
+  left: 5vw !important;
+  margin: 0 2vw 0 0;
+  z-index: 1000;
+}
+ .na  {
+  z-index: 1000;
+  position: absolute;
+  top: 22.6vw !important;
+  right: 5vw !important;
+  margin: 0 0 0 2vw;
 }

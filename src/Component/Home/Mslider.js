@@ -10,10 +10,11 @@ const Mslider = ({ allCommunities }) => {
   var settings = {
     arrows: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
+    autoplay:true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -44,14 +45,6 @@ const Mslider = ({ allCommunities }) => {
     ],
   };
 
-  // const [data, setData] = useState([]);
-
-  //   const arrslider = data.map((data, index) => {
-  //     return (
-
-  //           <span className="mn"> {data.name}</span>
-  //     )
-  // })
   return (
     <div>
       <Slider {...settings} className="mt">

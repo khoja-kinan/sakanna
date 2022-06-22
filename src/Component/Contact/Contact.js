@@ -97,7 +97,8 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat">{t("contactus.locae")}</p>
+                  <a className="conat " href="https://maps.app.goo.gl/WM37M5AmXNAFqxVQA" >{t("contactus.locae")} <br/>  {t("contactus.locae-b")}</a>
+                  
                 </div>
                 <div className="rocon">
                   <svg
@@ -170,7 +171,7 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat dirc">+966138813760</p>
+                  <a className="conat dirc" href="tel:+966138816660" >+966138816660</a>
                 </div>
                 <div className="rocon">
                   <svg
@@ -243,7 +244,8 @@ const Contact = () => {
                       </linearGradient>
                     </defs>
                   </svg>
-                  <p className="conat dirc">+966138813760</p>
+                  <a className="conat dirc" href="mailto:info@sakanna.net" >info@sakanna.net</a>
+
                 </div>
               </div>
             </Roll>

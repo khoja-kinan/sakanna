@@ -13,9 +13,9 @@ import i18n from "i18next";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 
 const Navbar = () => {
-  
+
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    i18n.changeLanguage(i18n.options.lng);
   };
   const { t, i18n } = useTranslation();
 
@@ -56,9 +56,9 @@ const Navbar = () => {
                 </li>
 
                 <li className="nav-item">
-                  <a className="re" href="/">
+                  <a className="re" href="tel:+966138816660">
                     <LocalPhoneRoundedIcon fontSize="small" color="action" />
-                    {t('nav.CALL US')} +966138813760
+                    {t('nav.CALL US')} +966138816660
                   </a>
                 </li>
                 <li className="nav-item">

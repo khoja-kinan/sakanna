@@ -19,10 +19,11 @@ const typesOptions = [
 ];
 const priceOptions = [
   { label: "Select Price ", value: " " },
-  { label: "1000$ - 2000$", value: 100 },
-  { label: "4000$ - 6000$", value: 200 },
-  { label: "7000$ - 10000$", value: 300 },
-  { label: "11000$ - 14000$", value: 400 },
+  { label: "300,000 - 500,000 SR", value: 100 },
+  { label: "500,000 - 700,000 SR", value: 200 },
+  { label: "700,000 - 900,000 SR", value: 300 },
+  { label: "900,000 - 1,200,000 SR", value: 400 },
+  { label: "1,200,000 - 2,000,000 SR", value: 500 },
 ];
 
 const SearchBar = ({ allCommunities }) => {

@@ -78,7 +78,7 @@ const Community = () => {
           </div>
         </Fade>
         <Fade>
-          <SliderM images={comunityDetails.images} />
+          <SliderM images={comunityDetails.images} className="SliderM" />
         </Fade>
         <button className="graph">{t("Comunity.plan")}</button>
         <div className="featuers">

@@ -95,6 +95,27 @@ color: #2D3436;
 .mu{
     display: none;
 }
+.tr-info{
+    display: flex;
+    margin: 0 10vw;
+    flex-direction: row;
+    
+}
+.bot-rights {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+.bot-soc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+.bot-soc svg {
+    width: 90%;
+}
 @media screen and (max-width:500px){
 .footer{
     flex-direction: column;

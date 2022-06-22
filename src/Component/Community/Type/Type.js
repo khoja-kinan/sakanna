@@ -89,9 +89,9 @@ const Type = () => {
           <Fade left>
             <div className="info-tec">
               <div className="tre">
-                {t("Comunity.area")} {type.type.area} m&#178; <br />
-                {t("Comunity.bedno")} {type.type.numberOfBedrooms} <br />
-                {t("Comunity.count")} {type.type.count}
+                {t("Comunity.area")}:<b>  {type.type.area} m&#178; </b> <br />
+                {t("Comunity.bedno")}<b>  {type.type.numberOfBedrooms}  </b><br />
+                {t("Comunity.count")}<b>  {type.type.count} </b>
               </div>
               <table>
                 <tbody>

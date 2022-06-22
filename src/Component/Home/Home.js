@@ -193,8 +193,8 @@ const Home = () => {
         <div className="plans">
 
           <div className="saka">
-          <Zoom><p className="hed"> SAKANNA</p><br />
-            <p className="mid"> For Real Estate Development</p><br />
+          <Zoom><p className="hed"> SAKANNA</p>
+            <p className="mid"> For Real Estate Development</p>
             <p className="mid"> Building For Tomorrow</p></Zoom>
             <Zoom>
             <div className="conte">
