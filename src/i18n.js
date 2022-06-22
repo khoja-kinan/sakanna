@@ -119,7 +119,7 @@ i18n
             ComunitiesPageSearchPlaceHolder: "Search Comunities...",
             ComunitiesAddNew: "Add New",
             ComunityDialogArName: "Arabic Name",
-            ComunityDialogEnName: "English name",
+            ComunityDialogEnName: "English Name",
             ComunityDialogArDescription: "Arabic Description",
             ComunityDialogEnDescription: "English Description",
             ComunityDialogLatitude: "Latitude",
@@ -131,6 +131,17 @@ i18n
               "English Location Description",
             ComunityDialoglocation_image: "Location Image",
             ComunityDialoType: "Type",
+            EditButton: "Edit",
+            EditComunity: "Edit Comunity",
+            Ok: "Ok",
+            Cancel: "Cancel",
+            UsersPageLabelRowsPerPage: "Rows Per Page",
+            SearchBarSearchButton: "Search",
+            SearchBarSearchPlaceholder: "Search…",
+            villa: "Villa",
+            normal: "Normal",
+            ComunityDialogComunityDescription: "Comunity Description",
+            ComunityDialogLocationDescription: "Location Description",
           },
         },
       },
@@ -216,7 +227,7 @@ i18n
             signInTitle: "تسجيل الدخول الى سكنا",
             signInInstructions: "يرجى ادخال بيانات اعتمادك.",
             loginFormValidEmail: "يجب ادخال صيغة بريد الكتروني صحيحة",
-            loginFormRequiredEmail: "يرجى ادخال بريد التكتروني",
+            loginFormRequiredEmail: "يرجى ادخال البريد الكتروني",
             loginFormRequiredPass: "يرجى ادخال كلمة المرور",
             loginFormEmail: "البريد الالكتروني",
             loginFormPass: "كلمة المرور",
@@ -247,6 +258,17 @@ i18n
             ComunityDialoglocation_description_En: "الوصف الاجنبي للموقع",
             ComunityDialoglocation_image: "صورة الموقع",
             ComunityDialoType: "النوع",
+            EditButton: "تعديل",
+            EditComunity: "تعديل المجتمع",
+            Ok: "تأكيد",
+            Cancel: "إلغاء",
+            UsersPageLabelRowsPerPage: "عدد الاسطر في الصفحة",
+            SearchBarSearchButton: "بحث",
+            SearchBarSearchPlaceholder: "ابحث هنا ...",
+            villa: "فيلا",
+            normal: "شقة عادية",
+            ComunityDialogComunityDescription: "وصف المجتمع",
+            ComunityDialogLocationDescription: "وصف الموقع",
           },
         },
       },
@@ -256,7 +278,7 @@ i18n
 export default i18n;
 /* 
    
-   {t("Dashboard.ComunitiesAddNew")} 
+   {t("Dashboard.ComunityDialogLocationDescription")} 
    
    const { t } = useTranslation();
    

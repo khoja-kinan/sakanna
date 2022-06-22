@@ -78,13 +78,13 @@ td {
     margin-bottom: 4vw;
   }
 }
-td:lang(ar){
+/* td:lang(ar){
   direction: ltr;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
   flex-direction: column;
-}
+} */
 .gra-floor:hover {
   transform: scale(1.2);
   transition: 0.5s all ease;

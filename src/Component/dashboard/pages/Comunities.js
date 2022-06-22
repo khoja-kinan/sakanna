@@ -27,10 +27,9 @@ import {
 // components
 import Page from "../components/Page";
 import Scrollbar from "../components/Scrollbar";
-import Iconify from "../components/Iconify";
 import SearchNotFound from "../components/SearchNotFound";
 import {
-  SpecializationMoreMenu,
+  ComunityMoreMenu,
   UserListHead,
   UserListToolbar,
 } from "../sections/@dashboard/user";
@@ -138,46 +137,12 @@ export default function Comunities() {
       label: t("Dashboard.ComunityDialogEnName"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
-    /*  {
-      id: "description_Ar",
-      label: t("Dashboard.ComunityDialogArDescription"),
-      alignRight: false,
-    },
-    {
-      id: "description_En",
-      label: t("Dashboard.ComunityDialogEnDescription"),
-      alignRight: false,
-    }, */
     {
       id: "location",
       label: t("Dashboard.ComunityDialogLocation"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
-    /* {
-      id: "latitude",
-      label: t("Dashboard.ComunityDialogLatitude"),
-      alignRight: false,
-    },
-    {
-      id: "longitude",
-      label: t("Dashboard.ComunityDialogLongitude"),
-      alignRight: false,
-    },
-    {
-      id: "location_description_Ar",
-      label: t("Dashboard.ComunityDialoglocation_description_Ar"),
-      alignRight: false,
-    },
-    {
-      id: "location_description_En",
-      label: t("Dashboard.ComunityDialoglocation_description_En"),
-      alignRight: false,
-    },
-    {
-      id: "location_image",
-      label: t("Dashboard.ComunityDialoglocation_image"),
-      alignRight: false,
-    }, */
+
     {
       id: "type",
       label: t("Dashboard.ComunityDialoType"),
@@ -376,7 +341,19 @@ export default function Comunities() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name_ar, name, location, type } = row;
+                      const {
+                        id,
+                        name_ar,
+                        name,
+                        location,
+                        type,
+                        description,
+                        image,
+                        latitude,
+                        longitude,
+                        location_description,
+                        location_image,
+                      } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -394,16 +371,42 @@ export default function Comunities() {
                               onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell>
-                          <TableCell align="left">{name}</TableCell>
-                          <TableCell align="left">{name}</TableCell>
-                          <TableCell align="left">{location}</TableCell>
-                          <TableCell align="left">{type}</TableCell>
-                          <TableCell align="right">
-                            <SpecializationMoreMenu
-                              Specialization_id={id}
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {name}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {name}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {location}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {type}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "right" : "left"}
+                          >
+                            <ComunityMoreMenu
+                              Comunity_id={id}
                               Arabic_name={name_ar}
                               English_name={name}
+                              Location={location}
+                              type={type}
+                              description={description}
+                              image={image}
+                              Latitude={latitude}
+                              Longitude={longitude}
                               token={token}
+                              locationDesc={location_description}
+                              location_image={location_image}
                             />
                           </TableCell>
                         </TableRow>
@@ -436,7 +439,7 @@ export default function Comunities() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage={t("description.UsersPageLabelRowsPerPage")}
+            labelRowsPerPage={t("Dashboard.UsersPageLabelRowsPerPage")}
           />
         </Card>
       </Container>
