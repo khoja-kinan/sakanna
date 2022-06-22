@@ -78,7 +78,7 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function Comunities() {
-  const roles = JSON.parse(localStorage.getItem("roles"));
+  /* const roles = JSON.parse(localStorage.getItem("roles")); */
   const { t, i18n } = useTranslation();
   const [cookies, setCookie] = useCookies(["user"]);
   const [page, setPage] = useState(0);
@@ -249,7 +249,7 @@ export default function Comunities() {
       });
     setOpenNewComunity(false);
   };
-  console.log(filteredUsers);
+  console.log(ComunitiesList);
   return (
     <Page title={t("Dashboard.ComunitiesPageTitle")}>
       <Container>
@@ -346,12 +346,16 @@ export default function Comunities() {
                         name_ar,
                         name,
                         location,
+                        location_ar,
                         type,
+                        type_ar,
                         description,
+                        description_ar,
                         image,
                         latitude,
                         longitude,
                         location_description,
+                        location_description_ar,
                         location_image,
                       } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
@@ -374,7 +378,7 @@ export default function Comunities() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {name}
+                            {name_ar}
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
@@ -399,13 +403,17 @@ export default function Comunities() {
                               Arabic_name={name_ar}
                               English_name={name}
                               Location={location}
+                              Location_ar={location_ar}
                               type={type}
+                              type_ar={type_ar}
                               description={description}
-                              image={image}
+                              description_ar={description_ar}
+                              comunityImage={image}
                               Latitude={latitude}
                               Longitude={longitude}
                               token={token}
                               locationDesc={location_description}
+                              locationDescAr={location_description_ar}
                               location_image={location_image}
                             />
                           </TableCell>

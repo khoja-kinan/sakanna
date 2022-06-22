@@ -33,12 +33,16 @@ export default function ComunityMoreMenu({
   Arabic_name,
   English_name,
   Location,
+  Location_ar,
   type,
+  type_ar,
   description,
-  image,
+  description_ar,
+  comunityImage,
   Latitude,
   Longitude,
   locationDesc,
+  locationDescAr,
   location_image,
 }) {
   const ref = useRef(null);
@@ -55,19 +59,42 @@ export default function ComunityMoreMenu({
   const [long, setLongitude] = useState(Longitude);
   const [lat, setLatitude] = useState(Latitude);
   const [loc, setLoc] = useState(Location);
+  const [loc_ar, setLoc_ar] = useState(Location_ar);
   const [typ, setType] = useState(type);
+  const [typ_ar, setType_ar] = useState(type_ar);
   const [Desc, setDesc] = useState(description);
+  const [Desc_ar, setDesc_ar] = useState(description_ar);
   const [LocDesc, setLocDesc] = useState(locationDesc);
+  const [LocDesc_ar, setLocDesc_ar] = useState(locationDescAr);
   const [state, setState] = useState("");
-  const [comunityImage, setComunityImage] = useState([image]);
-  const ComunityImagemaxNumber = 1;
+  const [comunityImageToShow, setComunityImageToShow] = useState(comunityImage);
+  const [previewcomunityImage, setPreviewComunityImage] = useState(null);
 
-  const onChangeComunityImages = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setComunityImage(imageList);
+  const [locationImageToShow, setLocationImageToShow] =
+    useState(location_image);
+  const [previewLocationImage, setPreviewLocationImage] = useState(null);
+
+  const handleCaptureComunityImage = (e) => {
+    setComunityImageToShow(null);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setPreviewComunityImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
+  const handleCaptureLocationImage = (e) => {
+    setLocationImageToShow(null);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setPreviewLocationImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
   const handleChangeArName = (event) => {
     setArname(event.target.value);
   };
@@ -84,14 +111,26 @@ export default function ComunityMoreMenu({
   const handleChangeLocation = (event) => {
     setLoc(event.target.value);
   };
+  const handleChangeLocationAr = (event) => {
+    setLoc_ar(event.target.value);
+  };
   const handleChangeTyp = (event) => {
     setType(event.target.value);
+  };
+  const handleChangeTypAr = (event) => {
+    setType_ar(event.target.value);
   };
   const handleChangeDesc = (event) => {
     setDesc(event.target.value);
   };
+  const handleChangeDescAr = (event) => {
+    setDesc_ar(event.target.value);
+  };
   const handleChangeLocDesc = (event) => {
     setLocDesc(event.target.value);
+  };
+  const handleChangeLocDescAr = (event) => {
+    setLocDesc_ar(event.target.value);
   };
 
   const handleClickOpenEditDialog = () => {
@@ -209,10 +248,34 @@ export default function ComunityMoreMenu({
                 <TextField
                   variant="filled"
                   id="filled-basic"
+                  label={t("Dashboard.ComunityDialogLocationAr")}
+                  onChange={handleChangeLocationAr}
+                  value={loc_ar}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
                   label={t("Dashboard.ComunityDialogLocation")}
                   onChange={handleChangeLocation}
                   value={loc}
                 />
+              </FormControl>
+
+              <FormControl sx={{ m: 1, maxWidth: "30%" }} variant="filled">
+                <InputLabel id="demo-simple-select-filled-label">
+                  {t("Dashboard.ComunityDialoTypeAr")}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={typ_ar}
+                  onChange={handleChangeTypAr}
+                >
+                  <MenuItem value="فيلا">فيلا</MenuItem>
+                  <MenuItem value="شقة عادية">شقة عادية </MenuItem>
+                </Select>
               </FormControl>
 
               <FormControl sx={{ m: 1, maxWidth: "30%" }} variant="filled">
@@ -225,9 +288,20 @@ export default function ComunityMoreMenu({
                   value={typ}
                   onChange={handleChangeTyp}
                 >
-                  <MenuItem value="villa">{t("Dashboard.villa")}</MenuItem>
-                  <MenuItem value="normal">{t("Dashboard.normal")} </MenuItem>
+                  <MenuItem value="villa">Villa</MenuItem>
+                  <MenuItem value="normal">Normal </MenuItem>
                 </Select>
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
+                  label={t("Dashboard.ComunityDialogComunityDescriptionAr")}
+                  onChange={handleChangeDescAr}
+                  value={Desc_ar}
+                />
               </FormControl>
               <FormControl sx={{ m: 1, maxWidth: "45%" }}>
                 <TextField
@@ -246,16 +320,76 @@ export default function ComunityMoreMenu({
                   id="filled-multiline-static"
                   multiline
                   rows={6}
+                  label={t("Dashboard.ComunityDialogLocationDescriptionAr")}
+                  onChange={handleChangeLocDescAr}
+                  value={LocDesc_ar}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
                   label={t("Dashboard.ComunityDialogLocationDescription")}
                   onChange={handleChangeLocDesc}
                   value={LocDesc}
                 />
               </FormControl>
-
+              {/* comunity Image */}
               <FormControl sx={{ m: 1, maxWidth: "45%" }}>
-                <ImageUploading
-                  multiple
-                  value={comunityImage}
+                <InputLabel>{t("Dashboard.ComunityImage")}</InputLabel>
+                <Box className="upload__image-wrapper">
+                  {previewcomunityImage ? (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img src={previewcomunityImage} alt="" width="80%" />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setPreviewComunityImage(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  ) : (
+                    <Button
+                      sx={{ margin: "1rem 0" }}
+                      variant="outlined"
+                      component="label"
+                    >
+                      {t("Dashboard.uploadComunityImage")}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        onChange={handleCaptureComunityImage}
+                      />
+                    </Button>
+                  )}
+                  {comunityImageToShow && (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img
+                        src={`${baseImageUrl}${comunityImageToShow}`}
+                        alt=""
+                        width="80%"
+                      />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setComunityImageToShow(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
+
+                {/* <ImageUploading
+                  value={comunityImageToUpload}
                   onChange={onChangeComunityImages}
                   maxNumber={ComunityImagemaxNumber}
                   dataURLKey="data_url"
@@ -263,7 +397,6 @@ export default function ComunityMoreMenu({
                   {({
                     imageList,
                     onImageUpload,
-                    onImageRemoveAll,
                     onImageUpdate,
                     onImageRemove,
                     isDragging,
@@ -271,51 +404,119 @@ export default function ComunityMoreMenu({
                   }) => (
                     // write your building UI
                     <Box className="upload__image-wrapper">
-                      <Button
-                        sx={{ color: isDragging ? "red" : undefined }}
-                        onClick={onImageUpload}
-                        {...dragProps}
-                      >
-                        Click or Drop here
-                      </Button>
-                      &nbsp;
-                      <Button onClick={onImageRemoveAll}>
-                        Remove all images
-                      </Button>
-                      {comunityImage.length === 0
-                        ? imageList.map((image, index) => (
-                            <Box key={index} className="image-item">
-                              <img src={image["data_url"]} alt="" width="100" />
-                              <Box className="image-item__btn-wrapper">
-                                <Button onClick={() => onImageUpdate(index)}>
-                                  Update
-                                </Button>
-                                <Button onClick={() => onImageRemove(index)}>
-                                  Remove
-                                </Button>
-                              </Box>
-                            </Box>
-                          ))
-                        : comunityImage.length !== 0 && (
-                            <Box className="image-item">
-                              <img
-                                src={`${baseImageUrl}${comunityImage[0]}`}
-                                alt=""
-                                width="100%"
-                              />
-                              <Box className="image-item__btn-wrapper">
-                                <Button onClick={() => onImageUpdate("0")}>
-                                  Update
-                                </Button>
-                                <Button onClick={() => onImageRemove("0")}>
-                                  Remove
-                                </Button>
-                              </Box>
-                            </Box>
-                          )}
+                      {!comunityImageToShow && (
+                        <Button
+                          variant="outlined"
+                          sx={{
+                            color: isDragging ? "red" : undefined,
+                            margin: "1rem 0",
+                          }}
+                          onClick={onImageUpload}
+                          {...dragProps}
+                        >
+                          {t("Dashboard.ClickOrDrop")}
+                        </Button>
+                      )}
+
+                      {comunityImageToShow && (
+                        <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                          <img
+                            src={`${baseImageUrl}${comunityImageToShow}`}
+                            alt=""
+                            width="80%"
+                          />
+                          <Box className="image-item__btn-wrapper">
+                            <Button
+                              sx={{ margin: "1rem 0" }}
+                              variant="outlined"
+                              onClick={() => setComunityImageToShow(null)}
+                            >
+                              {t("Dashboard.remove")}
+                            </Button>
+                          </Box>
+                        </Box>
+                      )}
+
+                      {imageList.map((image, index) => (
+                        <Box
+                          key={index}
+                          className="image-item"
+                          sx={{ margin: "1rem 0" }}
+                        >
+                          <img src={image.data_url} alt="" width="80%" />
+                          <Box className="image-item__btn-wrapper">
+                            <Button
+                              onClick={() => onImageUpdate(index)}
+                              sx={{ margin: "1rem 0" }}
+                              variant="outlined"
+                            >
+                              {t("Dashboard.EditButton")}
+                            </Button>
+                            <Button
+                              onClick={() => onImageRemove(index)}
+                              sx={{ margin: "1rem " }}
+                              variant="outlined"
+                            >
+                              {t("Dashboard.remove")}
+                            </Button>
+                          </Box>
+                        </Box>
+                      ))}
                     </Box>
                   )}
-                </ImageUploading>
+                </ImageUploading> */}
+              </FormControl>
+              {/* location Image */}
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <InputLabel>{t("Dashboard.locationImage")}</InputLabel>
+                <Box className="upload__image-wrapper">
+                  {previewLocationImage ? (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img src={previewcomunityImage} alt="" width="80%" />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setPreviewLocationImage(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  ) : (
+                    <Button
+                      sx={{ margin: "1rem 0" }}
+                      variant="outlined"
+                      component="label"
+                    >
+                      {t("Dashboard.uploadLocationImage")}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        onChange={handleCaptureLocationImage}
+                      />
+                    </Button>
+                  )}
+                  {locationImageToShow && (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img
+                        src={`${baseImageUrl}${locationImageToShow}`}
+                        alt=""
+                        width="80%"
+                      />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setLocationImageToShow(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
               </FormControl>
             </Box>
             <Box
