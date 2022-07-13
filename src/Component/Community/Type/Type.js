@@ -160,7 +160,7 @@ const Type = () => {
             />
           </Fade>
         </div>
-        <div className="conm">
+        <div className="conm pa-do">
         <div className="sup">
                 <p className="sup-tit">
                 {type.type.name}
