@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 /* import { Link as RouterLink } from "react-router-dom"; */
 // material
 import {
@@ -10,6 +10,7 @@ import {
   TextField,
   InputLabel,
   Select,
+  DialogContentText,
 } from "@mui/material";
 // component
 import Iconify from "../../../components/Iconify";
@@ -23,8 +24,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import FormControl from "@mui/material/FormControl";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import ImageUploading from "react-images-uploading";
-import { baseImageUrl } from "../../../../../constants/urls";
+import { baseImageUrl, getComunityById } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
 export default function ComunityMoreMenu({
@@ -49,11 +49,10 @@ export default function ComunityMoreMenu({
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
-  /* 
-      Specialization 
-  */
-
+  const formData = new FormData();
   const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
   const [arName, setArname] = useState(Arabic_name);
   const [enName, setEnName] = useState(English_name);
   const [long, setLongitude] = useState(Longitude);
@@ -66,16 +65,21 @@ export default function ComunityMoreMenu({
   const [Desc_ar, setDesc_ar] = useState(description_ar);
   const [LocDesc, setLocDesc] = useState(locationDesc);
   const [LocDesc_ar, setLocDesc_ar] = useState(locationDescAr);
+
   const [state, setState] = useState("");
+
   const [comunityImageToShow, setComunityImageToShow] = useState(comunityImage);
   const [previewcomunityImage, setPreviewComunityImage] = useState(null);
+  const [comunityImageToUpload, setcomunityImageToUpload] = useState("");
 
   const [locationImageToShow, setLocationImageToShow] =
     useState(location_image);
   const [previewLocationImage, setPreviewLocationImage] = useState(null);
+  const [locationImageToUpload, setlocationImageToUpload] = useState("");
 
   const handleCaptureComunityImage = (e) => {
     setComunityImageToShow(null);
+    setcomunityImageToUpload(e.target.files[0]);
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -87,6 +91,7 @@ export default function ComunityMoreMenu({
 
   const handleCaptureLocationImage = (e) => {
     setLocationImageToShow(null);
+    setlocationImageToUpload(e.target.files[0]);
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -95,6 +100,7 @@ export default function ComunityMoreMenu({
     };
     reader.readAsDataURL(e.target.files[0]);
   };
+
   const handleChangeArName = (event) => {
     setArname(event.target.value);
   };
@@ -142,17 +148,28 @@ export default function ComunityMoreMenu({
     setIsOpen(false);
   };
   const handleConfirmEditDialog = () => {
-    const data = { name_ar: arName, name_en: enName };
-    const headers = {
-      Authorization: "Bearer " + token,
-      Accept: "application/json",
-    };
+    formData.append("name", enName);
+    formData.append("name_ar", arName);
+    formData.append("description", Desc);
+    formData.append("description_ar", Desc_ar);
+    formData.append("longitude", long);
+    formData.append("latitude", lat);
+    formData.append("location", loc);
+    formData.append("location_ar", loc_ar);
+    formData.append("location_description", LocDesc);
+    formData.append("location_description_ar", LocDesc_ar);
+    formData.append("type", typ);
+    formData.append("type_ar", typ_ar);
+    formData.append("image", comunityImageToUpload);
+    formData.append("location_image", locationImageToUpload);
+
     axios
-      .post(
-        `http://90.153.255.50/socialmediafamous/public/api/admin/specializations/update/${Comunity_id}`,
-        data,
-        { headers }
-      )
+      .post(`${getComunityById}/${Comunity_id}`, formData, {
+        headers: {
+          Accept: "application/json",
+          "content-type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         setState({ message: response.data.message });
         window.location.reload();
@@ -162,8 +179,37 @@ export default function ComunityMoreMenu({
         console.error("There was an error!", error);
       });
     setOpenEditDialog(false);
+    setIsOpen(false);
   };
 
+  /* Detelt Dialog */
+
+  const handleClickOpenDeleteDialog = () => {
+    setOpenDeleteDialog(true);
+  };
+
+  const handleCloseDeleteDialog = () => {
+    setOpenDeleteDialog(false);
+    setIsOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    axios
+      .delete(`${getComunityById}/${Comunity_id}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        setState({ message: response.data.message });
+        window.location.reload();
+      })
+      .catch((error) => {
+        setState({ errorMessage: error.message });
+        console.error("There was an error!", error);
+      });
+    setOpenDeleteDialog(false);
+  };
   return (
     <>
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>
@@ -185,13 +231,26 @@ export default function ComunityMoreMenu({
           onClick={handleClickOpenEditDialog}
         >
           <ListItemIcon>
-            <Iconify icon="eva:edit-fill" width={24} height={24} />
+            <Iconify icon="ant-design:edit-filled" width={24} height={24} />
           </ListItemIcon>
           <ListItemText
             primary={t("Dashboard.EditButton")}
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
+        <MenuItem
+          sx={{ color: "text.secondary" }}
+          onClick={handleClickOpenDeleteDialog}
+        >
+          <ListItemIcon>
+            <Iconify icon="ep:delete-filled" width={24} height={24} />
+          </ListItemIcon>
+          <ListItemText
+            primary={t("Dashboard.Delete")}
+            primaryTypographyProps={{ variant: "body2" }}
+          />
+        </MenuItem>
+        {/* Edit Dialog */}
         <Dialog
           fullScreen
           disableEscapeKeyDown
@@ -472,7 +531,7 @@ export default function ComunityMoreMenu({
                 <Box className="upload__image-wrapper">
                   {previewLocationImage ? (
                     <Box className="image-item" sx={{ margin: "1rem 0" }}>
-                      <img src={previewcomunityImage} alt="" width="80%" />
+                      <img src={previewLocationImage} alt="" width="80%" />
                       <Box className="image-item__btn-wrapper">
                         <Button
                           sx={{ margin: "1rem 0" }}
@@ -532,6 +591,35 @@ export default function ComunityMoreMenu({
               {t("Dashboard.Cancel")}
             </Button>
             <Button onClick={handleConfirmEditDialog}>
+              {t("Dashboard.Ok")}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* Delete Dialog */}
+        <Dialog
+          open={openDeleteDialog}
+          onClose={handleCloseDeleteDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {t("Dashboard.DeleteComunityDialogTitle")}
+          </DialogTitle>
+          <DialogContent
+            id="alert-dialog-description"
+            sx={{ padding: "2rem", marginTop: "2rem" }}
+          >
+            <DialogContentText>
+              {t("Dashboard.DeleteComunityDialogMessage")}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDeleteDialog}>
+              {" "}
+              {t("Dashboard.Cancel")}
+            </Button>
+            <Button onClick={handleConfirmDelete} autoFocus>
               {t("Dashboard.Ok")}
             </Button>
           </DialogActions>

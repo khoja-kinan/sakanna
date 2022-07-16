@@ -23,6 +23,9 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 // components
 import Page from "../components/Page";
@@ -37,7 +40,8 @@ import {
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { GetAllCommunities } from "../../../constants/urls";
+import { GetAllCommunities, getComunityById } from "../../../constants/urls";
+import { Link } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -83,18 +87,31 @@ export default function Comunities() {
   const [cookies, setCookie] = useCookies(["user"]);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
-  const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState("name");
   const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [openNewComunity, setOpenNewComunity] = useState(false);
-  const [arName, setArname] = useState("");
-  const [enName, setEnName] = useState("");
-  const [state, setState] = useState("");
+  const [arName, setArname] = useState();
+  const [enName, setEnName] = useState();
+  const [state, setState] = useState();
+  const [long, setLongitude] = useState();
+  const [lat, setLatitude] = useState();
+  const [loc, setLoc] = useState();
+  const [loc_ar, setLoc_ar] = useState();
+  const [typ, setType] = useState();
+  const [typ_ar, setType_ar] = useState();
+  const [Desc, setDesc] = useState();
+  const [Desc_ar, setDesc_ar] = useState();
+  const [LocDesc, setLocDesc] = useState();
+  const [LocDesc_ar, setLocDesc_ar] = useState();
+
+  const [comunityImage, setComunityImage] = useState();
+  const [comunityImageToUpload, setComunityImageToUpload] = useState();
+  const [locationImage, setLocationImage] = useState();
+  const [locationImageToUpload, setLocationImageToUpload] = useState();
 
   const [ComunitiesList, setComunitiesList] = useState([]);
   let navigate = useNavigate();
-  let result;
   const token = localStorage.getItem("api-token");
 
   useEffect(() => {
@@ -128,24 +145,39 @@ export default function Comunities() {
   }
   const TABLE_HEAD = [
     {
-      id: "name_ar",
-      label: t("Dashboard.ComunityDialogArName"),
-      alignRight: i18n.dir() === "ltr" ? false : true,
-    },
-    {
       id: "name",
-      label: t("Dashboard.ComunityDialogEnName"),
+      label: t("Dashboard.comunityTabeHeadName"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
     {
       id: "location",
-      label: t("Dashboard.ComunityDialogLocation"),
+      label: t("Dashboard.comunityTabeHeadLocation"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
 
     {
       id: "type",
-      label: t("Dashboard.ComunityDialoType"),
+      label: t("Dashboard.comunityTabeHeadType"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "type_settings",
+      label: t("Dashboard.comunityTabeHeadTypeSettings"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "amenities_settings",
+      label: t("Dashboard.comunityTabeHeadAmenitiesSettings"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "floors_settings",
+      label: t("Dashboard.comunityTabeHeadFloorsSettings"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "interior_settings",
+      label: t("Dashboard.comunityTabeHeadInteriorSettings"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
     { id: "" },
@@ -154,33 +186,6 @@ export default function Comunities() {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = ComunitiesList.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -209,13 +214,15 @@ export default function Comunities() {
   const isUserNotFound = filteredUsers.length === 0;
 
   /* 
-      New Specialization
+      New Comunity
   */
+  const formData = new FormData();
+
   const handleClickopenNewComunity = () => {
     setOpenNewComunity(true);
   };
 
-  const handleCloseNewSpecialization = () => {
+  const handleCloseNewComunity = () => {
     setOpenNewComunity(false);
   };
 
@@ -227,18 +234,85 @@ export default function Comunities() {
     setEnName(event.target.value);
   };
 
-  const handleAddNew = () => {
-    const data = { name_ar: arName, name_en: enName };
-    const headers = {
-      Authorization: "Bearer " + token,
-      Accept: "application/json",
+  const handleChangeLatitude = (event) => {
+    setLatitude(event.target.value);
+  };
+  const handleChangeLongitude = (event) => {
+    setLongitude(event.target.value);
+  };
+  const handleChangeLocation = (event) => {
+    setLoc(event.target.value);
+  };
+  const handleChangeLocationAr = (event) => {
+    setLoc_ar(event.target.value);
+  };
+  const handleChangeTyp = (event) => {
+    setType(event.target.value);
+  };
+  const handleChangeTypAr = (event) => {
+    setType_ar(event.target.value);
+  };
+  const handleChangeDesc = (event) => {
+    setDesc(event.target.value);
+  };
+  const handleChangeDescAr = (event) => {
+    setDesc_ar(event.target.value);
+  };
+  const handleChangeLocDesc = (event) => {
+    setLocDesc(event.target.value);
+  };
+  const handleChangeLocDescAr = (event) => {
+    setLocDesc_ar(event.target.value);
+  };
+
+  const handleCaptureComunityImage = (e) => {
+    setComunityImageToUpload(e.target.files[0]);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setComunityImage(reader.result);
+      }
     };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const handleCaptureLocationImage = (e) => {
+    setLocationImageToUpload(e.target.files[0]);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setLocationImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+  const handleAddNew = () => {
+    formData.append("name", enName);
+    formData.append("name_ar", arName);
+    formData.append("description", Desc);
+    formData.append("description_ar", Desc_ar);
+    formData.append("longitude", long);
+    formData.append("latitude", lat);
+    formData.append("location", loc);
+    formData.append("location_ar", loc_ar);
+    formData.append("location_description", LocDesc);
+    formData.append("location_description_ar", LocDesc_ar);
+    formData.append("type", typ);
+    formData.append("type_ar", typ_ar);
+    formData.append("image", comunityImageToUpload, comunityImageToUpload.name);
+    formData.append(
+      "location_image",
+      locationImageToUpload,
+      locationImageToUpload.name
+    );
+
     axios
-      .post(
-        "http://90.153.255.50/socialmediafamous/public/api/admin/specializations/create",
-        data,
-        { headers }
-      )
+      .post(getComunityById, formData, {
+        headers: {
+          Accept: "application/json",
+          "content-type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         setState({ message: response.data.message });
         window.location.reload();
@@ -249,7 +323,6 @@ export default function Comunities() {
       });
     setOpenNewComunity(false);
   };
-  console.log(ComunitiesList);
   return (
     <Page title={t("Dashboard.ComunitiesPageTitle")}>
       <Container>
@@ -266,31 +339,219 @@ export default function Comunities() {
             {t("Dashboard.ComunitiesAddNew")}
           </Button>
         </Stack>
+        {/* add new comunity dialog */}
         <Dialog
+          fullScreen
           disableEscapeKeyDown
           open={openNewComunity}
-          onClose={handleCloseNewSpecialization}
+          onClose={handleCloseNewComunity}
         >
-          <DialogTitle>
-            {t("description.NewSpecializationsDialogTitle")}
-          </DialogTitle>
-          <DialogContent sx={{ width: "20rem" }}>
+          <DialogTitle>{t("Dashboard.NewComunity")}</DialogTitle>
+          <DialogContent sx={{ width: "100%" }}>
             <Box
               component="form"
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
+                justifyContent: "space-between",
               }}
             >
-              <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
                 <TextField
-                  id="outlined-basic"
-                  label={t("description.NewSpecializationsDialogArName")}
-                  variant="outlined"
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogArName")}
                   onChange={handleChangeArName}
                   value={arName}
                 />
               </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogEnName")}
+                  onChange={handleChangeEnName}
+                  value={enName}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogLatitude")}
+                  onChange={handleChangeLatitude}
+                  value={lat}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogLongitude")}
+                  onChange={handleChangeLongitude}
+                  value={long}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogLocationAr")}
+                  onChange={handleChangeLocationAr}
+                  value={loc_ar}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "30%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-basic"
+                  label={t("Dashboard.ComunityDialogLocation")}
+                  onChange={handleChangeLocation}
+                  value={loc}
+                />
+              </FormControl>
+
+              <FormControl sx={{ m: 1, maxWidth: "30%" }} variant="filled">
+                <InputLabel id="demo-simple-select-filled-label">
+                  {t("Dashboard.ComunityDialoTypeAr")}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={typ_ar}
+                  onChange={handleChangeTypAr}
+                >
+                  <MenuItem value="فيلا">فيلا</MenuItem>
+                  <MenuItem value="شقة عادية">شقة عادية </MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ m: 1, maxWidth: "30%" }} variant="filled">
+                <InputLabel id="demo-simple-select-filled-label">
+                  {t("Dashboard.ComunityDialoType")}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-filled-label"
+                  id="demo-simple-select-filled"
+                  value={typ}
+                  onChange={handleChangeTyp}
+                >
+                  <MenuItem value="villa">Villa</MenuItem>
+                  <MenuItem value="normal">Normal </MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
+                  label={t("Dashboard.ComunityDialogComunityDescriptionAr")}
+                  onChange={handleChangeDescAr}
+                  value={Desc_ar}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
+                  label={t("Dashboard.ComunityDialogComunityDescription")}
+                  onChange={handleChangeDesc}
+                  value={Desc}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
+                  label={t("Dashboard.ComunityDialogLocationDescriptionAr")}
+                  onChange={handleChangeLocDescAr}
+                  value={LocDesc_ar}
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <TextField
+                  variant="filled"
+                  id="filled-multiline-static"
+                  multiline
+                  rows={6}
+                  label={t("Dashboard.ComunityDialogLocationDescription")}
+                  onChange={handleChangeLocDesc}
+                  value={LocDesc}
+                />
+              </FormControl>
+              {/* comunity Image */}
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <InputLabel>{t("Dashboard.ComunityImage")}</InputLabel>
+                <Box className="upload__image-wrapper">
+                  {comunityImage ? (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img src={comunityImage} alt="" width="80%" />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setComunityImage(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  ) : (
+                    <Button
+                      sx={{ margin: "1rem 0" }}
+                      variant="outlined"
+                      component="label"
+                    >
+                      {t("Dashboard.uploadComunityImage")}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        onChange={handleCaptureComunityImage}
+                      />
+                    </Button>
+                  )}
+                </Box>
+              </FormControl>
+              {/* location Image */}
+              <FormControl sx={{ m: 1, maxWidth: "45%" }}>
+                <InputLabel>{t("Dashboard.locationImage")}</InputLabel>
+                <Box className="upload__image-wrapper">
+                  {locationImage ? (
+                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
+                      <img src={locationImage} alt="" width="80%" />
+                      <Box className="image-item__btn-wrapper">
+                        <Button
+                          sx={{ margin: "1rem 0" }}
+                          variant="outlined"
+                          onClick={() => setLocationImage(null)}
+                        >
+                          {t("Dashboard.remove")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  ) : (
+                    <Button
+                      sx={{ margin: "1rem 0" }}
+                      variant="outlined"
+                      component="label"
+                    >
+                      {t("Dashboard.uploadLocationImage")}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        onChange={handleCaptureLocationImage}
+                      />
+                    </Button>
+                  )}
+                </Box>
+              </FormControl>
             </Box>
             <Box
               component="form"
@@ -298,29 +559,19 @@ export default function Comunities() {
                 display: "flex",
                 flexWrap: "wrap",
               }}
-            >
-              <FormControl sx={{ m: 1, minWidth: 150 }}>
-                <TextField
-                  id="outlined-basic"
-                  label={t("description.NewSpecializationsDialogEnName")}
-                  variant="outlined"
-                  onChange={handleChangeEnName}
-                  value={enName}
-                />
-              </FormControl>
-            </Box>
+            ></Box>
           </DialogContent>
           <DialogActions sx={{ justifyContent: "center" }}>
-            <Button onClick={handleCloseNewSpecialization}>
-              {t("description.Cancel")}{" "}
+            <Button onClick={handleCloseNewComunity}>
+              {t("Dashboard.Cancel")}
             </Button>
-            <Button onClick={handleAddNew}>{t("description.Ok")} </Button>
+            <Button onClick={handleAddNew}>{t("Dashboard.Ok")}</Button>
           </DialogActions>
         </Dialog>
+        {/* tabel */}
         <Card>
           <UserListToolbar
             placeHolder={t("Dashboard.ComunitiesPageSearchPlaceHolder")}
-            numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
           />
@@ -333,9 +584,7 @@ export default function Comunities() {
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
                   rowCount={ComunitiesList.length}
-                  numSelected={selected.length}
                   onRequestSort={handleRequestSort}
-                  onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredUsers
@@ -358,42 +607,72 @@ export default function Comunities() {
                         location_description_ar,
                         location_image,
                       } = row;
-                      const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
-                        <TableRow
-                          hover
-                          key={id}
-                          tabIndex={-1}
-                          role="checkbox"
-                          selected={isItemSelected}
-                          aria-checked={isItemSelected}
-                        >
-                          <TableCell padding="checkbox">
-                            <Checkbox
-                              checked={isItemSelected}
-                              onChange={(event) => handleClick(event, name)}
-                            />
+                        <TableRow hover key={id} tabIndex={-1} role="checkbox">
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {i18n.dir() === "ltr" ? name : name_ar}
+                          </TableCell>
+
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {i18n.dir() === "ltr" ? location : location_ar}
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {name_ar}
+                            {i18n.dir() === "ltr" ? type : type_ar}
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {name}
+                            <Link
+                              to={`/dashboard/types/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show Types"
+                                : "إظهار الأنماط"}
+                            </Link>
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {location}
+                            <Link
+                              to={`/dashboard/amenities/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show Amenities"
+                                : "إظهار وسائل الراحة"}
+                            </Link>
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {type}
+                            <Link
+                              to={`/dashboard/floors/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show Floors"
+                                : "إظهار الطوابق"}
+                            </Link>
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            <Link
+                              to={`/dashboard/interior/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show Interior Samples"
+                                : "إظهار التصاميم الداخلية"}
+                            </Link>
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}

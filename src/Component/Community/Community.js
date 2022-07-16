@@ -37,7 +37,7 @@ const Community = () => {
   const [loading, setLoading] = useState(true);
   const [comunityDetails, setComunityDetails] = useState();
 
-  const URL = `${getComunityById}${urlId}`;
+  const URL = `${getComunityById}/${urlId}`;
 
   useEffect(() => {
     async function fecthData() {

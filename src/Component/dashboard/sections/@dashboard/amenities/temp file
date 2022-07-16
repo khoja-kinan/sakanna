@@ -1,0 +1,22 @@
+Dinning_room: "مساحة غرفة الطعام"
+DressingRoom: " مساحة غرفة الملابس"
+Living: "مساحة غرفة المعيشة"
+
+Majles: "مساحة غرفة الجلوس"
+Majles_Toilet: "مساحة مرحاض غرفة الجلوس"
+
+Office: "مساحة المكتب"
+Washing_Room: "مساحة غرفة الاغتسال"
+bathroom: "مساحة غرفة الاستحمام "
+
+guestToilet: "مساح مرحاض الضيوف"
+kitchen: "مساحة المطبخ"
+laundry: "مساحة غرفة غسيل الملابس"
+reception: "مساحة غرفة الاستقبال"
+storage: "مساحة المخزن"
+
+maidRoom: "مساحة غرفة المستخدم"
+maidRoomToilet: "مساحة مرحاض غرفة المستخدم"
+
+image: "1653636059.jpg"
+card_image: "05.RGB_color.jpg"

@@ -185,21 +185,16 @@ export default function NavSection({ navConfig, ...other }) {
       icon: getIcon("eva:pie-chart-2-fill"),
     },
     {
-      title: t("Dashboard.sideBarUser"),
-      path: "/dashboard/user",
-      icon: getIcon("eva:people-fill"),
-    },
-    {
       title: t("Dashboard.sideBarComunities"),
       path: "/dashboard/comunities",
-      icon: getIcon("eva:shopping-bag-fill"),
+      icon: getIcon("ri:community-fill"),
     },
     /* {
-      title: t("Dashboard.sideBarprivileges"),
-      path: "/dashboard/privileges",
-      icon: getIcon("eva:file-text-fill"),
-    },
-    {
+      title: t("Dashboard.sideBarTypes"),
+      path: "/dashboard/types",
+      icon: getIcon("ic:outline-apartment"),
+    }, */
+    /* {
       title: t("Dashboard.sideBarMedals"),
       path: "/dashboard/medals",
       icon: getIcon("bx:medal"),

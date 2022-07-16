@@ -16,24 +16,9 @@ const sidebarConfig = [
     icon: getIcon("eva:people-fill"),
   },
   {
-    title: "specializations",
-    path: "/dashboard/specializations",
+    title: "communities",
+    path: "/dashboard/comunities",
     icon: getIcon("eva:shopping-bag-fill"),
-  },
-  {
-    title: "privileges",
-    path: "/dashboard/privileges",
-    icon: getIcon("eva:file-text-fill"),
-  },
-  {
-    title: "medals",
-    path: "/dashboard/medals",
-    icon: getIcon("bx:medal"),
-  },
-  {
-    title: "countries",
-    path: "/dashboard/countries",
-    icon: getIcon("gis:search-country"),
   },
 ];
 

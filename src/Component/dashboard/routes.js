@@ -6,11 +6,9 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 import Login from "./pages/Login";
 import DashboardApp from "./pages/DashboardApp";
 import Comunities from "./pages/Comunities";
-import Privileges from "./pages/Privileges";
+import Privileges from "./pages/Types";
 import User from "./pages/User";
 import NotFound from "./pages/Page404";
-import Medals from "./pages/Medals";
-import Countries from "./pages/Countries";
 import RequireAuth from "./components/RequireAuth";
 import Unauthorized from "./pages/Unauthorized";
 
@@ -45,10 +43,8 @@ export default function Router() {
         <Route path="privileges" element={<Privileges />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[17]} />}> */}
-        <Route path="medals" element={<Medals />} />
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[9]} />}> */}
-        <Route path="countries" element={<Countries />} />
         {/*  </Route> */}
       </Route>
       {/*  </Route> */}
