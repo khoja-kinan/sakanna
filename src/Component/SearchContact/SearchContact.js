@@ -19,14 +19,11 @@ import ContactForm from "../ContactForm/ContactForm";
 import { width } from "@mui/system";
 import "../CustomPopup/CustomPopup.scss";
 import AlertDialog from "../CustomPopup/CustomPopup";
+import { GetAllCommunities } from "../../constants/urls";
+import axios from "axios";
+import { LinearProgress } from "@mui/material";
 
-const Communities = [
-  { label: "ALL COMMUNITIES", value: 0 },
-  { label: "Orced", value: 3 },
-  { label: "Lana", value: 4 },
-  { label: "Melia", value: 1 },
-  { label: "Carmen", value: 2 },
-];
+const Communities = [{ label: "ALL COMMUNITIES", value: 0 }];
 const typesOptions = [
   { label: "ANY ", value: 0 },
   { label: "1 ", value: 1 },
@@ -44,7 +41,32 @@ const priceOptions = [
 
 const SearchContact = () => {
   const { t, i18n } = useTranslation();
-
+  const [loading, setLoading] = useState(true);
+  const [allCommunities, setAllCommunities] = useState();
+  async function fecthData() {
+    await axios
+      .get(GetAllCommunities)
+      .then((response) => {
+        if (response.status === 200) {
+          const data = response.data;
+          setAllCommunities(data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
+  useEffect(() => {
+    fecthData();
+    !loading &&
+      allCommunities.map((item) =>
+        Communities.push({
+          label: i18n.dir() === "ltr" ? item.name : item.name_ar,
+          value: item.name,
+        })
+      );
+  }, [loading, i18n]);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -52,8 +74,9 @@ const SearchContact = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  return (
+  return loading ? (
+    <LinearProgress />
+  ) : (
     <>
       <section className="ser-con">
         <div className="home-fun">
@@ -88,7 +111,7 @@ const SearchContact = () => {
                 </defs>
               </svg>
               <div className="selecty">
-                <label className="l-b">{t('SearchBar.com')}</label>
+                <label className="l-b">{t("SearchBar.com")}</label>
                 <Select options={Communities} defaultValue={Communities[1]} />
               </div>
             </div>
@@ -107,7 +130,7 @@ const SearchContact = () => {
               </svg>
 
               <div className="selecty">
-                <label className="l-b">{t('SearchBar.bed')}</label>
+                <label className="l-b">{t("SearchBar.bed")}</label>
                 <Select
                   defaultValue={[typesOptions[0]]}
                   options={typesOptions}
@@ -136,7 +159,7 @@ const SearchContact = () => {
 
               <div className="selecty">
                 <label className="l-b">
-                {t('SearchBar.price')}
+                  {t("SearchBar.price")}
                   <Select
                     defaultValue={[priceOptions[0]]}
                     options={priceOptions}
@@ -153,8 +176,7 @@ const SearchContact = () => {
               variant="contained"
               className="kop"
             >
-              {t('SearchBar.reg')}
-              
+              {t("SearchBar.reg")}
             </Button>
             {/* <Button variant="outlined" onClick={handleClickOpen}> */}
             {/* Open alert dialog

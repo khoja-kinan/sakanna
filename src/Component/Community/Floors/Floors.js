@@ -2,7 +2,6 @@ import React from "react";
 import Slide from "react-reveal/Slide";
 
 const Floors = ({ floors }) => {
-  console.log(floors);
   return (
     <>
       <Slide left>
