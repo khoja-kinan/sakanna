@@ -37,11 +37,12 @@
  .posi{
     position: sticky;
     bottom: 0;
+    z-index: 10000;
 }
 .ki[role=main] {
     height: 70px;
     position: fixed;
-    top: 86vw;
+    top: 63vw;
     width: 16vw;
     z-index: 44;
     background: beige;
@@ -120,4 +121,12 @@
     border: none;
     border-radius: 12px;
 }
+}
+.mar{
+    margin:0 14px 4px 0;
+}
+.price-register {
+    color: #030f09;
+    font-size: 1.3vw;
+    font-weight: 700;
 }

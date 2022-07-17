@@ -98,7 +98,7 @@ font-family: poppins!important;
   text-transform: capitalize;
   font-style: normal;
   font-weight: 500;
-  font-size: 1.4vw;
+  font-size: 1.2vw;
   line-height: 2vw;
 }
 .iopl:lang(ar){
@@ -193,4 +193,5 @@ font-family: poppins!important;
 .nav-item{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }

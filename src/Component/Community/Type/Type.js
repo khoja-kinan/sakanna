@@ -12,32 +12,6 @@ import axios from "axios";
 import { LinearProgress } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-// const rawHTML = `
-// <map name="image-map">
-// <area target="" alt="resption" title="Reception
-// 7.15 x 4.00 m" href="" coords="2990,2383,3914,728" shape="rect">
-// <area target="" alt="bed2" title="Bedroom 2
-// 2 5.00 x3.65 m" href="" coords="2032,2692,2924,1520" shape="rect">
-// <area target="" alt="bed1" title="Bedroom1
-// 5.00 x 3.80 m<" href="" coords="1976,1515,1091,2690" shape="rect">
-// <area target="" alt="mbed" title="Master Bedroom
-// 5.00 x 4.00 m" href="" coords="107,2683,1021,1137,681,1142,716,1502,107,1506,100,1149,236,1257,300,1348,303,1278,401,1278,475,1373,328,1443,289,1404,261,1359,265,1306,251,1415,240,1313,422,1219,475,1303,552,1266,618,1179,657,1245,622,1305" shape="rect">
-// <area target="" alt="g toi" title="Guest Toilet :
-// 1.70 x 1.60 m " href="" coords="2913,723,2531,1070" shape="rect">
-// <area target="" alt="ketchin" title="Kitchen
-// 4.20 x 2.20 m" href="" coords="2472,100,1967,1070" shape="rect">
-// <area target="" alt="m room" title="Maid Room
-// 2.25 x 1.90 m
-// " href="" coords="1897,345,1473,846" shape="rect">
-// <area target="" alt="s lun" title="Storage & Laundry
-// 1.90 x 0.95 m" href="" coords="1908,890,1081,1131" shape="rect">
-// <area target="" alt="m bath" title="Maid Room Toilet
-// 2.25 x 1.40 m" href="" coords="1424,348,1116,856" shape="rect">
-// <area target="" alt="bath1" title="Bathroom
-// 2.20 x 1.90 m" href="" coords="1053,567,608,1086" shape="rect">
-// <area target="" alt="bath 2" title="bath 2" href="" coords="562,331,96,1077" shape="rect">
-// </map>`;
-
 const Type = () => {
   const { t, i18n } = useTranslation();
 
@@ -208,11 +182,7 @@ const Type = () => {
           </Fade>
 
           <Fade right>
-            <img
-              className="ty-bac"
-              src={`${baseImageUrl}${type.type.type_details.card_image}`}
-              alt="9"
-            />
+            <img className="ty-bac" src={`${baseImageUrl}${type.type.type_details.card_image}`} alt="9" />
           </Fade>
         </div>
         {type.type.floors.length !== 0 && (

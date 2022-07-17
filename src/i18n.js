@@ -56,6 +56,8 @@ i18n
           SearchBar: {
             com: "Community",
             bed: "Bedrooms",
+            floor: "Floor",
+            type: "Type",
             price: "Price",
             search: "Search Properties",
             reg: "Register Your Interest",

@@ -130,7 +130,7 @@ const SearchContact = () => {
               </svg>
 
               <div className="selecty">
-                <label className="l-b">{t("SearchBar.bed")}</label>
+                <label className="l-b">{t("SearchBar.type")}</label>
                 <Select
                   defaultValue={[typesOptions[0]]}
                   options={typesOptions}
@@ -141,6 +141,35 @@ const SearchContact = () => {
             </div>
             <div className="sele">
               <svg
+                width="21"
+                height="19"
+                viewBox="0 0 21 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.1856 11.0828H17.5881L14.682 0H6.31823L3.41211 11.0828H9.81468V17.7596H5.89179V19H15.1085V17.7596H11.1856V11.0828V11.0828ZM5.14633 9.84246L7.40198 1.24034H13.5983L15.8539 9.84246H5.14633Z"
+                  fill="#414263"
+                />
+              </svg>
+
+              <div className="selecty">
+                <label className="l-b">{t("SearchBar.floor")}</label>
+                <Select
+                  defaultValue={[typesOptions[0]]}
+                  options={typesOptions}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
+              </div>
+            </div>
+            <div className="sele">
+              
+
+              <div className="selecty">
+                <label className="l-b">
+                <svg className="
+                mar"
                 width="16"
                 height="24"
                 viewBox="0 0 16 24"
@@ -156,17 +185,19 @@ const SearchContact = () => {
                   fill="#414263"
                 />
               </svg>
-
-              <div className="selecty">
-                <label className="l-b">
                   {t("SearchBar.price")}
-                  <Select
+                  
+                  </label>
+                  {/* <Select
                     defaultValue={[priceOptions[0]]}
                     options={priceOptions}
                     className="basic-multi-select"
                     classNamePrefix="select"
-                  />
-                </label>
+                  /> */}
+                  <p className="price-register">
+                    300.000 SAR
+                  </p>
+                
               </div>
             </div>
           </div>
