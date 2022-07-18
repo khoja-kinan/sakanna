@@ -445,7 +445,7 @@ span.css-1okebmr-indicatorSeparator {
   /* background: linear-gradient(180deg, rgba(27, 41, 41, 0.6509803922) 16.53%, rgba(0, 0, 0, 0) 96.98%); */
 }
 .hed{
-  font-size: 7vw;
+  font-size: 5vw;
   font-weight: 600;
   color: wheat;
   line-height: 6vw;
@@ -809,8 +809,8 @@ filter: drop-shadow(0px 5px 13px rgba(191, 149, 63, 0.21));
   height: 48px;
 }
 .hed {
-  font-size: 11vw;
-  line-height: 10vw;
+  font-size: 7vw;
+  line-height: 14vw;
 }
 .mid {
   font-size: 2.9vw;
@@ -836,4 +836,20 @@ filter: drop-shadow(0px 5px 13px rgba(191, 149, 63, 0.21));
     /* display: flex; */
     display: block;
   }
+}
+.join{
+  background: red!important;
+  background: linear-gradient(77.16deg, #8C7A6A -3.46%, #ddd3a6 101.47%)!important;
+  font-size: 1.4vw!important;
+  margin-top: 1.7vw!important;
+}
+@media screen and (max-width:550px) {
+  
+
+.join {
+  background: red !important;
+  background: linear-gradient(77.16deg, #8C7A6A -3.46%, #ddd3a6 101.47%) !important;
+  font-size: 3.4vw !important;
+  margin-top: 1.7vw !important;
+}
 }

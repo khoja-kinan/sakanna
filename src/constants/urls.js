@@ -1,5 +1,5 @@
-export const baseUrl = "https://sakanna.net/testback/api";
-export const baseImageUrl = "https://sakanna.net/testback/public/upload/";
+export const baseUrl = "https://sakanna.net/backend/api";
+export const baseImageUrl = "https://sakanna.net/backend/public/upload/";
 
 export const GetAllCommunities = `${baseUrl}/communities`;
 export const GetAllTypes = `${baseUrl}/alltypes`;

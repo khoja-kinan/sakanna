@@ -18,6 +18,7 @@ import "./Component/Slider/Slider.scss";
 import "./Component/Results/Results.scss";
 import "./Component/Contact/Contact.scss";
 import "./Component/ContactForm/ContactForm.scss";
+import "./Component/ContactFormClub/ContactFormClub.scss";
 import "./Component/SearchContact/SearchContact.scss";
 import "./Component/SearchBar/SearchBar.scss";
 import "./Component/Community/Floors/Floors.scss";

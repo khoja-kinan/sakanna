@@ -1,4 +1,5 @@
 // import useState from "react"
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Mslider from "./Mslider";
@@ -13,9 +14,25 @@ import { useState, useEffect } from "react";
 import { GetAllCommunities } from "../../constants/urls";
 import { LinearProgress } from "@mui/material";
 import Zoom from 'react-reveal/Zoom';
+import ContactForm from "../ContactForm/ContactForm";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import ContactFormClub from "../ContactFormClub/ContactFormClub";
+
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [open, setOpen] = React.useState(false);
   // const classes = useStyles();
   // const [Community, setCommunity] = useState('');
   // const [Type, setType] = useState('');
@@ -193,9 +210,57 @@ const Home = () => {
         <div className="plans">
 
           <div className="saka">
-          <Zoom><p className="hed"> SAKANNA</p>
-            <p className="mid"> For Real Estate Development</p>
-            <p className="mid"> Building For Tomorrow</p></Zoom>
+          <Zoom><p className="hed">JOIN SAKANNA CLUB</p>
+          <div className="">
+            <Button
+              onClick={handleClickOpen}
+              variant="contained"
+              className="join"
+            >
+              {t("home.joinus")}
+            </Button>
+            {/* <Button variant="outlined" onClick={handleClickOpen}> */}
+            {/* Open alert dialog
+        </Button> */}
+            <Zoom top>
+              <Dialog
+                fullWidth
+                maxWidth="sm"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {t("home.join")}
+                  <button onClick={handleClose} className="klos">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13 2L2 13M2 2L7.5 7.5L13 13"
+                        stroke="black"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </DialogTitle>
+                <DialogContent className="content-pop">
+                  <DialogContentText id="alert-dialog-description">
+                    <ContactFormClub />
+                  </DialogContentText>
+                </DialogContent>
+         
+              </Dialog>
+            </Zoom>
+          </div>
+           </Zoom>
             <Zoom>
             <div className="conte">
            

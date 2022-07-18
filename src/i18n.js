@@ -18,9 +18,11 @@ i18n
       en: {
         translation: {
           home: {
-            COMMUNITIES: "COMMUNITIES",
+            "COMMUNITIES": "COMMUNITIES",
             "LATEST LAUNCHES": "LATEST LAUNCHES",
             "Follow us on Social Media": "Follow us on Social Media",
+            "join":"Join Sakanna club",
+            "joinus": "Join Us" ,
           },
           nav: {
             "CALL US": "CALL US",
@@ -63,6 +65,7 @@ i18n
             reg: "Register Your Interest",
           },
           Comunity: {
+            register:"Register Your Interest",
             feel: "FELL THE FRESHNESS ",
             res: "Residence ",
             plan: "Residence Plan ",
