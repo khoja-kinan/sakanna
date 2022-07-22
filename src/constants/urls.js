@@ -28,3 +28,5 @@ export const contactUs = `${baseUrl}/contacts`;
 export const search = `${baseUrl}/types/?`;
 /* Front Apis */
 export const getTypeByIdFront = `${baseUrl}/community/`;
+
+export const communitySearchUrl = `${baseUrl}/communityPrices`;

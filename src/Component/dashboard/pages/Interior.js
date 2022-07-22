@@ -219,7 +219,6 @@ export default function Interior() {
     setOpenNewFloor(false);
   };
 
-  console.log(InteriorList);
   return InteriorList === undefined ? (
     <LinearProgress />
   ) : (

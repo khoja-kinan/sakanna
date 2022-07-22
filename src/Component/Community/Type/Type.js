@@ -39,7 +39,6 @@ const Type = () => {
     }
     fecthData();
   }, []);
-  console.log(type);
   return loading ? (
     <LinearProgress color="primary" />
   ) : (
@@ -51,11 +50,17 @@ const Type = () => {
             <div className="title">
               <div className="sup">
                 <p className="sup-tit">
-                  {type.community.name} {t("Comunity.resedd")}
+                  {i18n.dir() === "ltr" && type.community.name}{" "}
+                  {t("Comunity.resedd")}{" "}
+                  {i18n.dir() === "rtl" && type.community.name_ar}
                 </p>
                 <hr className="gr"></hr>
               </div>
-              <p className="com-tit">{type.type.name}</p>
+              <p className="com-tit">
+                {i18n.dir() === "ltr"
+                  ? type.type.type_details.name
+                  : type.type.type_details.name_ar}
+              </p>
             </div>
           </div>
         </Fade>
@@ -182,7 +187,11 @@ const Type = () => {
           </Fade>
 
           <Fade right>
-            <img className="ty-bac" src={`${baseImageUrl}${type.type.type_details.card_image}`} alt="9" />
+            <img
+              className="ty-bac"
+              src={`${baseImageUrl}${type.type.type_details.card_image}`}
+              alt="9"
+            />
           </Fade>
         </div>
         {type.type.floors.length !== 0 && (
@@ -250,7 +259,9 @@ const Type = () => {
         <div className="title">
           <div className="sup">
             <p className="sup-tit">
-              {type.community.name} {t("Comunity.resedd")}
+              {i18n.dir() === "ltr" && type.community.name}{" "}
+              {t("Comunity.resedd")}{" "}
+              {i18n.dir() === "rtl" && type.community.name_ar}
             </p>
             <hr className="gr"></hr>
           </div>

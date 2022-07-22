@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import Slide from "react-reveal/Slide";
 import { baseImageUrl } from "../../constants/urls";
+import { useTranslation } from "react-i18next";
 
 const Mslider = ({ allCommunities }) => {
+  const { t, i18n } = useTranslation();
   var settings = {
     arrows: true,
     infinite: true,
@@ -14,7 +16,7 @@ const Mslider = ({ allCommunities }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
-    autoplay:true,
+    autoplay: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -58,7 +60,9 @@ const Mslider = ({ allCommunities }) => {
                 }}
               >
                 <div className="name-res">
-                  <span className="mn">{comunity.name} </span>
+                  <span className="mn">
+                    {i18n.dir() === "ltr" ? comunity.name : comunity.name_ar}{" "}
+                  </span>
                   <br />
                   Residence
                 </div>

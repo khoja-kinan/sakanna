@@ -114,7 +114,6 @@ export default function Amenities() {
     fecthData();
   }, []);
 
-  console.log(AmenitiesList);
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {

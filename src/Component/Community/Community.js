@@ -30,7 +30,7 @@ import Footer from "../Footer/Footer";
 import { useTranslation } from "react-i18next";
 
 const Community = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { urlId } = useParams();
 
@@ -70,8 +70,9 @@ const Community = () => {
                 <hr className="gr"></hr>
               </div>
               <p className="com-tit">
-                {comunityDetails.name}&nbsp;
-                <span className="nui">{t("Comunity.res")}</span>
+                {i18n.dir() === "ltr" && comunityDetails.name}&nbsp;
+                <span className="nui">{t("Comunity.res")}</span>&nbsp;
+                {i18n.dir() === "rtl" && comunityDetails.name_ar}
               </p>
             </div>
             <div className="contain">{comunityDetails.description}</div>
@@ -86,8 +87,16 @@ const Community = () => {
         </div>
         <div className="location">
           <Location
-            locationName={comunityDetails.location}
-            locationDescription={comunityDetails.location_description}
+            locationName={
+              i18n.dir() === "ltr"
+                ? comunityDetails.location
+                : comunityDetails.location_ar
+            }
+            locationDescription={
+              i18n.dir() === "ltr"
+                ? comunityDetails.location_description
+                : comunityDetails.location_description_ar
+            }
             locationImage={comunityDetails.location_image}
             locLat={comunityDetails.latitude}
             locLong={comunityDetails.longitude}
@@ -97,7 +106,9 @@ const Community = () => {
           <div className="title">
             <div className="sup">
               <p className="sup-tit">
-                {comunityDetails.name} {t("Comunity.res")}
+                {i18n.dir() === "ltr" && comunityDetails.name}{" "}
+                {t("Comunity.res")}{" "}
+                {i18n.dir() === "rtl" && comunityDetails.name_ar}
               </p>
               <hr className="gr"></hr>
             </div>
@@ -120,7 +131,9 @@ const Community = () => {
                   <input type="checkbox" className="erw" />
 
                   <Link to={`/community/${comunityDetails.id}/type/${type.id}`}>
-                    <div className="type">{type.name}</div>
+                    <div className="type">
+                      {i18n.dir() === "ltr" ? type.name : type.name_ar}
+                    </div>
                   </Link>
                   <div className="info">
                     {t("Comunity.area")}{" "}

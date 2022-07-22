@@ -5,7 +5,7 @@ import { contactUs } from "../../constants/urls";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-const ContactForm = () => {
+const ContactForm = (comm_id, type_id, apartment_num) => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState();
   const [nameError, setNameError] = useState(false);
@@ -13,8 +13,6 @@ const ContactForm = () => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [emailError2, setEmailError2] = useState(false);
-  const [message, setMessage] = useState();
-  const [messageError, setMessageError] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [state, setState] = useState();
 
@@ -33,40 +31,27 @@ const ContactForm = () => {
   const handleChangeContact = (e) => {
     setContact(e.target.value);
   };
-  const handleChangeMessage = (e) => {
-    setMessage(e.target.value);
-  };
 
   const handleSubmit = () => {
     setNameError(name ? false : true);
-    setMessageError(message ? false : true);
     setEmailError(email ? false : true);
     if (email && !emailError) {
       setEmailError2(isValidEmail(email) ? false : true);
     }
 
-    if (
-      name &&
-      email &&
-      message &&
-      !nameError &&
-      !emailError &&
-      !emailError2 &&
-      !messageError
-    ) {
+    if (name && email && !nameError && !emailError && !emailError2) {
       setFormValid(true);
     } else {
       setFormValid(false);
     }
-
     const data = {
-      communityId: "",
-      typeId: "",
+      communityId: comm_id.comm_id,
+      typeId: comm_id.type_id,
       name: name,
       email: email,
       phone: contact,
-      message: message,
-      isContact: 1,
+      message: comm_id.apartment_num,
+      isContact: 0,
     };
     const headers = {
       Accept: "application/json",
@@ -150,26 +135,7 @@ const ContactForm = () => {
                     value={contact}
                   />
                 </div>
-                <div className="form-group">
-                  <label className="mb-0 labcon">
-                    {t("contactus.Message")}
-                    <span className="text-danger">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    type="text"
-                    className="form-control incon"
-                    value={message}
-                    onChange={handleChangeMessage}
-                  />
-                  {messageError ? (
-                    <div className="alert alert-danger mt-2">
-                      {t("contactus.Message is a required field.")}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
+
                 <p className="text-center mb-0 labcon">
                   <input
                     type="button"
