@@ -18,11 +18,11 @@ i18n
       en: {
         translation: {
           home: {
-            "COMMUNITIES": "COMMUNITIES",
+            COMMUNITIES: "COMMUNITIES",
             "LATEST LAUNCHES": "LATEST LAUNCHES",
             "Follow us on Social Media": "Follow us on Social Media",
-            "join":"Join Sakanna club",
-            "joinus": "Join Us" ,
+            join: "Join Sakanna club",
+            joinus: "Join Us",
           },
           nav: {
             "CALL US": "CALL US",
@@ -65,7 +65,7 @@ i18n
             reg: "Register Your Interest",
           },
           Comunity: {
-            register:"Register Your Interest",
+            register: "Register Your Interest",
             feel: "FELL THE FRESHNESS ",
             res: "Residence ",
             plan: "Residence Plan ",
@@ -94,6 +94,7 @@ i18n
             design: "Design",
             interior: "Interior",
             sar: "SAR",
+            Prices: "PRICES",
             "1f": "1st Floor",
             "2f": "2nd Floor",
             "3f": "3rd Floor",
@@ -360,6 +361,7 @@ i18n
             design: "التصميم",
             interior: "الداخلي",
             sar: "ريال سعودي",
+            Prices: "الأسعار",
           },
           Results: {
             chk: "اختر",
@@ -540,7 +542,7 @@ i18n
 export default i18n;
 /* 
    
-   {t("Dashboard.ComunityDialogLocationDescription")} 
+   {t("Comunity.sar")} 
    
    const { t } = useTranslation();
    

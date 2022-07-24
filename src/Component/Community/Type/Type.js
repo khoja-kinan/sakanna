@@ -205,7 +205,7 @@ const Type = () => {
                 </p>
                 <hr className="gr"></hr>
               </div>
-              <p className="com-tit">PRICES</p>
+              <p className="com-tit">{t("Comunity.Prices")}</p>
             </div>
             <div className="conmoo">
               {/* <table className="prices">
@@ -236,23 +236,20 @@ const Type = () => {
               </table> */}
               <table className="prices">
                 <tbody>
-                  <tr>
-                <th>1st Floor</th>
-                <td>700.000sar</td>
-                <td>700.000sar</td>
-                <td>700.000sar</td>
-                  </tr>
-                  <tr>
-                  <th>2nd Floor</th>
-                <td>700.000sar</td>
-                  </tr>
-                  <tr>
-                  <th>3rd Floor</th>
-                <td>700.000sar</td>
-                <td>700.000sar</td>
-                <td>700.000sar</td>
-                <td>700.000sar</td>
-                  </tr>
+                  {type.type.floors.map((item) => (
+                    <tr>
+                      <th>
+                        {i18n.dir() === "ltr"
+                          ? item.floor.name
+                          : item.floor.name_ar}
+                      </th>
+                      {item.prices.map((floorPrice) => (
+                        <td>
+                          {floorPrice.apartment_price} {t("Comunity.sar")}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
