@@ -208,7 +208,7 @@ const Type = () => {
               <p className="com-tit">PRICES</p>
             </div>
             <div className="conmoo">
-              <table className="prices">
+              {/* <table className="prices">
                 <tbody>
                   <tr>
                     {type.type.floors.map(
@@ -231,6 +231,27 @@ const Type = () => {
                           </td>
                         )
                     )}
+                  </tr>
+                </tbody>
+              </table> */}
+              <table className="prices">
+                <tbody>
+                  <tr>
+                <th>1st Floor</th>
+                <td>700.000sar</td>
+                <td>700.000sar</td>
+                <td>700.000sar</td>
+                  </tr>
+                  <tr>
+                  <th>2nd Floor</th>
+                <td>700.000sar</td>
+                  </tr>
+                  <tr>
+                  <th>3rd Floor</th>
+                <td>700.000sar</td>
+                <td>700.000sar</td>
+                <td>700.000sar</td>
+                <td>700.000sar</td>
                   </tr>
                 </tbody>
               </table>

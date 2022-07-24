@@ -92,25 +92,24 @@ td {
 .prices th {
   padding: 12px 24px;
   border: none;
-  border-right: 1px solid #dedede;
-  border-bottom: 1px solid #dedede;
+  border: 1px solid #dedede91;
   font-size: 1.3vw;
 }
 .prices td {
   padding: 18px 24px;
-  border: none;
-  border-right: 1px solid #dedede;
+  border: 1px solid #dedede91;
+  // border-right: 1px solid #dedede91;
   font-size: 1.4vw;
   font-weight: 600;
   color: green;
   font-weight: 600;
 }
-.prices td:last-child,
-.prices th:last-child {
-  border-right: none;
-}
+// .prices td:last-child,
+// .prices th:last-child {
+//   border-right: none;
+// }
 .prices th:nth-child(n + 5) {
-  // border-top: 1px solid #dedede;
+  // border-top: 1px solid #dedede91;
 }
 .conmoo {
   padding-top: 0vh;
@@ -120,11 +119,12 @@ td {
 }
 .prices {
   width: 100%;
-  /* border: 1px solid #dedede; */
+  /* border: 1px solid #dedede91; */
   padding: 14px;
   border-radius: 8px;
   box-shadow: -2px 0px 5px 4px rgb(0 0 0 / 3%);
   background: white;
+  border: 1px solid #dedede91;
 }
 @media screen and (max-width: 800px) {
   .conmoo {
@@ -136,7 +136,7 @@ td {
   .prices td {
     padding: 18px 24px;
     border: none;
-    border-right: 1px solid #dedede;
+    border: 1px solid #dedede91;
     font-size: 2vw;
     font-weight: 600;
     color: green;
@@ -145,8 +145,8 @@ td {
   .prices th {
     padding: 12px 24px;
     border: none;
-    border-right: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+    border: 1px solid #dedede91;
+  
     font-size: 2vw;
   }
 }
@@ -160,7 +160,7 @@ td {
   .prices td {
     padding: 12px 15px;
     border: none;
-    border-right: 1px solid #dedede;
+    border-right: 1px solid #dedede91;
     font-size: 2.4vw;
     font-weight: 600;
     color: green;
@@ -169,8 +169,8 @@ td {
   .prices th {
     padding: 12px 12px;
     border: none;
-    border-right: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede91;
+    border-bottom: 1px solid #dedede91;
     font-size: 2.3vw;
   }
   .gra-floor {
@@ -197,7 +197,7 @@ td {
   .prices td {
     padding: 12px 10px;
     border: none;
-    border-right: 1px solid #dedede;
+    border-right: 1px solid #dedede91;
     font-size: 2.9vw;
     font-weight: 600;
     color: green;
@@ -206,8 +206,8 @@ td {
   .prices th {
     padding: 12px 7px;
     border: none;
-    border-right: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede91;
+    border-bottom: 1px solid #dedede91;
     font-size: 2.9vw;
   }
   .gra-floor {
