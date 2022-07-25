@@ -39,6 +39,8 @@ import Amenities from "./Component/dashboard/pages/Amenities";
 import Floors from "./Component/dashboard/pages/Floors";
 import Interior from "./Component/dashboard/pages/Interior";
 import InteriorSamplesEdit from "./Component/dashboard/sections/@dashboard/interior/InteriorSamples";
+import Gallery from "./Component/dashboard/pages/Gallery";
+import Contacts from "./Component/dashboard/pages/Contacts";
 
 const App = () => {
   // const { t, i18n } = useTranslation();
@@ -78,6 +80,8 @@ const App = () => {
         <Route path="amenities/:communityId" element={<Amenities />} />
         <Route path="floors/:communityId" element={<Floors />} />
         <Route path="interior/:communityId" element={<Interior />} />
+        <Route path="gallery/:communityId" element={<Gallery />} />
+        <Route path="contacts" element={<Contacts />} />
 
         {/*  </Route>
         <Route element={<RequireAuth allowedRoles={[17]} />}> */}

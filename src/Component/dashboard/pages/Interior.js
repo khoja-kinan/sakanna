@@ -16,9 +16,7 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination,
   Box,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -30,17 +28,18 @@ import {
 // components
 import Page from "../components/Page";
 import Scrollbar from "../components/Scrollbar";
-import SearchNotFound from "../components/SearchNotFound";
-import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
+import { UserListHead } from "../sections/@dashboard/user";
 //
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { EditFloorUrl, getComunityInterior } from "../../../constants/urls";
-import FloorMoreMenu from "../sections/@dashboard/floors/FloorMoreMenu";
-import { Link } from "react-router-dom";
-import Iconify from "../components/Iconify";
-import InteriorSamplesEdit from "../sections/@dashboard/interior/InteriorSamples";
+import {
+  DeleteInteriorImage,
+  DeleteOrAddInterior,
+  getComunityInterior,
+} from "../../../constants/urls";
 import InteriorSamples from "../sections/@dashboard/interior/InteriorSamples";
+import InteriorDeleteDialog from "../sections/@dashboard/interior/InteriorDeleteDialog";
+import Swal from "sweetalert2";
 
 // ----------------------------------------------------------------------
 
@@ -72,36 +71,48 @@ export default function Interior() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [openNewInterior, setOpenNewInterior] = useState(false);
 
-  const [InteriorList, setInteriorList] = useState([]);
+  const [InteriorList, setInteriorList] = useState();
   let navigate = useNavigate();
-  const token = localStorage.getItem("api-token");
+  const token = localStorage.getItem("SakanaApi-token");
+
+  const [
+    previewTypePlanImage,
+    setPreviewTypePlanImage,
+    previewTypePlanImageRef,
+  ] = useState([]);
+  const [InteriorImageToUpload, setInteriorImageToUpload] = useState([]);
 
   useEffect(() => {
     function fecthData() {
-      /* if (token === null) {
+      if (token === null) {
         navigate("/");
-      } else { */
-      axios
-        .get(`${getComunityInterior}${communityId}/interiorsamples`, {
-          /* headers: {
+      } else {
+        axios
+          .get(`${getComunityInterior}${communityId}/interiorsamples`, {
+            headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
-            }, */
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            const data = response.data;
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              const data = response.data;
 
-            setInteriorList(data);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+              setInteriorList(data);
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      }
     }
-    /* } */
     fecthData();
   }, []);
+
+  if (InteriorList === undefined) {
+    return <LinearProgress />;
+  }
+
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -128,7 +139,7 @@ export default function Interior() {
 
     {
       id: "show_more",
-      label: t("Dashboard.showMore"),
+      label: t("Dashboard.showgesAndEdit"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
     { id: "" },
@@ -139,19 +150,6 @@ export default function Interior() {
     setOrderBy(property);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleFilterByName = (event) => {
-    setFilterName(event.target.value);
-  };
-
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - InteriorList.length) : 0;
 
@@ -160,7 +158,6 @@ export default function Interior() {
     getComparator(order, orderBy),
     filterName
   );
-  const isUserNotFound = filteredUsers.length === 0;
 
   /* 
       New Interior
@@ -173,14 +170,6 @@ export default function Interior() {
   const handleCloseNewInterior = () => {
     setOpenNewInterior(false);
   };
-  const [nameAr, setNameAr] = useState();
-  const [nameEn, setNameEn] = useState();
-  const [
-    previewTypePlanImage,
-    setPreviewTypePlanImage,
-    previewTypePlanImageRef,
-  ] = useState([]);
-  const [InteriorImageToUpload, setInteriorImageToUpload] = useState([]);
 
   const handleCaptureinteriorImages = (e) => {
     let files = Array.from(e.target.files);
@@ -200,44 +189,66 @@ export default function Interior() {
     setInteriorImageToUpload(files);
   };
 
-  const handleChangeNameAr = (e) => {
-    setNameAr(e.target.value);
-  };
-  const handleChangeNameEn = (e) => {
-    setNameEn(e.target.value);
-  };
-
   const handleSaveChanges = () => {
-    const formData = new FormData();
-
-    formData.append("communityId", communityId);
-    formData.append("name", nameEn);
-
-    formData.append("name_ar", nameAr);
-
-    formData.append("image", InteriorImageToUpload);
-
+    const data = {
+      name: "Interior Samples",
+      description: "",
+      image: "",
+      communityId: communityId,
+    };
     axios
-      .post(`${EditFloorUrl}`, formData, {
+      .post(`${DeleteOrAddInterior}`, data, {
         headers: {
+          Authorization: "Bearer " + token,
           Accept: "application/json",
           "content-type": "multipart/form-data",
         },
       })
       .then((response) => {
-        window.location.reload();
+        InteriorImageToUpload.forEach((img) => {
+          const formData = new FormData();
+
+          formData.append("interiorId", response.data.id);
+          formData.append("imageUrl", img);
+
+          axios
+            .post(`${DeleteInteriorImage}`, formData, {
+              headers: {
+                Authorization: "Bearer " + token,
+                Accept: "application/json",
+                "content-type": "multipart/form-data",
+              },
+            })
+            .then((response) => {})
+            .catch((error) => {
+              console.error("There was an error!", error);
+            });
+        });
+        setTimeout(function refresh() {
+          setOpenNewInterior(false);
+
+          Swal.fire({
+            customClass: {
+              container: "InteriorDeleteDialog",
+            },
+            title: t("Dashboard.InteriorImageAddedSuccess"),
+            icon: "success",
+            confirmButtonText: t("Dashboard.Ok"),
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }, 10000);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
-    setOpenNewInterior(false);
   };
   const removeReview = () => {
     setPreviewTypePlanImage([]);
   };
-  return InteriorList === undefined ? (
-    <LinearProgress />
-  ) : (
+  return (
     <Page title={t("Dashboard.InteriotPageTitle")}>
       <Container>
         <Stack
@@ -249,7 +260,12 @@ export default function Interior() {
           <Typography variant="h4" gutterBottom>
             {t("Dashboard.InteriotPageTitle")}
           </Typography>
-          <Button variant="contained" onClick={handleClickopenNewInterior}>
+
+          <Button
+            variant="contained"
+            onClick={handleClickopenNewInterior}
+            disabled={filteredUsers.length !== 0}
+          >
             {t("Dashboard.ComunitiesAddNew")}
           </Button>
         </Stack>
@@ -276,24 +292,6 @@ export default function Interior() {
                 justifyContent: "space-between",
               }}
             >
-              <FormControl sx={{ m: 1, maxWidth: "30%", marginTop: "2rem" }}>
-                <TextField
-                  variant="standard"
-                  id="filled-basic"
-                  label={t("Dashboard.ComunityDialogArName")}
-                  value={nameAr}
-                  onChange={handleChangeNameAr}
-                />
-              </FormControl>
-              <FormControl sx={{ m: 1, maxWidth: "30%", marginTop: "2rem" }}>
-                <TextField
-                  variant="standard"
-                  id="filled-basic"
-                  label={t("Dashboard.ComunityDialogEnName")}
-                  value={nameEn}
-                  onChange={handleChangeNameEn}
-                />
-              </FormControl>
               <FormControl sx={{ m: 1, maxWidth: "100%", marginTop: "2rem" }}>
                 <InputLabel>{t("Dashboard.InteriorImageLabel")}</InputLabel>
                 <Box sx={{ width: "100%" }}>
@@ -351,12 +349,6 @@ export default function Interior() {
         </Dialog>
         {/* tabel */}
         <Card>
-          <UserListToolbar
-            placeHolder={t("Dashboard.InteriorPageSearchPlaceHolder")}
-            filterName={filterName}
-            onFilterName={handleFilterByName}
-          />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -387,12 +379,15 @@ export default function Interior() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <InteriorSamples item={row} />
+                            <InteriorSamples item={row} token={token} />
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >
-                            <FloorMoreMenu Floor_id={row.id} />
+                            <InteriorDeleteDialog
+                              interior_id={row.id}
+                              token={token}
+                            />
                           </TableCell>
                         </TableRow>
                       );
@@ -403,29 +398,9 @@ export default function Interior() {
                     </TableRow>
                   )}
                 </TableBody>
-                {isUserNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
               </Table>
             </TableContainer>
           </Scrollbar>
-
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={InteriorList.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage={t("Dashboard.UsersPageLabelRowsPerPage")}
-          />
         </Card>
       </Container>
     </Page>

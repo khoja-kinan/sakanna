@@ -112,36 +112,40 @@ export default function Types() {
   const [previewTypeCardImage, setPreviewTypeCardImage] = useState(null);
   const [typeCardImageToUpload, setTypeCardImageToUpload] = useState("");
 
-  const [TypesList, setTypesList] = useState([]);
+  const [TypesList, setTypesList] = useState();
   let navigate = useNavigate();
-  const token = localStorage.getItem("api-token");
+  const token = localStorage.getItem("SakanaApi-token");
 
   useEffect(() => {
     function fecthData() {
-      /* if (token === null) {
+      if (token === null) {
         navigate("/");
-      } else { */
-      axios
-        .get(`${getTypeById}${communityId}`, {
-          /* headers: {
+      } else {
+        axios
+          .get(`${getTypeById}${communityId}`, {
+            headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
-            }, */
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            const data = response.data;
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              const data = response.data;
 
-            setTypesList(data);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+              setTypesList(data);
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      }
     }
-    /* } */
     fecthData();
   }, []);
+  if (TypesList === undefined) {
+    return <LinearProgress />;
+  }
+
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -463,9 +467,7 @@ export default function Types() {
         console.error("There was an error!", error);
       });
   };
-  return TypesList === undefined ? (
-    <LinearProgress />
-  ) : (
+  return (
     <Page title={t("Dashboard.TypesPageTitle")}>
       <Container>
         <Stack

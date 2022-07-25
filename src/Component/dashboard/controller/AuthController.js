@@ -1,12 +1,12 @@
 import axios from "axios";
-import { loginUrl } from "../constants/urls";
+import { loginUrl } from "../../../constants/urls";
 
-export const login = async (email, password, remember) => {
+export const login = async (email, password) => {
   let result = null;
   await axios
     .post(
       loginUrl,
-      { email, password, remember },
+      { email, password },
       { headers: { Accept: "application/json" } }
     )
     .then((response) => {

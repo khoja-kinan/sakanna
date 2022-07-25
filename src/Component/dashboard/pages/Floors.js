@@ -71,36 +71,83 @@ export default function Floors() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [openNewFloor, setOpenNewFloor] = useState(false);
 
-  const [FloorsList, setFloorsList] = useState([]);
+  const handleClickopenNewFloor = () => {
+    setOpenNewFloor(true);
+  };
+
+  const handleCloseNewFloor = () => {
+    setOpenNewFloor(false);
+  };
+  const [nameAr, setNameAr] = useState();
+  const [nameEn, setNameEn] = useState();
+  const [carSlots, setcarSlots] = useState();
+  const [numberOfApartments, setNumberOfApartments] = useState();
+  const [numberOfPenthouses, setNumberOfPenthouses] = useState();
+  const [percentOfResidential, setPercentOfResidential] = useState();
+  const [area, setArea] = useState();
+  const [percentOfAmenities, setPercentOfAmenities] = useState();
+  const [percentOfServices, setPercentOfServices] = useState();
+  const [totalOutdoorAreas, setTotalOutdoorAreas] = useState();
+  const [Foyer1, setFoyer1] = useState();
+  const [Foyer2, setFoyer2] = useState();
+  const [bedroom1, setBedroom1] = useState();
+  const [bedroom2, setBedroom2] = useState();
+  const [TandB1, setTandB1] = useState();
+  const [TandB2, setTandB2] = useState();
+  const [TandB3, setTandB3] = useState();
+  const [Master_Bedroom, setMaster_Bedroom] = useState();
+  const [Lobby, setLobby] = useState();
+  const [Majles, setMajles] = useState();
+
+  const [Balcony, setBalcony] = useState();
+  const [Balcony1, setBalcony1] = useState();
+  const [Balcony2, setBalcony2] = useState();
+  const [Balcony3, setBalcony3] = useState();
+  const [Family_Living, setFamily_Living] = useState();
+  const [Closet, setCloset] = useState();
+  const [Open_Kitchen, setOpen_Kitchen] = useState();
+  const [laundry, setLaundry] = useState();
+  const [description, setDescription] = useState();
+  const [descriptionAr, setDescriptionAr] = useState();
+
+  const [TypePlanImageToShow, setTypePlanImageToShow] = useState();
+  const [previewTypePlanImage, setPreviewTypePlanImage] = useState(null);
+  const [typePlanImageToUpload, setTypePlanImageToUpload] = useState("");
+
+  const [FloorsList, setFloorsList] = useState();
   let navigate = useNavigate();
-  const token = localStorage.getItem("api-token");
+  const token = localStorage.getItem("SakanaApi-token");
 
   useEffect(() => {
     function fecthData() {
-      /* if (token === null) {
+      if (token === null) {
         navigate("/");
-      } else { */
-      axios
-        .get(`${getComunityFloor}${communityId}/floors`, {
-          /* headers: {
+      } else {
+        axios
+          .get(`${getComunityFloor}${communityId}/floors`, {
+            headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
-            }, */
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            const data = response.data;
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              const data = response.data;
 
-            setFloorsList(data);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+              setFloorsList(data);
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      }
     }
-    /* } */
     fecthData();
   }, []);
+
+  if (FloorsList === undefined) {
+    return <LinearProgress />;
+  }
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -184,49 +231,6 @@ export default function Floors() {
   /* 
       NewType
   */
-
-  const handleClickopenNewFloor = () => {
-    setOpenNewFloor(true);
-  };
-
-  const handleCloseNewFloor = () => {
-    setOpenNewFloor(false);
-  };
-  const [nameAr, setNameAr] = useState();
-  const [nameEn, setNameEn] = useState();
-  const [carSlots, setcarSlots] = useState();
-  const [numberOfApartments, setNumberOfApartments] = useState();
-  const [numberOfPenthouses, setNumberOfPenthouses] = useState();
-  const [percentOfResidential, setPercentOfResidential] = useState();
-  const [area, setArea] = useState();
-  const [percentOfAmenities, setPercentOfAmenities] = useState();
-  const [percentOfServices, setPercentOfServices] = useState();
-  const [totalOutdoorAreas, setTotalOutdoorAreas] = useState();
-  const [Foyer1, setFoyer1] = useState();
-  const [Foyer2, setFoyer2] = useState();
-  const [bedroom1, setBedroom1] = useState();
-  const [bedroom2, setBedroom2] = useState();
-  const [TandB1, setTandB1] = useState();
-  const [TandB2, setTandB2] = useState();
-  const [TandB3, setTandB3] = useState();
-  const [Master_Bedroom, setMaster_Bedroom] = useState();
-  const [Lobby, setLobby] = useState();
-  const [Majles, setMajles] = useState();
-
-  const [Balcony, setBalcony] = useState();
-  const [Balcony1, setBalcony1] = useState();
-  const [Balcony2, setBalcony2] = useState();
-  const [Balcony3, setBalcony3] = useState();
-  const [Family_Living, setFamily_Living] = useState();
-  const [Closet, setCloset] = useState();
-  const [Open_Kitchen, setOpen_Kitchen] = useState();
-  const [laundry, setLaundry] = useState();
-  const [description, setDescription] = useState();
-  const [descriptionAr, setDescriptionAr] = useState();
-
-  const [TypePlanImageToShow, setTypePlanImageToShow] = useState();
-  const [previewTypePlanImage, setPreviewTypePlanImage] = useState(null);
-  const [typePlanImageToUpload, setTypePlanImageToUpload] = useState("");
 
   const handleCaptureComunityImage = (e) => {
     setTypePlanImageToShow(null);
@@ -415,9 +419,7 @@ export default function Floors() {
       });
     setOpenNewFloor(false);
   };
-  return FloorsList === undefined ? (
-    <LinearProgress />
-  ) : (
+  return (
     <Page title={t("Dashboard.FloorsPageTitle")}>
       <Container>
         <Stack

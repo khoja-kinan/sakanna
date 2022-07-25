@@ -189,11 +189,11 @@ export default function NavSection({ navConfig, ...other }) {
       path: "/dashboard/comunities",
       icon: getIcon("ri:community-fill"),
     },
-    /* {
-      title: t("Dashboard.sideBarTypes"),
-      path: "/dashboard/types",
-      icon: getIcon("ic:outline-apartment"),
-    }, */
+    {
+      title: t("Dashboard.sideBarContacts"),
+      path: "/dashboard/contacts",
+      icon: getIcon("bx:support"),
+    },
     /* {
       title: t("Dashboard.sideBarMedals"),
       path: "/dashboard/medals",

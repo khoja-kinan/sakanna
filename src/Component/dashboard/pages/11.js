@@ -1,51 +1,45 @@
 import { filter } from "lodash";
 /* import { sentenceCase } from "change-case"; */
-import { useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import useState from "react-usestateref";
+
+import { useNavigate, useParams } from "react-router-dom";
 // material
 import {
   Card,
   Table,
   Stack,
   Button,
-  Checkbox,
   TableRow,
   TableBody,
   TableCell,
   Container,
   Typography,
   TableContainer,
-  TablePagination,
   Box,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
   InputLabel,
-  MenuItem,
-  Select,
   LinearProgress,
 } from "@mui/material";
 // components
 import Page from "../components/Page";
 import Scrollbar from "../components/Scrollbar";
-import SearchNotFound from "../components/SearchNotFound";
-import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
+import { UserListHead } from "../sections/@dashboard/user";
 //
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import {
-  AddNewAmenity,
-  getAmenitiesByCommunityId,
-  getTypeById,
-  NewTypeUrl,
+  AllContactsUrl,
+  DeleteInteriorImage,
+  DeleteOrAddInterior,
 } from "../../../constants/urls";
-import TypeShowMore from "../sections/@dashboard/types/TypeShowMore";
-import TypeMoreMenu from "../sections/@dashboard/types/TypeMoreMenu";
-import AmenityShowMore from "../sections/@dashboard/amenities/AmenityShowMore";
-import AmenityMoreMenu from "../sections/@dashboard/amenities/AmenityMoreMenu";
+import InteriorSamples from "../sections/@dashboard/interior/InteriorSamples";
+import InteriorDeleteDialog from "../sections/@dashboard/interior/InteriorDeleteDialog";
+import Swal from "sweetalert2";
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +61,7 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-export default function Amenities() {
+export default function Contacts() {
   const { communityId } = useParams();
   const { t, i18n } = useTranslation();
   const [page, setPage] = useState(0);
@@ -75,17 +69,18 @@ export default function Amenities() {
   const [orderBy, setOrderBy] = useState("name");
   const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [openNewType, setOpenNewType] = useState(false);
+  const [openNewInterior, setOpenNewInterior] = useState(false);
 
-  const [nameAr, setNameAr] = useState();
-  const [nameEn, setNameEn] = useState();
-
-  const [previewTypePlanImage, setPreviewTypePlanImage] = useState(null);
-  const [typePlanImageToUpload, setTypePlanImageToUpload] = useState("");
-
-  const [AmenitiesList, setAmenitiesList] = useState();
+  const [ContactsList, setContactsList] = useState();
   let navigate = useNavigate();
   const token = localStorage.getItem("SakanaApi-token");
+
+  const [
+    previewTypePlanImage,
+    setPreviewTypePlanImage,
+    previewTypePlanImageRef,
+  ] = useState([]);
+  const [InteriorImageToUpload, setInteriorImageToUpload] = useState([]);
 
   useEffect(() => {
     function fecthData() {
@@ -93,7 +88,7 @@ export default function Amenities() {
         navigate("/");
       } else {
         axios
-          .get(`${getAmenitiesByCommunityId}/${communityId}`, {
+          .get(`${AllContactsUrl}`, {
             headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
@@ -103,7 +98,7 @@ export default function Amenities() {
             if (response.status === 200) {
               const data = response.data;
 
-              setAmenitiesList(data);
+              setContactsList(data);
             }
           })
           .catch((error) => {
@@ -113,10 +108,11 @@ export default function Amenities() {
     }
     fecthData();
   }, []);
-  if (AmenitiesList === undefined) {
+
+  if (ContactsList === undefined) {
     return <LinearProgress />;
   }
-
+  console.log(ContactsList);
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -137,14 +133,30 @@ export default function Amenities() {
   const TABLE_HEAD = [
     {
       id: "name",
-      label: t("Dashboard.tableHeadAmenityName"),
+      label: t("Dashboard.tableHeadUserName"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
     {
-      id: "show_more",
-      label: t("Dashboard.showMore"),
+      id: "email",
+      label: t("Dashboard.tableHeadEmail"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
+    {
+      id: "phone",
+      label: t("Dashboard.tableHeadPhone"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "message",
+      label: t("Dashboard.tableHeadMessage"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "contact_type",
+      label: t("Dashboard.tableHeadContatType"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+
     { id: "" },
   ];
   const handleRequestSort = (event, property) => {
@@ -153,86 +165,106 @@ export default function Amenities() {
     setOrderBy(property);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleFilterByName = (event) => {
-    setFilterName(event.target.value);
-  };
-
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - AmenitiesList.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ContactsList.length) : 0;
 
   const filteredUsers = applySortFilter(
-    AmenitiesList,
+    ContactsList,
     getComparator(order, orderBy),
     filterName
   );
-  const isUserNotFound = filteredUsers.length === 0;
 
   /* 
-      NewAmenity
+      New Interior
   */
 
-  const handleCaptureComunityImage = (e) => {
-    setTypePlanImageToUpload(e.target.files[0]);
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setPreviewTypePlanImage(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+  const handleClickopenNewInterior = () => {
+    setOpenNewInterior(true);
   };
 
-  const handleClickopenNewType = () => {
-    setOpenNewType(true);
+  const handleCloseNewInterior = () => {
+    setOpenNewInterior(false);
   };
 
-  const handleCloseNewType = () => {
-    setOpenNewType(false);
-  };
+  const handleCaptureinteriorImages = (e) => {
+    let files = Array.from(e.target.files);
+    let images = [];
+    files.forEach((file) => {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        const { result } = e.target;
+        if (result) {
+          images.push(result);
+        }
+      };
 
-  const handleChangeNameAr = (e) => {
-    setNameAr(e.target.value);
-  };
-  const handleChangeNameEn = (e) => {
-    setNameEn(e.target.value);
+      reader.readAsDataURL(file);
+    });
+    setPreviewTypePlanImage(images);
+    setInteriorImageToUpload(files);
   };
 
   const handleSaveChanges = () => {
-    const formData = new FormData();
-
-    formData.append("communityId", communityId);
-    formData.append("name", nameEn);
-
-    formData.append("name_ar", nameAr);
-
-    formData.append("image", typePlanImageToUpload);
-
+    const data = {
+      name: "Interior Samples",
+      description: "",
+      image: "",
+      communityId: communityId,
+    };
     axios
-      .post(`${AddNewAmenity}`, formData, {
+      .post(`${DeleteOrAddInterior}`, data, {
         headers: {
+          Authorization: "Bearer " + token,
           Accept: "application/json",
           "content-type": "multipart/form-data",
         },
       })
       .then((response) => {
-        setOpenNewType(false);
-        window.location.reload();
+        InteriorImageToUpload.forEach((img) => {
+          const formData = new FormData();
+
+          formData.append("interiorId", response.data.id);
+          formData.append("imageUrl", img);
+
+          axios
+            .post(`${DeleteInteriorImage}`, formData, {
+              headers: {
+                Authorization: "Bearer " + token,
+                Accept: "application/json",
+                "content-type": "multipart/form-data",
+              },
+            })
+            .then((response) => {})
+            .catch((error) => {
+              console.error("There was an error!", error);
+            });
+        });
+        setTimeout(function refresh() {
+          setOpenNewInterior(false);
+
+          Swal.fire({
+            customClass: {
+              container: "InteriorDeleteDialog",
+            },
+            title: t("Dashboard.InteriorImageAddedSuccess"),
+            icon: "success",
+            confirmButtonText: t("Dashboard.Ok"),
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }, 10000);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   };
+  const removeReview = () => {
+    setPreviewTypePlanImage([]);
+  };
   return (
-    <Page title={t("Dashboard.AmenitiesPageTitle")}>
+    <Page title={t("Dashboard.InteriotPageTitle")}>
       <Container>
         <Stack
           direction="row"
@@ -241,9 +273,14 @@ export default function Amenities() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            {t("Dashboard.AmenitiesPageTitle")}
+            {t("Dashboard.InteriotPageTitle")}
           </Typography>
-          <Button variant="contained" onClick={handleClickopenNewType}>
+
+          <Button
+            variant="contained"
+            onClick={handleClickopenNewInterior}
+            disabled={filteredUsers.length !== 0}
+          >
             {t("Dashboard.ComunitiesAddNew")}
           </Button>
         </Stack>
@@ -251,15 +288,15 @@ export default function Amenities() {
         <Dialog
           fullScreen
           disableEscapeKeyDown
-          open={openNewType}
-          onClose={handleCloseNewType}
+          open={openNewInterior}
+          onClose={handleCloseNewInterior}
         >
           <Stack
             direction={"row"}
             justifyContent="space-between"
             sx={{ marginTop: "1rem" }}
           >
-            <DialogTitle>{t("Dashboard.AmenityInfo")}</DialogTitle>
+            <DialogTitle>{t("Dashboard.NewInterior")}</DialogTitle>
           </Stack>
           <DialogContent sx={{ width: "100%" }}>
             <Box
@@ -270,57 +307,40 @@ export default function Amenities() {
                 justifyContent: "space-between",
               }}
             >
-              <FormControl sx={{ m: 1, maxWidth: "30%", marginTop: "2rem" }}>
-                <TextField
-                  variant="standard"
-                  id="filled-basic"
-                  label={t("Dashboard.ComunityDialogArName")}
-                  value={nameAr}
-                  onChange={handleChangeNameAr}
-                />
-              </FormControl>
-              <FormControl sx={{ m: 1, maxWidth: "30%", marginTop: "2rem" }}>
-                <TextField
-                  variant="standard"
-                  id="filled-basic"
-                  label={t("Dashboard.ComunityDialogEnName")}
-                  value={nameEn}
-                  onChange={handleChangeNameEn}
-                />
-              </FormControl>
-
-              {/* Amenity Image */}
-              <FormControl sx={{ m: 1, maxWidth: "45%", marginTop: "2rem" }}>
-                <InputLabel>{t("Dashboard.AmenityImage")}</InputLabel>
-                <Box className="upload__image-wrapper">
-                  {previewTypePlanImage ? (
-                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
-                      <img src={previewTypePlanImage} alt="" width="80%" />
-                      <Box className="image-item__btn-wrapper">
-                        <Button
-                          sx={{ margin: "1rem 0" }}
-                          variant="outlined"
-                          onClick={() => setPreviewTypePlanImage(null)}
-                        >
-                          {t("Dashboard.remove")}
-                        </Button>
+              <FormControl sx={{ m: 1, maxWidth: "100%", marginTop: "2rem" }}>
+                <InputLabel>{t("Dashboard.InteriorImageLabel")}</InputLabel>
+                <Box sx={{ width: "100%" }}>
+                  <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                    {previewTypePlanImageRef.current.map((item, index) => (
+                      <Box sx={{ margin: "0 1rem" }} key={index}>
+                        <img src={item} alt="" width={500} />
                       </Box>
-                    </Box>
-                  ) : (
+                    ))}
+                  </Box>
+                  <Box className="image-item__btn-wrapper">
+                    <Button
+                      sx={{ margin: "1rem " }}
+                      variant="outlined"
+                      onClick={removeReview}
+                    >
+                      {t("Dashboard.remove")}
+                    </Button>
+
                     <Button
                       sx={{ margin: "1rem 0" }}
                       variant="outlined"
                       component="label"
                     >
-                      {t("Dashboard.uploadAmenityImage")}
+                      {t("Dashboard.uploadInteriorImageImage")}
                       <input
                         type="file"
                         accept="image/*"
                         hidden
-                        onChange={handleCaptureComunityImage}
+                        multiple
+                        onChange={handleCaptureinteriorImages}
                       />
                     </Button>
-                  )}
+                  </Box>
                 </Box>
               </FormControl>
             </Box>
@@ -333,7 +353,9 @@ export default function Amenities() {
             ></Box>
           </DialogContent>
           <DialogActions sx={{ justifyContent: "center" }}>
-            <Button onClick={handleCloseNewType}>{t("Dashboard.Close")}</Button>
+            <Button onClick={handleCloseNewInterior}>
+              {t("Dashboard.Close")}
+            </Button>
 
             <Button onClick={handleSaveChanges}>
               {t("Dashboard.saveChanges")}
@@ -342,12 +364,6 @@ export default function Amenities() {
         </Dialog>
         {/* tabel */}
         <Card>
-          <UserListToolbar
-            placeHolder={t("Dashboard.AmenitiesPageSearchPlaceHolder")}
-            filterName={filterName}
-            onFilterName={handleFilterByName}
-          />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -355,7 +371,7 @@ export default function Amenities() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={AmenitiesList.length}
+                  rowCount={ContactsList.length}
                   onRequestSort={handleRequestSort}
                 />
                 <TableBody>
@@ -372,18 +388,36 @@ export default function Amenities() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            {i18n.dir() === "ltr" ? row.name : row.name_ar}
+                            {row.contact.name}
                           </TableCell>
 
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <AmenityShowMore item={row} />
+                            {row.contact.email}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {row.contact.phone}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {row.contact.message}
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            {row.contact.isContact}
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >
-                            <AmenityMoreMenu Amenity_id={row.id} />
+                            <InteriorDeleteDialog
+                              interior_id={row.id}
+                              token={token}
+                            />
                           </TableCell>
                         </TableRow>
                       );
@@ -394,29 +428,9 @@ export default function Amenities() {
                     </TableRow>
                   )}
                 </TableBody>
-                {isUserNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
               </Table>
             </TableContainer>
           </Scrollbar>
-
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={AmenitiesList.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage={t("Dashboard.UsersPageLabelRowsPerPage")}
-          />
         </Card>
       </Container>
     </Page>

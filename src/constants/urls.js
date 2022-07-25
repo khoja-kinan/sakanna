@@ -23,6 +23,9 @@ export const EditFloorUrl = `${baseUrl}/floors`;
 
 export const getComunityInterior = `${baseUrl}/community/`;
 export const DeleteInteriorImage = `${baseUrl}/images`;
+export const DeleteOrAddInterior = `${baseUrl}/interiorsamples`;
+
+export const AllContactsUrl = `${baseUrl}/allcontacts`;
 
 export const contactUs = `${baseUrl}/contacts`;
 
@@ -31,3 +34,5 @@ export const search = `${baseUrl}/types/?`;
 export const getTypeByIdFront = `${baseUrl}/community/`;
 
 export const communitySearchUrl = `${baseUrl}/communityPrices`;
+export const loginUrl = `${baseUrl}/auth/login`;
+export const logoutUrl = `${baseUrl}/auth/logout`;

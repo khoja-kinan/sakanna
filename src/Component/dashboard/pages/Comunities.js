@@ -1,14 +1,13 @@
 import { filter } from "lodash";
 /* import { sentenceCase } from "change-case"; */
 import { useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // material
 import {
   Card,
   Table,
   Stack,
   Button,
-  Checkbox,
   TableRow,
   TableBody,
   TableCell,
@@ -26,6 +25,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  LinearProgress,
 } from "@mui/material";
 // components
 import Page from "../components/Page";
@@ -37,7 +37,6 @@ import {
   UserListToolbar,
 } from "../sections/@dashboard/user";
 //
-import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { GetAllCommunities, getComunityById } from "../../../constants/urls";
@@ -82,9 +81,7 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function Comunities() {
-  /* const roles = JSON.parse(localStorage.getItem("roles")); */
   const { t, i18n } = useTranslation();
-  const [cookies, setCookie] = useCookies(["user"]);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("name");
@@ -110,38 +107,37 @@ export default function Comunities() {
   const [locationImage, setLocationImage] = useState();
   const [locationImageToUpload, setLocationImageToUpload] = useState();
 
-  const [ComunitiesList, setComunitiesList] = useState([]);
+  const [ComunitiesList, setComunitiesList] = useState();
   let navigate = useNavigate();
-  const token = localStorage.getItem("api-token");
+  const token = localStorage.getItem("SakanaApi-token");
 
   useEffect(() => {
     function fecthData() {
-      /* if (token === null) {
+      if (token === null) {
         navigate("/");
-      } else { */
-      axios
-        .get(GetAllCommunities, {
-          /* headers: {
+      } else {
+        axios
+          .get(GetAllCommunities, {
+            headers: {
               Authorization: "Bearer " + token,
               Accept: "application/json",
-            }, */
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            const data = response.data;
-
-            setComunitiesList(data);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+            },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              const data = response.data;
+              setComunitiesList(data);
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      }
     }
-    /* } */
     fecthData();
   }, []);
-  if (ComunitiesList.length === 0) {
-    return null;
+  if (ComunitiesList === undefined) {
+    return <LinearProgress />;
   }
   const TABLE_HEAD = [
     {
@@ -178,6 +174,16 @@ export default function Comunities() {
     {
       id: "interior_settings",
       label: t("Dashboard.comunityTabeHeadInteriorSettings"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "community_gallery",
+      label: t("Dashboard.comunityTabeHeadCommunityGallery"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
+    {
+      id: "units",
+      label: t("Dashboard.comunityTabeHeadCommunityUnits"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
     { id: "" },
@@ -311,6 +317,7 @@ export default function Comunities() {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {
@@ -323,6 +330,7 @@ export default function Comunities() {
       });
     setOpenNewComunity(false);
   };
+  console.log(filteredUsers);
   return (
     <Page title={t("Dashboard.ComunitiesPageTitle")}>
       <Container>
@@ -672,6 +680,30 @@ export default function Comunities() {
                               {i18n.dir() === "ltr"
                                 ? "Show Interior Samples"
                                 : "إظهار التصاميم الداخلية"}
+                            </Link>
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            <Link
+                              to={`/dashboard/gallery/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show gallery"
+                                : "إظهار المعرض "}
+                            </Link>
+                          </TableCell>
+                          <TableCell
+                            align={i18n.dir() === "ltr" ? "left" : "right"}
+                          >
+                            <Link
+                              to={`/dashboard/gallery/${id}`}
+                              style={{ textDecoration: "none", color: "black" }}
+                            >
+                              {i18n.dir() === "ltr"
+                                ? "Show Units"
+                                : "إظهار الوحدات السكنية "}
                             </Link>
                           </TableCell>
                           <TableCell

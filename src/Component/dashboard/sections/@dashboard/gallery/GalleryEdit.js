@@ -24,13 +24,13 @@ import { LoadingButton } from "@mui/lab";
 
 // ----------------------------------------------------------------------
 
-export default function InteriorSamples({ item, token }) {
+export default function GalleryEdit({ item, token, community_id }) {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [openShowMoreDialog, setShowMoreDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [TypePlanImageToShow, setTypePlanImageToShow] = useState(item.images);
+  const [TypePlanImageToShow, setTypePlanImageToShow] = useState(true);
   const [
     previewTypePlanImage,
     setPreviewTypePlanImage,
@@ -61,13 +61,14 @@ export default function InteriorSamples({ item, token }) {
   const handleCloseShowMoreDialog = () => {
     setShowMoreDialog(false);
   };
+  console.log(previewTypePlanImage);
 
   const handleSaveChanges = () => {
     setLoading(true);
     InteriorImageToUpload.forEach((img) => {
       const formData = new FormData();
 
-      formData.append("interiorId", item.id);
+      formData.append("communityId", community_id);
       formData.append("imageUrl", img);
 
       axios
@@ -92,7 +93,7 @@ export default function InteriorSamples({ item, token }) {
         customClass: {
           container: "InteriorDeleteDialog",
         },
-        title: t("Dashboard.InteriorImageAddedSuccess"),
+        title: t("Dashboard.GalleryImageAddedSuccess"),
         icon: "success",
         confirmButtonText: t("Dashboard.Ok"),
       }).then((result) => {
@@ -100,7 +101,7 @@ export default function InteriorSamples({ item, token }) {
           window.location.reload();
         }
       });
-    }, 5000);
+    }, 10000);
   };
   const RemoveImage = (id) => {
     Swal.fire({
@@ -155,7 +156,7 @@ export default function InteriorSamples({ item, token }) {
           justifyContent="space-between"
           sx={{ marginTop: "1rem" }}
         >
-          <DialogTitle>{t("Dashboard.EditInteriot")}</DialogTitle>
+          <DialogTitle>{t("Dashboard.EditGallery")}</DialogTitle>
         </Stack>
         <DialogContent sx={{ width: "100%" }}>
           <Box
@@ -167,7 +168,7 @@ export default function InteriorSamples({ item, token }) {
             }}
           >
             <FormControl sx={{ m: 1, maxWidth: "100%", marginTop: "2rem" }}>
-              <InputLabel>{t("Dashboard.newInteriorImageLabel")}</InputLabel>
+              <InputLabel>{t("Dashboard.newgalleryImageLabel")}</InputLabel>
               <Box sx={{ width: "100%" }}>
                 <Box sx={{ margin: "1rem 0", display: "flex" }}>
                   {previewTypePlanImageRef.current !== undefined &&
@@ -194,7 +195,7 @@ export default function InteriorSamples({ item, token }) {
                     variant="outlined"
                     component="label"
                   >
-                    {t("Dashboard.uploadInteriorImageImage")}
+                    {t("Dashboard.uploadGalleryImage")}
                     <input
                       type="file"
                       accept="image/*"
@@ -205,15 +206,15 @@ export default function InteriorSamples({ item, token }) {
                   </Button>
                 </Box>
               </Box>
-              <InputLabel>{t("Dashboard.InteriorImageLabel")}</InputLabel>
+              <InputLabel>{t("Dashboard.GalleryImages")}</InputLabel>
               {TypePlanImageToShow && (
                 <Box
                   sx={{ margin: "1rem 0", display: "flex", flexWrap: "wrap" }}
                 >
-                  {TypePlanImageToShow.map((item) => (
-                    <Box sx={{ margin: "0 1rem" }} key={item.id}>
+                  {item.map((i) => (
+                    <Box sx={{ margin: "0 1rem" }} key={i.id}>
                       <img
-                        src={`${baseImageUrl}${item.imageUrl}`}
+                        src={`${baseImageUrl}${i.imageUrl}`}
                         alt=""
                         width={350}
                       />
@@ -221,7 +222,7 @@ export default function InteriorSamples({ item, token }) {
                         <Button
                           sx={{ margin: "1rem 0" }}
                           variant="outlined"
-                          onClick={() => RemoveImage(item.id)}
+                          onClick={() => RemoveImage(i.id)}
                         >
                           {t("Dashboard.remove")}
                         </Button>

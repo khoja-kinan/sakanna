@@ -16,8 +16,9 @@ import Iconify from "../../components/Iconify";
 import MenuPopover from "../../components/MenuPopover";
 //
 
-import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
+import { logoutUrl } from "../../../../constants/urls";
+import axios from "axios";
 
 // ----------------------------------------------------------------------
 
@@ -43,9 +44,9 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const { t } = useTranslation();
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const token = localStorage.getItem("SakanaApi-token");
   const navigate = useNavigate();
   const handleOpen = () => {
     setOpen(true);
@@ -55,13 +56,23 @@ export default function AccountPopover() {
   };
 
   const logOut = () => {
-    removeCookie("user", { path: "/" });
-    removeCookie("remember_token", { path: "/" });
-    localStorage.removeItem("api-token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("roles");
+    const headers = {
+      Authorization: "Bearer " + token,
+      Accept: "application/json",
+    };
+    const data = {};
+    axios
+      .post(logoutUrl, data, { headers })
+      .then((response) => {
+        localStorage.removeItem("SakanaApi-token");
+        localStorage.removeItem("SakanaEmail");
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
     navigate("/");
   };
+
   return (
     <>
       <IconButton
@@ -84,11 +95,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        {/*  {cookies.user.avatar !== null ? (
-          <Avatar src={cookies.user.avatar} alt="photoURL" />
-        ) : (
-          " "
-        )} */}
+        <Avatar src={""} alt="photoURL" />
       </IconButton>
 
       <MenuPopover
@@ -99,10 +106,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            {/*  {cookies.user.name} */}
+            {t("Dashboard.admin")}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {/*   {cookies.user.email} */}
+            {localStorage.getItem("SakanaEmail")}
           </Typography>
         </Box>
 
@@ -131,7 +138,7 @@ export default function AccountPopover() {
 
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined" onClick={logOut}>
-            {t("description.AccountPopoverLogout")}
+            {t("Dashboard.logout")}
           </Button>
         </Box>
       </MenuPopover>

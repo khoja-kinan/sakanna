@@ -17,10 +17,18 @@ import {
   AppConversionRates,
 } from "../sections/@dashboard/app";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("SakanaApi-token");
+  useEffect(() => {
+    token === null && navigate("/login");
+  }, [token]);
+
   return (
     <Page title="Dashboard | Sakanna">
       <Container maxWidth="xl">

@@ -1,33 +1,26 @@
 import * as Yup from "yup";
 import { useState } from "react";
-import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useFormik, Form, FormikProvider } from "formik";
 // material
 import {
   Link,
   Stack,
-  Checkbox,
   TextField,
   IconButton,
   InputAdornment,
-  FormControlLabel,
 } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 // component
 import Iconify from "../../../components/Iconify";
 // login function
-import { login } from "../../../controller/AuthController";
-import { useCookies } from "react-cookie";
 //
-import useAuth from "../../../hooks/useAuth";
 import { useTranslation } from "react-i18next";
+import { login } from "../../../controller/AuthController";
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
-  const { setAuth } = useAuth();
-  const [cookies, setCookie] = useCookies(["user"]);
   const navigate = useNavigate();
-  const location = useLocation();
   const { t, i18n } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -35,28 +28,18 @@ export default function LoginForm() {
   const [showError, setShowError] = useState(false);
 
   const loginUser = async () => {
-    navigate("/dashboard/app", { replace: true });
-    /*  const result = await login(
-      formik.values.email,
-      formik.values.password,
-      formik.values.remember
-    );
-    if (result != null && result.status === 1) {
-      const username = result.user.name;
-      const roles = result.roles;
-      setAuth({ username, roles });
-      localStorage.setItem("username", result.user.name);
-      localStorage.setItem("roles", JSON.stringify(result.roles));
+    const result = await login(formik.values.email, formik.values.password);
+    if (result != null && result != undefined) {
+      localStorage.setItem("SakanaEmail", result.data.email);
 
-      localStorage.setItem("api-token", result.token);
-      setCookie("user", result.user, { path: "/" });
-      setCookie("remember_token", result.remember_token, { path: "/" });
+      localStorage.setItem("SakanaApi-token", result.data.token);
+
       navigate("/dashboard/app", { replace: true });
     } else {
       setError(result.data.message);
       setShowError(true);
       formik.setSubmitting(false);
-    } */
+    }
   };
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -69,7 +52,6 @@ export default function LoginForm() {
     initialValues: {
       email: "",
       password: "",
-      remember: false,
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
@@ -151,19 +133,6 @@ export default function LoginForm() {
           justifyContent="space-between"
           sx={{ my: 2 }}
         >
-          <FormControlLabel
-            control={
-              <Checkbox
-                {...getFieldProps("remember")}
-                checked={values.remember}
-                style={{
-                  color: "#172120",
-                }}
-              />
-            }
-            label={t("Dashboard.loginFormForgetRememberMe")}
-          />
-
           <Link
             component={RouterLink}
             variant="subtitle2"

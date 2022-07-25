@@ -12,7 +12,7 @@ import Scrollbar from "../../components/Scrollbar";
 import NavSection from "../../components/NavSection";
 //
 import sidebarConfig from "./SidebarConfig";
-import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
 
 // ----------------------------------------------------------------------
 
@@ -42,8 +42,7 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
-  const [cookies, setCookie] = useCookies(["user"]);
-
+  const { t } = useTranslation();
   const isDesktop = useResponsive("up", "lg");
 
   useEffect(() => {
@@ -78,14 +77,14 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
-            {/*  <Avatar src={cookies.user.avatar} alt="photoURL" /> */}
+            <Avatar src={""} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                {/* {cookies.user.name} */}
+                {t("Dashboard.admin")}
               </Typography>
-              {/*  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                {account.role}
-              </Typography> */}
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                {localStorage.getItem("SakanaEmail")}
+              </Typography>
             </Box>
           </AccountStyle>
         </Link>

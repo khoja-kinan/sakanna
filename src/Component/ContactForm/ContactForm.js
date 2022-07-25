@@ -4,8 +4,11 @@ import axios from "axios";
 import { contactUs } from "../../constants/urls";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ContactForm = (comm_id, type_id, apartment_num) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const { t, i18n } = useTranslation();
   const [name, setName] = useState();
   const [nameError, setNameError] = useState(false);
@@ -13,6 +16,8 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [emailError2, setEmailError2] = useState(false);
+  const [message, setMessage] = useState();
+  const [messageError, setMessageError] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [state, setState] = useState();
 
@@ -31,15 +36,26 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
   const handleChangeContact = (e) => {
     setContact(e.target.value);
   };
-
+  const handleChangeMessage = (e) => {
+    setMessage(e.target.value);
+  };
   const handleSubmit = () => {
     setNameError(name ? false : true);
+    setMessageError(message ? false : true);
     setEmailError(email ? false : true);
     if (email && !emailError) {
       setEmailError2(isValidEmail(email) ? false : true);
     }
 
-    if (name && email && !nameError && !emailError && !emailError2) {
+    if (
+      name &&
+      email &&
+      message &&
+      !nameError &&
+      !emailError &&
+      !emailError2 &&
+      !messageError
+    ) {
       setFormValid(true);
     } else {
       setFormValid(false);
@@ -50,8 +66,10 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
       name: name,
       email: email,
       phone: contact,
-      message: comm_id.apartment_num,
-      isContact: 0,
+      unit_number:
+        comm_id.apartment_num === undefined ? " " : comm_id.apartment_num,
+      message: message,
+      isContact: pathname === "/contact" ? 1 : 0,
     };
     const headers = {
       Accept: "application/json",
@@ -135,7 +153,26 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
                     value={contact}
                   />
                 </div>
-
+                <div className="form-group">
+                  <label className="mb-0 labcon">
+                    {t("contactus.Message")}
+                    <span className="text-danger">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    type="text"
+                    className="form-control incon"
+                    value={message}
+                    onChange={handleChangeMessage}
+                  />
+                  {messageError ? (
+                    <div className="alert alert-danger mt-2">
+                      {t("contactus.Message is a required field.")}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <p className="text-center mb-0 labcon">
                   <input
                     type="button"

@@ -197,63 +197,70 @@ const Type = () => {
         </div>
         {type.type.floors.length !== 0 && (
           <>
-            <div className="conm pa-do">
-              <div className="sup">
-                <p className="sup-tit">
-                  {i18n.dir() === "ltr"
-                    ? type.type.type_details.name
-                    : type.type.type_details.name_ar}
-                </p>
-                <hr className="gr"></hr>
-              </div>
-              <p className="com-tit">{t("Comunity.Prices")}</p>
-            </div>
-            <div className="conmoo">
-              {/* <table className="prices">
-                <tbody>
-                  <tr>
-                    {type.type.floors.map(
-                      (item) =>
-                        item.availability === 1 && (
-                          <th key={item.apartment_number}>
+            {type.community.type === "villa" ? (
+              type.type.type_details.price !== null ? (
+                <>
+                  <div className="conm pa-do">
+                    <div className="sup">
+                      <p className="sup-tit">
+                        {i18n.dir() === "ltr"
+                          ? type.type.type_details.name
+                          : type.type.type_details.name_ar}
+                      </p>
+                      <hr className="gr"></hr>
+                    </div>
+                    <p className="com-tit">{t("Comunity.Prices")}</p>
+                  </div>
+                  <div className="conmoo">
+                    <table className="prices">
+                      <tbody>
+                        <tr>
+                          <th>
+                            {type.type.type_details.price} {t("Comunity.sar")}
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              ) : (
+                ""
+              )
+            ) : (
+              <>
+                <div className="conm pa-do">
+                  <div className="sup">
+                    <p className="sup-tit">
+                      {i18n.dir() === "ltr"
+                        ? type.type.type_details.name
+                        : type.type.type_details.name_ar}
+                    </p>
+                    <hr className="gr"></hr>
+                  </div>
+                  <p className="com-tit">{t("Comunity.Prices")}</p>
+                </div>
+                <div className="conmoo">
+                  <table className="prices">
+                    <tbody>
+                      {type.type.floors.map((item) => (
+                        <tr key={item.floor.id}>
+                          <th>
                             {i18n.dir() === "ltr"
                               ? item.floor.name
                               : item.floor.name_ar}
                           </th>
-                        )
-                    )}
-                  </tr>
-                  <tr>
-                    {type.type.floors.map(
-                      (item) =>
-                        item.availability === 1 && (
-                          <td key={item.apartment_number}>
-                            {item.apartment_price} {t("Comunity.sar")}
-                          </td>
-                        )
-                    )}
-                  </tr>
-                </tbody>
-              </table> */}
-              <table className="prices">
-                <tbody>
-                  {type.type.floors.map((item) => (
-                    <tr>
-                      <th>
-                        {i18n.dir() === "ltr"
-                          ? item.floor.name
-                          : item.floor.name_ar}
-                      </th>
-                      {item.prices.map((floorPrice) => (
-                        <td>
-                          {floorPrice.apartment_price} {t("Comunity.sar")}
-                        </td>
+                          {item.prices.map((floorPrice) => (
+                            <td>
+                              {floorPrice.apartment_price} {t("Comunity.sar")}
+                            </td>
+                          ))}
+                        </tr>
                       ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </>
         )}
         {/* <div className="container"> */}

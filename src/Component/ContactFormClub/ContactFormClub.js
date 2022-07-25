@@ -13,8 +13,6 @@ const ContactFormClub = () => {
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [emailError2, setEmailError2] = useState(false);
-  const [message, setMessage] = useState();
-  const [messageError, setMessageError] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [state, setState] = useState();
 
@@ -33,27 +31,15 @@ const ContactFormClub = () => {
   const handleChangeContact = (e) => {
     setContact(e.target.value);
   };
-  const handleChangeMessage = (e) => {
-    setMessage(e.target.value);
-  };
 
   const handleSubmit = () => {
     setNameError(name ? false : true);
-    setMessageError(message ? false : true);
     setEmailError(email ? false : true);
     if (email && !emailError) {
       setEmailError2(isValidEmail(email) ? false : true);
     }
 
-    if (
-      name &&
-      email &&
-      message &&
-      !nameError &&
-      !emailError &&
-      !emailError2 &&
-      !messageError
-    ) {
+    if (name && email && !nameError && !emailError && !emailError2) {
       setFormValid(true);
     } else {
       setFormValid(false);
@@ -65,7 +51,6 @@ const ContactFormClub = () => {
       name: name,
       email: email,
       phone: contact,
-      message: message,
       isContact: 2,
     };
     const headers = {
@@ -148,26 +133,7 @@ const ContactFormClub = () => {
                   value={contact}
                 />
               </div>
-              <div className="form-group">
-                <label className="mb-0 labcon">
-                  {t("contactus.Message")}
-                  <span className="text-danger">*</span>
-                </label>
-                <textarea
-                  name="message"
-                  type="text"
-                  className="form-control incon"
-                  value={message}
-                  onChange={handleChangeMessage}
-                />
-                {messageError ? (
-                  <div className="alert alert-danger mt-2">
-                    {t("contactus.Message is a required field.")}
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
+
               <p className="text-center mb-0 labcon">
                 <input
                   type="button"
