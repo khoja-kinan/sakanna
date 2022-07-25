@@ -70,7 +70,7 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
   if (!formValid) {
     return (
       <>
-        <Zoom top>
+        
           <div className="card shadow-sm border-0 px-3 rounded-2 mb-3 py-4 bg-light w-57">
             {/* <div className="card-header bg-transparent border-0 text-center text-uppercase"><h3>{this.props.title}</h3></div> */}
             <div className="card-body">
@@ -147,7 +147,7 @@ const ContactForm = (comm_id, type_id, apartment_num) => {
               </form>
             </div>
           </div>
-        </Zoom>
+        
       </>
     );
   } else {
