@@ -151,7 +151,7 @@ const Floors = ({ floors }) => {
                         <td>{floor.totalOutdoorAreas}</td>
                       </tr>
                     )}
-                    {floor.carSlots && (
+                    {floor.carSlots !== 0 && (
                       <tr>
                         <th>Car Slots</th>
                         <td>{floor.carSlots}</td>

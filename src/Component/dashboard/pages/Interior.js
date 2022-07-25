@@ -1,7 +1,9 @@
 import { filter } from "lodash";
 /* import { sentenceCase } from "change-case"; */
-import { useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import useState from "react-usestateref";
+
+import { useNavigate, useParams } from "react-router-dom";
 // material
 import {
   Card,
@@ -35,7 +37,10 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { EditFloorUrl, getComunityInterior } from "../../../constants/urls";
 import FloorMoreMenu from "../sections/@dashboard/floors/FloorMoreMenu";
-import FloorShowMore from "../sections/@dashboard/floors/FloorShowMore";
+import { Link } from "react-router-dom";
+import Iconify from "../components/Iconify";
+import InteriorSamplesEdit from "../sections/@dashboard/interior/InteriorSamples";
+import InteriorSamples from "../sections/@dashboard/interior/InteriorSamples";
 
 // ----------------------------------------------------------------------
 
@@ -65,7 +70,7 @@ export default function Interior() {
   const [orderBy, setOrderBy] = useState("name");
   const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [openNewFloor, setOpenNewFloor] = useState(false);
+  const [openNewInterior, setOpenNewInterior] = useState(false);
 
   const [InteriorList, setInteriorList] = useState([]);
   let navigate = useNavigate();
@@ -158,34 +163,43 @@ export default function Interior() {
   const isUserNotFound = filteredUsers.length === 0;
 
   /* 
-      NewType
+      New Interior
   */
 
-  const handleClickopenNewFloor = () => {
-    setOpenNewFloor(true);
+  const handleClickopenNewInterior = () => {
+    setOpenNewInterior(true);
   };
 
-  const handleCloseNewFloor = () => {
-    setOpenNewFloor(false);
+  const handleCloseNewInterior = () => {
+    setOpenNewInterior(false);
   };
   const [nameAr, setNameAr] = useState();
   const [nameEn, setNameEn] = useState();
+  const [
+    previewTypePlanImage,
+    setPreviewTypePlanImage,
+    previewTypePlanImageRef,
+  ] = useState([]);
+  const [InteriorImageToUpload, setInteriorImageToUpload] = useState([]);
 
-  const [TypePlanImageToShow, setTypePlanImageToShow] = useState();
-  const [previewTypePlanImage, setPreviewTypePlanImage] = useState(null);
-  const [typePlanImageToUpload, setTypePlanImageToUpload] = useState("");
+  const handleCaptureinteriorImages = (e) => {
+    let files = Array.from(e.target.files);
+    let images = [];
+    files.forEach((file) => {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        const { result } = e.target;
+        if (result) {
+          images.push(result);
+        }
+      };
 
-  const handleCaptureComunityImage = (e) => {
-    setTypePlanImageToShow(null);
-    setTypePlanImageToUpload(e.target.files[0]);
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setPreviewTypePlanImage(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
+    });
+    setPreviewTypePlanImage(images);
+    setInteriorImageToUpload(files);
   };
+
   const handleChangeNameAr = (e) => {
     setNameAr(e.target.value);
   };
@@ -201,7 +215,7 @@ export default function Interior() {
 
     formData.append("name_ar", nameAr);
 
-    formData.append("image", typePlanImageToUpload);
+    formData.append("image", InteriorImageToUpload);
 
     axios
       .post(`${EditFloorUrl}`, formData, {
@@ -216,9 +230,11 @@ export default function Interior() {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-    setOpenNewFloor(false);
+    setOpenNewInterior(false);
   };
-
+  const removeReview = () => {
+    setPreviewTypePlanImage([]);
+  };
   return InteriorList === undefined ? (
     <LinearProgress />
   ) : (
@@ -233,7 +249,7 @@ export default function Interior() {
           <Typography variant="h4" gutterBottom>
             {t("Dashboard.InteriotPageTitle")}
           </Typography>
-          <Button variant="contained" onClick={handleClickopenNewFloor}>
+          <Button variant="contained" onClick={handleClickopenNewInterior}>
             {t("Dashboard.ComunitiesAddNew")}
           </Button>
         </Stack>
@@ -241,8 +257,8 @@ export default function Interior() {
         <Dialog
           fullScreen
           disableEscapeKeyDown
-          open={openNewFloor}
-          onClose={handleCloseNewFloor}
+          open={openNewInterior}
+          onClose={handleCloseNewInterior}
         >
           <Stack
             direction={"row"}
@@ -278,45 +294,53 @@ export default function Interior() {
                   onChange={handleChangeNameEn}
                 />
               </FormControl>
-
-              {/* Floor Plan Image */}
-              <FormControl sx={{ m: 1, maxWidth: "45%", marginTop: "2rem" }}>
-                <InputLabel>{t("Dashboard.FloorPlanImage")}</InputLabel>
-                <Box className="upload__image-wrapper">
-                  {previewTypePlanImage ? (
-                    <Box className="image-item" sx={{ margin: "1rem 0" }}>
-                      <img src={previewTypePlanImage} alt="" width="80%" />
-                      <Box className="image-item__btn-wrapper">
-                        <Button
-                          sx={{ margin: "1rem 0" }}
-                          variant="outlined"
-                          onClick={() => setPreviewTypePlanImage(null)}
-                        >
-                          {t("Dashboard.remove")}
-                        </Button>
+              <FormControl sx={{ m: 1, maxWidth: "100%", marginTop: "2rem" }}>
+                <InputLabel>{t("Dashboard.InteriorImageLabel")}</InputLabel>
+                <Box sx={{ width: "100%" }}>
+                  <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                    {previewTypePlanImageRef.current.map((item, index) => (
+                      <Box sx={{ margin: "0 1rem" }} key={index}>
+                        <img src={item} alt="" width={500} />
                       </Box>
-                    </Box>
-                  ) : (
+                    ))}
+                  </Box>
+                  <Box className="image-item__btn-wrapper">
+                    <Button
+                      sx={{ margin: "1rem " }}
+                      variant="outlined"
+                      onClick={removeReview}
+                    >
+                      {t("Dashboard.remove")}
+                    </Button>
+
                     <Button
                       sx={{ margin: "1rem 0" }}
                       variant="outlined"
                       component="label"
                     >
-                      {t("Dashboard.uploadFloorPlanImage")}
+                      {t("Dashboard.uploadInteriorImageImage")}
                       <input
                         type="file"
                         accept="image/*"
                         hidden
-                        onChange={handleCaptureComunityImage}
+                        multiple
+                        onChange={handleCaptureinteriorImages}
                       />
                     </Button>
-                  )}
+                  </Box>
                 </Box>
               </FormControl>
             </Box>
+            <Box
+              component="form"
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+              }}
+            ></Box>
           </DialogContent>
           <DialogActions sx={{ justifyContent: "center" }}>
-            <Button onClick={handleCloseNewFloor}>
+            <Button onClick={handleCloseNewInterior}>
               {t("Dashboard.Close")}
             </Button>
 
@@ -363,7 +387,7 @@ export default function Interior() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <FloorShowMore item={row} />
+                            <InteriorSamples item={row} />
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}

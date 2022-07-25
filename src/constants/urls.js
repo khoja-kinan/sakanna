@@ -1,5 +1,5 @@
-export const baseUrl = "https://sakanna.net/backend/api";
-export const baseImageUrl = "https://sakanna.net/backend/public/upload/";
+export const baseUrl = "https://sakanna.net/testback/api";
+export const baseImageUrl = "https://sakanna.net/testback/public/upload/";
 
 export const GetAllCommunities = `${baseUrl}/communities`;
 export const GetAllTypes = `${baseUrl}/alltypes`;
@@ -22,6 +22,7 @@ export const getComunityFloor = `${baseUrl}/community/`;
 export const EditFloorUrl = `${baseUrl}/floors`;
 
 export const getComunityInterior = `${baseUrl}/community/`;
+export const DeleteInteriorImage = `${baseUrl}/images`;
 
 export const contactUs = `${baseUrl}/contacts`;
 

@@ -38,6 +38,7 @@ import IndexDashboard from "./Component/dashboard/IndexDashboard";
 import Amenities from "./Component/dashboard/pages/Amenities";
 import Floors from "./Component/dashboard/pages/Floors";
 import Interior from "./Component/dashboard/pages/Interior";
+import InteriorSamplesEdit from "./Component/dashboard/sections/@dashboard/interior/InteriorSamples";
 
 const App = () => {
   // const { t, i18n } = useTranslation();

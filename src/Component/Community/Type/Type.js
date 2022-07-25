@@ -39,6 +39,7 @@ const Type = () => {
     }
     fecthData();
   }, []);
+  console.log(type);
   return loading ? (
     <LinearProgress color="primary" />
   ) : (
