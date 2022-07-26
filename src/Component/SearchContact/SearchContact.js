@@ -84,7 +84,11 @@ const SearchContact = () => {
         <div className="home-fun">
           <div className="filterss">
             <div className="sele">
-              <svg
+              
+              <div className="selecty">
+                <label className="l-b">
+                <svg
+                className="mar"
                 width="23"
                 height="24"
                 viewBox="0 0 23 24"
@@ -112,8 +116,7 @@ const SearchContact = () => {
                   </clipPath>
                 </defs>
               </svg>
-              <div className="selecty">
-                <label className="l-b">{t("SearchBar.com")}</label>
+              {t("SearchBar.com")}</label>
                 {/* <Select options={Communities} defaultValue={Communities[0]} /> */}
                 <Select
                   labelId="demo-dialog-select-label"
@@ -155,7 +158,12 @@ const SearchContact = () => {
               </div>
             </div>
             <div className="sele">
-              <svg
+              
+
+              <div className="selecty">
+                <label className="l-b">
+                <svg
+                className="mar"
                 width="21"
                 height="19"
                 viewBox="0 0 21 19"
@@ -166,10 +174,7 @@ const SearchContact = () => {
                   d="M11.1856 11.0828H17.5881L14.682 0H6.31823L3.41211 11.0828H9.81468V17.7596H5.89179V19H15.1085V17.7596H11.1856V11.0828V11.0828ZM5.14633 9.84246L7.40198 1.24034H13.5983L15.8539 9.84246H5.14633Z"
                   fill="#414263"
                 />
-              </svg>
-
-              <div className="selecty">
-                <label className="l-b">{t("SearchBar.type")}</label>
+              </svg>{t("SearchBar.type")}</label>
                 <Select
                   labelId="demo-dialog-select-label"
                   id="demo-dialog-select"
@@ -212,7 +217,12 @@ const SearchContact = () => {
               </div>
             </div>
             <div className="sele">
-              <svg
+              
+
+              <div className="selecty">
+                <label className="l-b">
+                <svg
+                className="mar"
                 width="21"
                 height="19"
                 viewBox="0 0 21 19"
@@ -224,9 +234,7 @@ const SearchContact = () => {
                   fill="#414263"
                 />
               </svg>
-
-              <div className="selecty">
-                <label className="l-b">{t("SearchBar.floor")}</label>
+              {t("SearchBar.floor")}</label>
                 <Select
                   labelId="demo-dialog-select-label"
                   id="demo-dialog-select"
