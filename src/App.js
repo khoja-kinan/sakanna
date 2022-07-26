@@ -41,6 +41,7 @@ import Interior from "./Component/dashboard/pages/Interior";
 import InteriorSamplesEdit from "./Component/dashboard/sections/@dashboard/interior/InteriorSamples";
 import Gallery from "./Component/dashboard/pages/Gallery";
 import Contacts from "./Component/dashboard/pages/Contacts";
+import Unites from "./Component/dashboard/pages/Unites";
 
 const App = () => {
   // const { t, i18n } = useTranslation();
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="floors/:communityId" element={<Floors />} />
         <Route path="interior/:communityId" element={<Interior />} />
         <Route path="gallery/:communityId" element={<Gallery />} />
+        <Route path="unites/:typeId" element={<Unites />} />
         <Route path="contacts" element={<Contacts />} />
 
         {/*  </Route>

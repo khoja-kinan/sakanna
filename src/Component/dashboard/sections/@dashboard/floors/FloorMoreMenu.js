@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import { EditFloorUrl } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function FloorMoreMenu({ Floor_id }) {
+export default function FloorMoreMenu({ Floor_id, token }) {
   const { t } = useTranslation();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
@@ -36,6 +36,7 @@ export default function FloorMoreMenu({ Floor_id }) {
       .delete(`${EditFloorUrl}/${Floor_id}`, {
         headers: {
           Accept: "application/json",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

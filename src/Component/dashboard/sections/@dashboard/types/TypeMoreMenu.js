@@ -27,7 +27,7 @@ import { useTranslation } from "react-i18next";
 import { baseImageUrl, deleteTypeUrl } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function TypeMoreMenu({ Type_id }) {
+export default function TypeMoreMenu({ Type_id, token }) {
   const { t } = useTranslation();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
@@ -48,6 +48,7 @@ export default function TypeMoreMenu({ Type_id }) {
       .delete(`${deleteTypeUrl}${Type_id}`, {
         headers: {
           Accept: "application/json",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

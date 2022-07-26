@@ -168,6 +168,7 @@ export default function ComunityMoreMenu({
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

@@ -12,10 +12,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { AddNewAmenity } from "../../../../../constants/urls";
+import { EditFloorUrl, UnitUrl } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function AmenityMoreMenu({ Amenity_id, token }) {
+export default function UnitMoreMenu({ unit_id, token }) {
   const { t } = useTranslation();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
@@ -33,7 +33,7 @@ export default function AmenityMoreMenu({ Amenity_id, token }) {
 
   const handleConfirmDelete = () => {
     axios
-      .delete(`${AddNewAmenity}/${Amenity_id}`, {
+      .delete(`${UnitUrl}/${unit_id}`, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + token,
@@ -63,14 +63,14 @@ export default function AmenityMoreMenu({ Amenity_id, token }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {t("Dashboard.DeleteAmenityDialogTitle")}
+          {t("Dashboard.DeleteUnitDialogTitle")}
         </DialogTitle>
         <DialogContent
           id="alert-dialog-description"
           sx={{ padding: "2rem", marginTop: "2rem" }}
         >
           <DialogContentText>
-            {t("Dashboard.DeleteAmenityDialogMessage")}
+            {t("Dashboard.DeleteUnitDialogMessage")}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

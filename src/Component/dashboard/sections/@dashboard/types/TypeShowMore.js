@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { baseImageUrl, EditTypeUrl } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function TypeShowMore({ item }) {
+export default function TypeShowMore({ item, token }) {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [nameAr, setNameAr] = useState(item.name_ar);
@@ -321,6 +321,7 @@ export default function TypeShowMore({ item }) {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

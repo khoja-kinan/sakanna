@@ -1,7 +1,7 @@
 import { filter } from "lodash";
 /* import { sentenceCase } from "change-case"; */
 import { useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // material
 import {
   Card,
@@ -36,6 +36,7 @@ import { useTranslation } from "react-i18next";
 import { getTypeById, NewTypeUrl } from "../../../constants/urls";
 import TypeShowMore from "../sections/@dashboard/types/TypeShowMore";
 import TypeMoreMenu from "../sections/@dashboard/types/TypeMoreMenu";
+import { Link } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -145,7 +146,7 @@ export default function Types() {
   if (TypesList === undefined) {
     return <LinearProgress />;
   }
-
+  console.log(TypesList);
   function applySortFilter(array, comparator, query) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -190,6 +191,11 @@ export default function Types() {
       label: t("Dashboard.showMore"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
+    TypesList.community_type !== "villa" && {
+      id: "units",
+      label: t("Dashboard.comunityTabeHeadCommunityUnits"),
+      alignRight: i18n.dir() === "ltr" ? false : true,
+    },
     { id: "" },
   ];
   const handleRequestSort = (event, property) => {
@@ -212,10 +218,12 @@ export default function Types() {
   };
 
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - TypesList.length) : 0;
+    page > 0
+      ? Math.max(0, (1 + page) * rowsPerPage - TypesList.types.length)
+      : 0;
 
   const filteredUsers = applySortFilter(
-    TypesList,
+    TypesList.types,
     getComparator(order, orderBy),
     filterName
   );
@@ -457,6 +465,7 @@ export default function Types() {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {
@@ -952,7 +961,7 @@ export default function Types() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={TypesList.length}
+                  rowCount={TypesList.types.length}
                   onRequestSort={handleRequestSort}
                 />
                 <TableBody>
@@ -965,7 +974,6 @@ export default function Types() {
                         name,
                         count,
                         price,
-                        max_price,
                         numberOfAvailable,
                       } = row;
 
@@ -995,12 +1003,29 @@ export default function Types() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <TypeShowMore item={row} />
+                            <TypeShowMore item={row} token={token} />
                           </TableCell>
+                          {TypesList.community_type !== "villa" && (
+                            <TableCell
+                              align={i18n.dir() === "ltr" ? "left" : "right"}
+                            >
+                              <Link
+                                to={`/dashboard/unites/${id}`}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "black",
+                                }}
+                              >
+                                {i18n.dir() === "ltr"
+                                  ? "Show Units"
+                                  : "إظهار الوحدات السكنية "}
+                              </Link>
+                            </TableCell>
+                          )}
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >
-                            <TypeMoreMenu Type_id={id} />
+                            <TypeMoreMenu Type_id={id} token={token} />
                           </TableCell>
                         </TableRow>
                       );
@@ -1027,7 +1052,7 @@ export default function Types() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={TypesList.length}
+            count={TypesList.types.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

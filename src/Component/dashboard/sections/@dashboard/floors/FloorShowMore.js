@@ -21,7 +21,7 @@ import {
 } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function FloorShowMore({ item }) {
+export default function FloorShowMore({ item, token }) {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [nameAr, setNameAr] = useState(item.name_ar);
@@ -264,6 +264,7 @@ export default function FloorShowMore({ item }) {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

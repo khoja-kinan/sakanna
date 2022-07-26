@@ -21,7 +21,7 @@ import {
 } from "../../../../../constants/urls";
 // ----------------------------------------------------------------------
 
-export default function AmenityShowMore({ item }) {
+export default function AmenityShowMore({ item, token }) {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [nameAr, setNameAr] = useState(item.name_ar);
@@ -79,6 +79,7 @@ export default function AmenityShowMore({ item }) {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {

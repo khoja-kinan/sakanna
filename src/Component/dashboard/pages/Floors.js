@@ -408,6 +408,7 @@ export default function Floors() {
       .post(`${EditFloorUrl}`, formData, {
         headers: {
           Accept: "application/json",
+          Authorization: "Bearer " + token,
           "content-type": "multipart/form-data",
         },
       })
@@ -869,12 +870,12 @@ export default function Floors() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <FloorShowMore item={row} />
+                            <FloorShowMore item={row} token={token} />
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >
-                            <FloorMoreMenu Floor_id={row.id} />
+                            <FloorMoreMenu Floor_id={row.id} token={token} />
                           </TableCell>
                         </TableRow>
                       );

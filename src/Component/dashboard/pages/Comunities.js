@@ -181,11 +181,7 @@ export default function Comunities() {
       label: t("Dashboard.comunityTabeHeadCommunityGallery"),
       alignRight: i18n.dir() === "ltr" ? false : true,
     },
-    {
-      id: "units",
-      label: t("Dashboard.comunityTabeHeadCommunityUnits"),
-      alignRight: i18n.dir() === "ltr" ? false : true,
-    },
+
     { id: "" },
   ];
   const handleRequestSort = (event, property) => {
@@ -330,7 +326,6 @@ export default function Comunities() {
       });
     setOpenNewComunity(false);
   };
-  console.log(filteredUsers);
   return (
     <Page title={t("Dashboard.ComunitiesPageTitle")}>
       <Container>
@@ -694,18 +689,7 @@ export default function Comunities() {
                                 : "إظهار المعرض "}
                             </Link>
                           </TableCell>
-                          <TableCell
-                            align={i18n.dir() === "ltr" ? "left" : "right"}
-                          >
-                            <Link
-                              to={`/dashboard/gallery/${id}`}
-                              style={{ textDecoration: "none", color: "black" }}
-                            >
-                              {i18n.dir() === "ltr"
-                                ? "Show Units"
-                                : "إظهار الوحدات السكنية "}
-                            </Link>
-                          </TableCell>
+
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >

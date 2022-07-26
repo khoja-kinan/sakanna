@@ -1,14 +1,13 @@
 import { filter } from "lodash";
 /* import { sentenceCase } from "change-case"; */
 import { useEffect, useState } from "react";
-import { Link as RouterLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // material
 import {
   Card,
   Table,
   Stack,
   Button,
-  Checkbox,
   TableRow,
   TableBody,
   TableCell,
@@ -24,8 +23,6 @@ import {
   DialogTitle,
   FormControl,
   InputLabel,
-  MenuItem,
-  Select,
   LinearProgress,
 } from "@mui/material";
 // components
@@ -39,11 +36,7 @@ import { useTranslation } from "react-i18next";
 import {
   AddNewAmenity,
   getAmenitiesByCommunityId,
-  getTypeById,
-  NewTypeUrl,
 } from "../../../constants/urls";
-import TypeShowMore from "../sections/@dashboard/types/TypeShowMore";
-import TypeMoreMenu from "../sections/@dashboard/types/TypeMoreMenu";
 import AmenityShowMore from "../sections/@dashboard/amenities/AmenityShowMore";
 import AmenityMoreMenu from "../sections/@dashboard/amenities/AmenityMoreMenu";
 
@@ -221,6 +214,7 @@ export default function Amenities() {
         headers: {
           Accept: "application/json",
           "content-type": "multipart/form-data",
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {
@@ -378,12 +372,15 @@ export default function Amenities() {
                           <TableCell
                             align={i18n.dir() === "ltr" ? "left" : "right"}
                           >
-                            <AmenityShowMore item={row} />
+                            <AmenityShowMore item={row} token={token} />
                           </TableCell>
                           <TableCell
                             align={i18n.dir() === "ltr" ? "right" : "left"}
                           >
-                            <AmenityMoreMenu Amenity_id={row.id} />
+                            <AmenityMoreMenu
+                              Amenity_id={row.id}
+                              token={token}
+                            />
                           </TableCell>
                         </TableRow>
                       );
